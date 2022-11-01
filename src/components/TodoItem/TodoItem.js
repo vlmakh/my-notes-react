@@ -44,12 +44,13 @@ function TodoItem({ id, text, completed, completeTodo, editTodo, deleteTodo }) {
       </Label>
       <EditBtn
         type="button"
+        aria-label="Edit task"
         onClick={toggleModal}
         disabled={completed ? true : false}
       >
         <FaMarker />
       </EditBtn>
-      <DeleteBtn type="button" onClick={handleDelete}>
+      <DeleteBtn type="button" aria-label="Delete task" onClick={handleDelete}>
         <MdDeleteForever size="20" />
       </DeleteBtn>
       {editOpen && <EditTodoModal saveTodo={handleEdit} textToUpdate={text} />}

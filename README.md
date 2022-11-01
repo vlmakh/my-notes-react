@@ -10,3 +10,5 @@ Attached libraries:
 - nanoid.
 
 Added the ability to add new, mark ready, delete, edit notes.
+
+Saving current notes is implemented using localStorage.

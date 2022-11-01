@@ -24,9 +24,9 @@ const AddNew = ({ onSubmit }) => {
         name="text"
         value={text}
         onChange={onFormInput}
-        placeholder="Новая задача"
+        placeholder="New task"
       ></InputNew>
-      <AddBtn type="submit">
+      <AddBtn type="submit" aria-label="Add task">
         <MdAddCircle size="20" />
       </AddBtn>
     </AddForm>

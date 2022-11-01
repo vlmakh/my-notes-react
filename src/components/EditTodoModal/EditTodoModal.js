@@ -22,7 +22,7 @@ export function EditTodoModal({ textToUpdate, saveTodo }) {
         value={newText}
         onChange={onFormInput}
       />
-      <SaveBtn type="submit">
+      <SaveBtn type="submit" aria-label="Save task">
         <FaSave size="20" />
       </SaveBtn>
     </EditTodoForm>
