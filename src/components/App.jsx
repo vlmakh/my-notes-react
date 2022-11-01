@@ -1,8 +1,8 @@
 import { Box, BoxMain } from 'components/Box/Box';
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import { TodoList } from './TodoList/TodoList';
-import { AddNew } from './AddNew/AddNew';
+import { TodoList } from 'components/TodoList/TodoList';
+import { AddNew } from 'components/AddNew/AddNew';
 
 const startTodos = [
   { id: nanoid(4), text: '6:00 Подъем', completed: false },
