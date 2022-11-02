@@ -51,7 +51,7 @@ function TodoItem({
       dragListener={false}
       dragControls={controls}
     >
-      <Box mr={2} onPointerDown={e => controls.start(e)} className={css.move}>
+      <Box onPointerDown={e => controls.start(e)} className={css.move}>
         <FaGripLines size="20" />
       </Box>
       <Label>

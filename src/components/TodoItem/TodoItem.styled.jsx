@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const Label = styled.label`
   display: flex;
   align-items: center;
+  margin-left: 16px;
   /* padding: 8px; */
   /* cursor: pointer; */
 `;
@@ -23,7 +24,7 @@ export const Checkbox = styled.input`
 `;
 
 export const TodoText = styled.span`
-  width: 180px;
+  width: 204px;
   margin-left: 8px;
   font-weight: 600;
   color: #212121;
@@ -34,8 +35,9 @@ export const CheckBtn = styled.button`
   /* margin-left: auto; */
   border: none;
   background-color: transparent;
-  width: 30px;
+  width: 20px;
   height: 30px;
+  padding: 0;
   color: grey;
 
   /* transition: color 250ms linear;
@@ -47,11 +49,12 @@ export const CheckBtn = styled.button`
 
 export const EditBtn = styled.button`
   cursor: pointer;
-  margin-left: 8px;
+  margin-left: auto;
   border: none;
   background-color: transparent;
-  width: 30px;
+  width: 20px;
   height: 30px;
+  padding: 0;
   color: grey;
 
   transition: color 250ms linear;
@@ -66,8 +69,9 @@ export const DeleteBtn = styled.button`
   margin-left: 8px;
   border: none;
   background-color: transparent;
-  width: 30px;
+  width: 20px;
   height: 30px;
+  padding: 0;
   color: grey;
 
   transition: color 250ms linear;
