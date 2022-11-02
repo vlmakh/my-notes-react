@@ -1,19 +1,31 @@
 import { useState } from 'react';
+import { Reorder, useDragControls } from 'framer-motion';
 import { MdDeleteForever } from 'react-icons/md';
-import { FaCheckCircle, FaMarker } from 'react-icons/fa';
-import { nanoid } from 'nanoid';
+import { FaCheckCircle, FaMarker, FaGripLines } from 'react-icons/fa';
+import { Box } from 'components/Box/Box';
+// import { nanoid } from 'nanoid';
 import {
   Label,
   TodoText,
   DeleteBtn,
   Checkbox,
+  CheckBtn,
   EditBtn,
 } from './TodoItem.styled';
 import css from './TodoItem.module.css';
 import { EditTodoModal } from 'components/EditTodoModal/EditTodoModal';
 
-function TodoItem({ id, text, completed, completeTodo, editTodo, deleteTodo }) {
+function TodoItem({
+  id,
+  text,
+  completed,
+  todo,
+  completeTodo,
+  editTodo,
+  deleteTodo,
+}) {
   const [editOpen, setEditOpen] = useState(false);
+  const controls = useDragControls();
 
   const toggleModal = () => {
     setEditOpen(!editOpen);
@@ -24,8 +36,8 @@ function TodoItem({ id, text, completed, completeTodo, editTodo, deleteTodo }) {
     editTodo(id, newText);
   };
 
-  const handleComplete = () => {
-    completeTodo(id);
+  const handleComplete = e => {
+    completeTodo(e, id);
   };
 
   const handleDelete = () => {
@@ -33,12 +45,20 @@ function TodoItem({ id, text, completed, completeTodo, editTodo, deleteTodo }) {
   };
 
   return (
-    <li key={nanoid(4)} className={css.todoItem}>
-      <Label onClick={handleComplete}>
+    <Reorder.Item
+      value={todo}
+      className={css.todoItem}
+      dragListener={false}
+      dragControls={controls}
+    >
+      <Box mr={2} onPointerDown={e => controls.start(e)} className={css.move}>
+        <FaGripLines size="20" />
+      </Box>
+      <Label>
         <Checkbox type="checkbox" checked={completed ? true : false} readOnly />
-        <span>
+        <CheckBtn onClick={handleComplete}>
           <FaCheckCircle size="20" />
-        </span>
+        </CheckBtn>
 
         <TodoText>{text}</TodoText>
       </Label>
@@ -54,7 +74,7 @@ function TodoItem({ id, text, completed, completeTodo, editTodo, deleteTodo }) {
         <MdDeleteForever size="20" />
       </DeleteBtn>
       {editOpen && <EditTodoModal saveTodo={handleEdit} textToUpdate={text} />}
-    </li>
+    </Reorder.Item>
   );
 }
 

@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 16px 8px 16px 44px;
+  padding: 8px ;
 
   transition: background-color 250ms linear;
 }
@@ -15,8 +15,14 @@
   border-bottom: 1px solid lightgrey;
 }
 
-.todoItem:before {
+/* .todoItem:before {
   content: '###';
   position: absolute;
   left: 8px;
+  cursor: grab;
+} */
+
+.move {
+  cursor: grab;
+  /* height: 100%; */
 }
