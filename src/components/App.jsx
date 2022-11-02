@@ -44,6 +44,7 @@ function App() {
         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
       )
     );
+    console.log(todoId)
   };
 
   const deleteTodo = todoId => {

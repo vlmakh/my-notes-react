@@ -4,6 +4,7 @@ export const Todo = styled.li`
   position: relative;
   display: flex;
   align-items: center;
+  padding: 16px 8px 16px 44px;
 
   transition: background-color 250ms linear;
 
@@ -14,12 +15,18 @@ export const Todo = styled.li`
   :not(:last-child) {
     border-bottom: 1px solid lightgrey;
   }
+
+  :before {
+    content: '###';
+    position: absolute;
+    left: 8px;
+  }
 `;
 
 export const Label = styled.label`
   display: flex;
   align-items: center;
-  padding: 8px;
+  /* padding: 8px; */
   cursor: pointer;
 `;
 
