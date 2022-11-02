@@ -38,12 +38,14 @@ function App() {
     );
   };
 
-  const completeTodo = todoId => {
+  const completeTodo = (e, todoId) => {
     setTodos(todos =>
       todos.map(todo =>
         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
       )
     );
+    console.log(e.target.tagName)
+    console.log(e.currentTarget.tagName)
   };
 
   const deleteTodo = todoId => {
@@ -62,6 +64,7 @@ function App() {
 
       <TodoList
         todos={todos}
+        setTodos={setTodos}
         deleteTodo={deleteTodo}
         editTodo={editTodo}
         completeTodo={completeTodo}

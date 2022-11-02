@@ -1,26 +1,11 @@
 import styled from '@emotion/styled';
 
-export const Todo = styled.li`
-  position: relative;
-  display: flex;
-  align-items: center;
-
-  transition: background-color 250ms linear;
-
-  :hover {
-    background-color: lightgrey;
-  }
-
-  :not(:last-child) {
-    border-bottom: 1px solid lightgrey;
-  }
-`;
-
 export const Label = styled.label`
   display: flex;
   align-items: center;
-  padding: 8px;
-  cursor: pointer;
+  margin-left: 16px;
+  /* padding: 8px; */
+  /* cursor: pointer; */
 `;
 
 export const Checkbox = styled.input`
@@ -30,7 +15,7 @@ export const Checkbox = styled.input`
     color: grey;
   }
 
-  :checked + span {
+  :checked + button {
     color: green;
   }
   :checked ~ span {
@@ -39,19 +24,54 @@ export const Checkbox = styled.input`
 `;
 
 export const TodoText = styled.span`
-  width: 180px;
-  margin-left: 14px;
+  width: 204px;
+  margin-left: 8px;
   font-weight: 600;
   color: #212121;
 `;
 
-export const DeleteBtn = styled.button`
+export const CheckBtn = styled.button`
+  cursor: pointer;
+  /* margin-left: auto; */
+  border: none;
+  background-color: transparent;
+  width: 20px;
+  height: 30px;
+  padding: 0;
+  color: grey;
+
+  /* transition: color 250ms linear;
+
+  :hover {
+    color: #212121;
+  } */
+`;
+
+export const EditBtn = styled.button`
   cursor: pointer;
   margin-left: auto;
   border: none;
   background-color: transparent;
-  width: 30px;
+  width: 20px;
   height: 30px;
+  padding: 0;
+  color: grey;
+
+  transition: color 250ms linear;
+
+  :hover {
+    color: #212121;
+  }
+`;
+
+export const DeleteBtn = styled.button`
+  cursor: pointer;
+  margin-left: 8px;
+  border: none;
+  background-color: transparent;
+  width: 20px;
+  height: 30px;
+  padding: 0;
   color: grey;
 
   transition: color 250ms linear;
@@ -61,18 +81,4 @@ export const DeleteBtn = styled.button`
   }
 `;
 
-export const EditBtn = styled.button`
-  cursor: pointer;
-  /* margin-left: auto; */
-  border: none;
-  background-color: transparent;
-  width: 30px;
-  height: 30px;
-  color: grey;
 
-  transition: color 250ms linear;
-
-  :hover {
-    color: #212121;
-  }
-`;

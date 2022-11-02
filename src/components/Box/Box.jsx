@@ -10,7 +10,7 @@ export const BoxMain = styled.div`
   transform: translate(-50%, -50%); */
   margin: 20px auto 0;
 
-  width: 300px;
+  width: 340px;
   border: 1px solid grey;
   border-radius: 8px;
   overflow: hidden;

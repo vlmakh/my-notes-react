@@ -1,0 +1,28 @@
+.todoItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px ;
+
+  transition: background-color 250ms linear;
+}
+
+.todoItem:hover {
+  background-color: lightgrey;
+}
+
+.todoItem:not(:last-child) {
+  border-bottom: 1px solid lightgrey;
+}
+
+/* .todoItem:before {
+  content: '###';
+  position: absolute;
+  left: 8px;
+  cursor: grab;
+} */
+
+.move {
+  cursor: grab;
+  /* height: 100%; */
+}
