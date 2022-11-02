@@ -1,9 +1,9 @@
-import { List } from './TodoList.styled';
+import css from './TodoList.module.css';
 import { TodoItem } from 'components/TodoItem/TodoItem';
 
 export function TodoList({ todos, completeTodo, editTodo, deleteTodo }) {
   return (
-    <List>
+    <ul className={css.todoList}>
       {todos.map(todo => {
         return (
           <TodoItem
@@ -17,6 +17,6 @@ export function TodoList({ todos, completeTodo, editTodo, deleteTodo }) {
           />
         );
       })}
-    </List>
+    </ul>
   );
 }

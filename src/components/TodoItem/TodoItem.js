@@ -3,13 +3,13 @@ import { MdDeleteForever } from 'react-icons/md';
 import { FaCheckCircle, FaMarker } from 'react-icons/fa';
 import { nanoid } from 'nanoid';
 import {
-  Todo,
   Label,
   TodoText,
   DeleteBtn,
   Checkbox,
   EditBtn,
 } from './TodoItem.styled';
+import css from './TodoItem.module.css';
 import { EditTodoModal } from 'components/EditTodoModal/EditTodoModal';
 
 function TodoItem({ id, text, completed, completeTodo, editTodo, deleteTodo }) {
@@ -33,7 +33,7 @@ function TodoItem({ id, text, completed, completeTodo, editTodo, deleteTodo }) {
   };
 
   return (
-    <Todo key={nanoid(4)}>
+    <li key={nanoid(4)} className={css.todoItem}>
       <Label onClick={handleComplete}>
         <Checkbox type="checkbox" checked={completed ? true : false} readOnly />
         <span>
@@ -54,7 +54,7 @@ function TodoItem({ id, text, completed, completeTodo, editTodo, deleteTodo }) {
         <MdDeleteForever size="20" />
       </DeleteBtn>
       {editOpen && <EditTodoModal saveTodo={handleEdit} textToUpdate={text} />}
-    </Todo>
+    </li>
   );
 }
 

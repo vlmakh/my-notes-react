@@ -1,0 +1,22 @@
+.todoItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px 8px 16px 44px;
+
+  transition: background-color 250ms linear;
+}
+
+.todoItem:hover {
+  background-color: lightgrey;
+}
+
+.todoItem:not(:last-child) {
+  border-bottom: 1px solid lightgrey;
+}
+
+.todoItem:before {
+  content: '###';
+  position: absolute;
+  left: 8px;
+}
