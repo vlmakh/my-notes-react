@@ -1,8 +1,8 @@
-import { EditTodoForm, SaveBtn } from './EditTodoModal.styled';
+import { EditTodoForm, SaveBtn } from './TodoEditModal.styled';
 import { FaSave } from 'react-icons/fa';
 import { useState } from 'react';
 
-export function EditTodoModal({ textToUpdate, saveTodo }) {
+export function TodoEditModal({ textToUpdate, saveTodo }) {
   const [newText, setNewText] = useState(textToUpdate);
 
   const onFormInput = event => {

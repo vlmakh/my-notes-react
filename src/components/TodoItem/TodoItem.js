@@ -13,7 +13,7 @@ import {
   EditBtn,
 } from './TodoItem.styled';
 import css from './TodoItem.module.css';
-import { EditTodoModal } from 'components/EditTodoModal/EditTodoModal';
+import { TodoEditModal } from 'components/TodoEditModal/TodoEditModal';
 
 function TodoItem({
   id,
@@ -73,7 +73,7 @@ function TodoItem({
       <DeleteBtn type="button" aria-label="Delete task" onClick={handleDelete}>
         <MdDeleteForever size="20" />
       </DeleteBtn>
-      {editOpen && <EditTodoModal saveTodo={handleEdit} textToUpdate={text} />}
+      {editOpen && <TodoEditModal saveTodo={handleEdit} textToUpdate={text} />}
     </Reorder.Item>
   );
 }
