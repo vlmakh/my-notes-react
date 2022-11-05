@@ -2,63 +2,48 @@ import { Box } from 'components/Box/Box';
 // import { useState, useEffect } from 'react';
 // import { nanoid } from 'nanoid';
 
-import { NoteItem } from './NoteItem/NoteItem';
+import { NoteItem } from 'components/NoteItem/NoteItem';
+// import { NoteAddBtn } from 'components/NoteAddBtn/NoteAddBtn';
 
-// const startTodos = [
-//   { id: nanoid(4), text: '6:00 Подъем', completed: false },
-//   { id: nanoid(4), text: '7:00 Разгон облаков', completed: false },
-//   { id: nanoid(4), text: '10:00-13:00 Подвиг', completed: false },
-// ];
+
+// const startNotes = [{
+//   noteid: nanoid(4), note: [{ id: nanoid(6), text: "task1", completed: false}, { id: nanoid(6), text: "task2", completed: false}]
+// },  ];
 
 function App() {
-  // const savedData = JSON.parse(localStorage.getItem('todos'));
-  // const [todos, setTodos] = useState(savedData ? savedData : startTodos);
+  // const savedData = JSON.parse(localStorage.getItem('mynotes'));
+  // const [mynotes, setMynotes] = useState(savedData ? savedData : startNotes);
+
+  // console.log(mynotes)
 
   // useEffect(() => {
-  //   localStorage.setItem('todos', JSON.stringify(todos));
-  // }, [todos]);
+  //   localStorage.setItem('mynotes', JSON.stringify(mynotes));
+  // }, [mynotes]);
 
-  // const addTodo = data => {
-  //   const newTodo = {
-  //     id: nanoid(4),
-  //     text: data,
-  //     completed: false,
+  // const addNote = () => {
+  //   const newNote = {
+  //     noteid: nanoid(4), 
+  //     note: 
+  //     {id: nanoid(6),
+  //     text: '',
+  //     completed: false,}
   //   };
-
-  //   if (data.trim() !== '') {
-  //     setTodos([newTodo, ...todos]);
-  //   }
+  //   setMynotes([ ...mynotes, newNote]);
   // };
 
-  // const editTodo = (todoId, newText) => {
-  //   setTodos(todos =>
-  //     todos.map(todo =>
-  //       todo.id === todoId ? { ...todo, text: newText } : todo
-  //     )
-  //   );
-  // };
+   
 
-  // const completeTodo = (e, todoId) => {
-  //   setTodos(todos =>
-  //     todos.map(todo =>
-  //       todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
-  //     )
-  //   );
-  //   console.log(e.target.tagName);
-  //   console.log(e.currentTarget.tagName);
-  // };
-
-  // const deleteTodo = todoId => {
+  // const deleteNote = noteId => {
   //   if (global.confirm('Вы действительно хотите удалить?')) {
-  //     setTodos(todos.filter(todo => todo.id !== todoId));
+  //     setMynotes(mynotes.filter(note => note.noteid !== noteId));
   //   }
   // };
 
   return (
     <Box p={3} display="flex" flexWrap="wrap">
       <NoteItem />
-
-      
+      {/* {mynotes.map(noteItem => { return <NoteItem key={ noteItem.noteid} noteid={noteItem.noteid} note={noteItem.note} />})}
+      <NoteAddBtn addNote={addNote } /> */}
     </Box>
   );
 }

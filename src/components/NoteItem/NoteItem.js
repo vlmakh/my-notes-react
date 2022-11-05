@@ -5,14 +5,21 @@ import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
 
 const startTodos = [
-  { id: nanoid(4), text: '6:00 Подъем', completed: false },
-  { id: nanoid(4), text: '7:00 Разгон облаков', completed: false },
-  { id: nanoid(4), text: '10:00-13:00 Подвиг', completed: false },
+  {
+    noteid: nanoid(4),
+    note: [
+      { id: nanoid(6), text: '6:00 Подъем', completed: false },
+      { id: nanoid(6), text: '7:00 Разгон облаков', completed: false },
+      { id: nanoid(6), text: '10:00-13:00 Подвиг', completed: false },
+    ],
+  },
 ];
 
-function NoteItem() {
+function NoteItem({ noteid, note }) {
   const savedData = JSON.parse(localStorage.getItem('todos'));
   const [todos, setTodos] = useState(savedData ? savedData : startTodos);
+
+  //   console.log(note);
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
