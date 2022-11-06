@@ -42,7 +42,7 @@ function App() {
   };
 
   const deleteNote = noteId => {
-    if (global.confirm('Удалить всю Заметку?')) {
+    if (global.confirm('Delete Note?')) {
       setMynotes(mynotes.filter(note => note.noteid !== noteId));
     }
   };

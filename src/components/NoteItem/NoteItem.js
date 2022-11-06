@@ -49,7 +49,7 @@ function NoteItem({ note, editNote, deleteNote }) {
   };
 
   const deleteTodo = todoId => {
-    if (global.confirm('Удалить задачу?')) {
+    if (global.confirm('Delete task?')) {
       setTodos(todos.filter(todo => todo.id !== todoId));
     }
     // console.log(todos);
