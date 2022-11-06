@@ -36,8 +36,8 @@ function TodoItem({
     editTodo(id, newText);
   };
 
-  const handleComplete = e => {
-    completeTodo(e, id);
+  const handleComplete = () => {
+    completeTodo(id);
   };
 
   const handleDelete = () => {
