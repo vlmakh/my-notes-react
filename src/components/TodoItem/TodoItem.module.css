@@ -14,15 +14,3 @@
 .todoItem:not(:last-child) {
   border-bottom: 1px solid lightgrey;
 }
-
-/* .todoItem:before {
-  content: '###';
-  position: absolute;
-  left: 8px;
-  cursor: grab;
-} */
-
-.move {
-  cursor: grab;
-  /* height: 100%; */
-}

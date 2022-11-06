@@ -1,9 +1,8 @@
-import { AddForm, InputNew, AddBtn } from './AddNew.styled';
-import { FaReact } from 'react-icons/fa';
-import { MdAddCircle } from 'react-icons/md';
+import { AddForm, InputNew, AddBtn } from './TodoAddNew.styled';
+import { MdAddCircle, MdOutlineStickyNote2 } from 'react-icons/md';
 import { useState } from 'react';
 
-const AddNew = ({ onSubmit }) => {
+const TodoAddNew = ({ onSubmit }) => {
   const [text, setText] = useState('');
 
   const onFormInput = event => {
@@ -18,7 +17,7 @@ const AddNew = ({ onSubmit }) => {
 
   return (
     <AddForm onSubmit={addTodo}>
-      <FaReact size="24" />
+      <MdOutlineStickyNote2 size="24" />
       <InputNew
         type="text"
         name="text"
@@ -33,4 +32,4 @@ const AddNew = ({ onSubmit }) => {
   );
 };
 
-export { AddNew };
+export { TodoAddNew };

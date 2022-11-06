@@ -3,7 +3,6 @@ import { Reorder, useDragControls } from 'framer-motion';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaCheckCircle, FaMarker, FaGripLines } from 'react-icons/fa';
 import { Box } from 'components/Box/Box';
-// import { nanoid } from 'nanoid';
 import {
   Label,
   TodoText,
@@ -13,7 +12,7 @@ import {
   EditBtn,
 } from './TodoItem.styled';
 import css from './TodoItem.module.css';
-import { EditTodoModal } from 'components/EditTodoModal/EditTodoModal';
+import { TodoEditModal } from 'components/TodoEditModal/TodoEditModal';
 
 function TodoItem({
   id,
@@ -36,8 +35,8 @@ function TodoItem({
     editTodo(id, newText);
   };
 
-  const handleComplete = e => {
-    completeTodo(e, id);
+  const handleComplete = () => {
+    completeTodo(id);
   };
 
   const handleDelete = () => {
@@ -51,8 +50,8 @@ function TodoItem({
       dragListener={false}
       dragControls={controls}
     >
-      <Box onPointerDown={e => controls.start(e)} className={css.move}>
-        <FaGripLines size="20" />
+      <Box onPointerDown={e => controls.start(e)}>
+        <FaGripLines size="20" cursor="grab" />
       </Box>
       <Label>
         <Checkbox type="checkbox" checked={completed ? true : false} readOnly />
@@ -73,7 +72,7 @@ function TodoItem({
       <DeleteBtn type="button" aria-label="Delete task" onClick={handleDelete}>
         <MdDeleteForever size="20" />
       </DeleteBtn>
-      {editOpen && <EditTodoModal saveTodo={handleEdit} textToUpdate={text} />}
+      {editOpen && <TodoEditModal saveTodo={handleEdit} textToUpdate={text} />}
     </Reorder.Item>
   );
 }
