@@ -26,7 +26,7 @@ function App() {
   const addNote = () => {
     const newNote = {
       noteid: nanoid(4),
-      note: [{ id: nanoid(6), text: '', completed: false }],
+      note: [],
     };
     setMynotes([...mynotes, newNote]);
   };

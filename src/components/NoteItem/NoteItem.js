@@ -6,11 +6,13 @@ import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaMarker } from 'react-icons/fa';
 import { EditBtn, DeleteBtn } from './NoteItem.styled';
+import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 // import { Component } from 'react';
 
 function NoteItem({ note, editNote, deleteNote }) {
   const [todos, setTodos] = useState(note.note);
-
+  const [editOpen, setEditOpen] = useState(false);
+  const [noteName, setNoteName] = useState(`Note ${note.noteid}`);
   // useEffect(() => {
   //   editNote(note.noteid, todos);
   // }, [todos]);
@@ -34,7 +36,6 @@ function NoteItem({ note, editNote, deleteNote }) {
         todo.id === todoId ? { ...todo, text: newText } : todo
       )
     );
-    // console.log(todos);
     editNote(note.noteid, todos);
   };
 
@@ -56,10 +57,19 @@ function NoteItem({ note, editNote, deleteNote }) {
     editNote(note.noteid, todos);
   };
 
+  const toggleModal = () => {
+    setEditOpen(!editOpen);
+  };
+
+  const handleEdit = newName => {
+    toggleModal();
+    setNoteName(newName);
+  };
+
   return (
     <Box>
       <Box
-        width="340px"
+        width="300px"
         mr={3}
         mb={3}
         border="1px solid grey"
@@ -70,19 +80,23 @@ function NoteItem({ note, editNote, deleteNote }) {
         <Box
           bg="tomato"
           py={2}
-          px={5}
+          px={2}
           textAlign="center"
           color="white"
           display="flex"
           justifyContent="space-between"
+          position="relative"
         >
-          <h4>Note {note.noteid}</h4>
-          <EditBtn type="button">
+          <h4>{noteName}</h4>
+          <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
             <FaMarker />
           </EditBtn>
           <DeleteBtn type="button" onClick={() => deleteNote(note.noteid)}>
             <MdDeleteForever size="20" />
           </DeleteBtn>
+          {editOpen && (
+            <NoteEditModal saveNoteName={handleEdit} nameToUpdate={noteName} />
+          )}
         </Box>
 
         <TodoAddNew onSubmit={addTodo} />

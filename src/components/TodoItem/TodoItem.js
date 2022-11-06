@@ -3,7 +3,6 @@ import { Reorder, useDragControls } from 'framer-motion';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaCheckCircle, FaMarker, FaGripLines } from 'react-icons/fa';
 import { Box } from 'components/Box/Box';
-// import { nanoid } from 'nanoid';
 import {
   Label,
   TodoText,
@@ -51,8 +50,8 @@ function TodoItem({
       dragListener={false}
       dragControls={controls}
     >
-      <Box onPointerDown={e => controls.start(e)} className={css.move}>
-        <FaGripLines size="20" />
+      <Box onPointerDown={e => controls.start(e)}>
+        <FaGripLines size="20" cursor="grab" />
       </Box>
       <Label>
         <Checkbox type="checkbox" checked={completed ? true : false} readOnly />

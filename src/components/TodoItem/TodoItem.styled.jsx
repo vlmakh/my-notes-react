@@ -24,7 +24,7 @@ export const Checkbox = styled.input`
 `;
 
 export const TodoText = styled.span`
-  width: 204px;
+  width: 164px;
   margin-left: 8px;
   font-weight: 600;
   color: #212121;
@@ -80,5 +80,3 @@ export const DeleteBtn = styled.button`
     color: red;
   }
 `;
-
-
