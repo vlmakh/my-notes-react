@@ -9,10 +9,10 @@ import { EditBtn, DeleteBtn } from './NoteItem.styled';
 import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 // import { Component } from 'react';
 
-function NoteItem({ note, editNote, deleteNote }) {
-  const [todos, setTodos] = useState(note.note);
+function NoteItem({ note, editNote, deleteNote, editNoteName }) {
+  const [todos, setTodos] = useState(note.todos);
   const [editOpen, setEditOpen] = useState(false);
-  const [noteName, setNoteName] = useState(`Note ${note.noteid}`);
+
   // useEffect(() => {
   //   editNote(note.noteid, todos);
   // }, [todos]);
@@ -61,9 +61,9 @@ function NoteItem({ note, editNote, deleteNote }) {
     setEditOpen(!editOpen);
   };
 
-  const handleEdit = newName => {
+  const handleEditName = newName => {
     toggleModal();
-    setNoteName(newName);
+    editNoteName(note.noteid, newName);
   };
 
   return (
@@ -87,7 +87,7 @@ function NoteItem({ note, editNote, deleteNote }) {
           justifyContent="space-between"
           position="relative"
         >
-          <h4>{noteName}</h4>
+          <h4>{note.name}</h4>
           <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
             <FaMarker />
           </EditBtn>
@@ -95,7 +95,10 @@ function NoteItem({ note, editNote, deleteNote }) {
             <MdDeleteForever size="20" />
           </DeleteBtn>
           {editOpen && (
-            <NoteEditModal saveNoteName={handleEdit} nameToUpdate={noteName} />
+            <NoteEditModal
+              saveNoteName={handleEditName}
+              nameToUpdate={note.name}
+            />
           )}
         </Box>
 
