@@ -8,7 +8,8 @@ import { NoteAddBtn } from 'components/NoteAddBtn/NoteAddBtn';
 const startNotes = [
   {
     noteid: nanoid(4),
-    note: [
+    name: 'New note',
+    todos: [
       { id: nanoid(6), text: 'task1', completed: false },
       { id: nanoid(6), text: 'task2', completed: false },
     ],
@@ -26,16 +27,17 @@ function App() {
   const addNote = () => {
     const newNote = {
       noteid: nanoid(4),
-      note: [],
+      name: 'New note',
+      todos: [],
     };
     setMynotes([...mynotes, newNote]);
   };
 
-  const editNote = (noteId, noteContent) => {
+  const editNote = (noteId, newTodos) => {
     setMynotes(
       mynotes.map(noteItem => {
         return noteItem.noteid === noteId
-          ? { ...noteItem, note: noteContent }
+          ? { ...noteItem, todos: newTodos }
           : noteItem;
       })
     );
@@ -47,6 +49,16 @@ function App() {
     }
   };
 
+  const editNoteName = (noteId, newName) => {
+    setMynotes(
+      mynotes.map(noteItem => {
+        return noteItem.noteid === noteId
+          ? { ...noteItem, name: newName }
+          : noteItem;
+      })
+    );
+  };
+
   return (
     <Box p={3} display="flex" flexWrap="wrap">
       {mynotes.map(noteItem => {
@@ -56,6 +68,7 @@ function App() {
             note={noteItem}
             editNote={editNote}
             deleteNote={deleteNote}
+            editNoteName={editNoteName}
           />
         );
       })}
