@@ -14,7 +14,7 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
   const [editOpen, setEditOpen] = useState(false);
 
   // useEffect(() => {
-  //
+  //   handleSave();
   // }, [todos]);
 
   const handleSave = () => {
@@ -29,7 +29,7 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         completed: false,
       };
       setTodos([newTodo, ...todos]);
-      editNote(note.noteid, todos);
+      handleSave();
     }
   };
 
@@ -39,7 +39,7 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         todo.id === todoId ? { ...todo, text: newText } : todo
       )
     );
-    editNote(note.noteid, todos);
+    handleSave();
   };
 
   const completeTodo = todoId => {
@@ -48,14 +48,14 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
       )
     );
-    editNote(note.noteid, todos);
+    handleSave();
   };
 
   const deleteTodo = todoId => {
     if (global.confirm('Delete task?')) {
       setTodos(todos.filter(todo => todo.id !== todoId));
     }
-    editNote(note.noteid, todos);
+    handleSave();
   };
 
   const toggleModal = () => {
