@@ -41,7 +41,8 @@ function App() {
           : noteItem;
       })
     );
-  };
+  }
+  ;
 
   const deleteNote = noteId => {
     if (global.confirm('Delete Note?')) {

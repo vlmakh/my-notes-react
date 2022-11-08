@@ -4,8 +4,8 @@ import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
 import { MdDeleteForever } from 'react-icons/md';
-import { FaMarker } from 'react-icons/fa';
-import { EditBtn, DeleteBtn } from './NoteItem.styled';
+import { FaSave, FaMarker } from 'react-icons/fa';
+import { SaveBtn, EditBtn, DeleteBtn } from './NoteItem.styled';
 import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 // import { Component } from 'react';
 
@@ -14,8 +14,12 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
   const [editOpen, setEditOpen] = useState(false);
 
   // useEffect(() => {
-  //   editNote(note.noteid, todos);
+  //
   // }, [todos]);
+
+  const handleSave = () => {
+    editNote(note.noteid, todos);
+  };
 
   const addTodo = data => {
     if (data.trim() !== '') {
@@ -25,7 +29,6 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         completed: false,
       };
       setTodos([newTodo, ...todos]);
-      // console.log(todos);
       editNote(note.noteid, todos);
     }
   };
@@ -45,7 +48,6 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
       )
     );
-    // console.log(todos);
     editNote(note.noteid, todos);
   };
 
@@ -53,7 +55,6 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
     if (global.confirm('Delete task?')) {
       setTodos(todos.filter(todo => todo.id !== todoId));
     }
-    // console.log(todos);
     editNote(note.noteid, todos);
   };
 
@@ -87,6 +88,9 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
           justifyContent="space-between"
           position="relative"
         >
+          <SaveBtn type="button" aria-label="Save note" onClick={handleSave}>
+            <FaSave size="16" />
+          </SaveBtn>
           <h4>{note.name}</h4>
           <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
             <FaMarker />
