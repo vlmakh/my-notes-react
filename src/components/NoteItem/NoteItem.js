@@ -14,7 +14,7 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
   const [editOpen, setEditOpen] = useState(false);
 
   // useEffect(() => {
-  //   handleSave();
+  //   editNote(noteId, todos);
   // }, [todos]);
 
   const handleSave = () => {
@@ -29,6 +29,7 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         completed: false,
       };
       setTodos([newTodo, ...todos]);
+      // todos = [newTodo, ...todos];
       handleSave();
     }
   };

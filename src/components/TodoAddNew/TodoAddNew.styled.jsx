@@ -25,6 +25,8 @@ export const AddBtn = styled.button`
   background-color: transparent;
   color: grey;
 
+  transition: color 250ms linear;
+
   :hover {
     color: #212121;
   }

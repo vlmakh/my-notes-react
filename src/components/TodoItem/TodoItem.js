@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Reorder, useDragControls } from 'framer-motion';
-import { MdDeleteForever } from 'react-icons/md';
+import { ImCross } from 'react-icons/im';
 import { FaCheckCircle, FaMarker, FaGripLines } from 'react-icons/fa';
 import { Box } from 'components/Box/Box';
 import {
@@ -66,11 +66,12 @@ function TodoItem({
         aria-label="Edit task"
         onClick={toggleModal}
         disabled={completed ? true : false}
+        className={completed ? '' : 'active'}
       >
         <FaMarker />
       </EditBtn>
       <DeleteBtn type="button" aria-label="Delete task" onClick={handleDelete}>
-        <MdDeleteForever size="20" />
+        <ImCross />
       </DeleteBtn>
       {editOpen && <TodoEditModal saveTodo={handleEdit} textToUpdate={text} />}
     </Reorder.Item>

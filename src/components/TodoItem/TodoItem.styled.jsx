@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Label = styled.label`
   display: flex;
   align-items: center;
-  margin-left: 16px;
+  margin-left: 8px;
   /* padding: 8px; */
   /* cursor: pointer; */
 `;
@@ -11,15 +11,12 @@ export const Label = styled.label`
 export const Checkbox = styled.input`
   display: none;
 
-  & + span {
+  :checked + button {
     color: grey;
   }
-
-  :checked + button {
-    color: green;
-  }
   :checked ~ span {
-    text-decoration: line-through #212121 2px;
+    text-decoration: line-through grey 2px;
+    color: grey;
   }
 `;
 
@@ -38,7 +35,7 @@ export const CheckBtn = styled.button`
   width: 20px;
   height: 30px;
   padding: 0;
-  color: grey;
+  color: green;
 
   /* transition: color 250ms linear;
 
@@ -47,8 +44,7 @@ export const CheckBtn = styled.button`
   } */
 `;
 
-export const EditBtn = styled.button`
-  cursor: pointer;
+export const EditBtn = styled.button`  
   margin-left: auto;
   border: none;
   background-color: transparent;
@@ -59,8 +55,9 @@ export const EditBtn = styled.button`
 
   transition: color 250ms linear;
 
-  :hover {
+  :hover.active {
     color: #212121;
+    cursor: pointer;
   }
 `;
 
