@@ -5,13 +5,12 @@ export const EditNoteForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding: 0 16px; */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 100;
-  background-color: tomato;
+  background-color: lightgrey;
 `
 
 export const SaveBtn = styled.button`

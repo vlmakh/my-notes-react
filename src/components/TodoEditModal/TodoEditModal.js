@@ -1,9 +1,23 @@
 import { EditTodoForm, SaveBtn } from './TodoEditModal.styled';
 import { FaSave } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export function TodoEditModal({ textToUpdate, saveTodo }) {
+export function TodoEditModal({ textToUpdate, saveTodo, cancelEdit }) {
   const [newText, setNewText] = useState(textToUpdate);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+    };
+  });
+
+  const handleEscape = event => {
+    if (event.code === 'Escape') {
+      cancelEdit();
+    }
+  };
 
   const onFormInput = event => {
     setNewText(event.currentTarget.value);

@@ -75,10 +75,10 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         border="1px solid grey"
         borderRadius="8px"
         overflow="hidden"
-        boxShadow="0px 8px 16px rgba(0, 0, 0, 0.2)"
+        boxShadow="0px 4px 8px rgba(0, 0, 0, 0.6)"
       >
         <Box
-          bg="tomato"
+          bg={note.color}
           py={2}
           px={2}
           textAlign="center"
@@ -101,6 +101,8 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
             <NoteEditModal
               saveNoteName={handleEditName}
               nameToUpdate={note.name}
+              bgColor={note.color}
+              cancelEdit={toggleModal}
             />
           )}
         </Box>

@@ -73,7 +73,13 @@ function TodoItem({
       <DeleteBtn type="button" aria-label="Delete task" onClick={handleDelete}>
         <ImCross />
       </DeleteBtn>
-      {editOpen && <TodoEditModal saveTodo={handleEdit} textToUpdate={text} />}
+      {editOpen && (
+        <TodoEditModal
+          saveTodo={handleEdit}
+          textToUpdate={text}
+          cancelEdit={toggleModal}
+        />
+      )}
     </Reorder.Item>
   );
 }

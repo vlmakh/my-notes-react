@@ -12,7 +12,7 @@ export const AddBtn = styled.button`
   transition: box-shadow 250ms linear, color 250ms linear;
 
   :hover {
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
     color: #212121;
   }
 `;

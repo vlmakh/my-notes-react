@@ -13,6 +13,7 @@ const startNotes = [
       { id: nanoid(6), text: 'task1', completed: false },
       { id: nanoid(6), text: 'task2', completed: false },
     ],
+    color: 'tomato',
   },
 ];
 
@@ -29,6 +30,7 @@ function App() {
       noteid: nanoid(4),
       name: 'New note',
       todos: [],
+      color: getRandomHexColor()
     };
     setMynotes([...mynotes, newNote]);
   };
@@ -60,6 +62,10 @@ function App() {
     );
   };
 
+  function getRandomHexColor() {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  }
+
   return (
     <Box p={3} display="flex" flexWrap="wrap">
       {mynotes.map(noteItem => {
@@ -74,7 +80,7 @@ function App() {
         );
       })}
       <NoteAddBtn addNote={addNote} />
-    </Box>
+    </Box>      
   );
 }
 

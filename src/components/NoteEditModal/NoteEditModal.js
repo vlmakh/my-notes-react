@@ -1,9 +1,28 @@
 import { EditNoteForm, SaveBtn } from './NoteEditModal.styled';
 import { FaSave } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export function NoteEditModal({ nameToUpdate, saveNoteName }) {
+export function NoteEditModal({
+  nameToUpdate,
+  saveNoteName,
+  cancelEdit,
+  bgColor,
+}) {
   const [newName, setNewName] = useState(nameToUpdate);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+    };
+  });
+
+  const handleEscape = event => {
+    if (event.code === 'Escape') {
+      cancelEdit();
+    }
+  };
 
   const onFormInput = event => {
     setNewName(event.currentTarget.value);
@@ -15,7 +34,7 @@ export function NoteEditModal({ nameToUpdate, saveNoteName }) {
   };
 
   return (
-    <EditNoteForm onSubmit={handleSubmit}>
+    <EditNoteForm onSubmit={handleSubmit} backgroundColor={bgColor}>
       <input
         type="text"
         name="newName"
