@@ -1,6 +1,6 @@
 import { Box } from 'components/Box/Box';
 import { useState } from 'react';
-// import { useEffect } from 'react';
+// import { useRef, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
@@ -12,9 +12,10 @@ import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 function NoteItem({ note, editNote, deleteNote, editNoteName }) {
   const [todos, setTodos] = useState(note.todos);
   const [editOpen, setEditOpen] = useState(false);
+  // const noteId = useRef(note.noteid)
 
   // useEffect(() => {
-  //   editNote(note.noteid, todos);
+  //   editNote(noteId, todos);
   // }, [todos]);
 
   const handleSave = () => {
