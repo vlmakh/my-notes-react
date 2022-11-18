@@ -1,6 +1,6 @@
 import { Box } from 'components/Box/Box';
 import { useState } from 'react';
-// import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
@@ -12,14 +12,28 @@ import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 function NoteItem({ note, editNote, deleteNote, editNoteName }) {
   const [todos, setTodos] = useState(note.todos);
   const [editOpen, setEditOpen] = useState(false);
+  const saveBtn = useRef();
+
   // const noteId = useRef(note.noteid)
+  const isFirstRender = useRef(true);
 
-  // useEffect(() => {
-  //   editNote(noteId, todos);
-  // }, [todos]);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      saveBtn.current.disabled = true;
+      saveBtn.current.classList.remove('active');
+      return;
+    }
 
-  const handleSave = () => {
+    saveBtn.current.disabled = false;
+    saveBtn.current.classList.add('active');
+    // editNote(noteId, todos);
+  }, [todos]);
+
+  const handleSave = event => {
     editNote(note.noteid, todos);
+    event.currentTarget.disabled = true;
+    saveBtn.current.classList.remove('active');
   };
 
   const addTodo = data => {
@@ -103,7 +117,13 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
           justifyContent="space-between"
           position="relative"
         >
-          <SaveBtn type="button" aria-label="Save note" onClick={handleSave}>
+          <SaveBtn
+            type="button"
+            aria-label="Save note"
+            // disabled={true}
+            ref={saveBtn}
+            onClick={handleSave}
+          >
             <FaSave size="16" />
           </SaveBtn>
           <h4>{note.name}</h4>
