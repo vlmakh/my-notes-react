@@ -1,5 +1,6 @@
 import { Box } from 'components/Box/Box';
 import { useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
@@ -11,13 +12,28 @@ import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 function NoteItem({ note, editNote, deleteNote, editNoteName }) {
   const [todos, setTodos] = useState(note.todos);
   const [editOpen, setEditOpen] = useState(false);
+  const saveBtn = useRef();
 
-  // useEffect(() => {
-  //   editNote(noteId, todos);
-  // }, [todos]);
+  // const noteId = useRef(note.noteid)
+  const isFirstRender = useRef(true);
 
-  const handleSave = () => {
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      saveBtn.current.disabled = true;
+      saveBtn.current.classList.remove('active');
+      return;
+    }
+
+    saveBtn.current.disabled = false;
+    saveBtn.current.classList.add('active');
+    // editNote(noteId, todos);
+  }, [todos]);
+
+  const handleSave = event => {
     editNote(note.noteid, todos);
+    event.currentTarget.disabled = true;
+    saveBtn.current.classList.remove('active');
   };
 
   const addTodo = data => {
@@ -28,7 +44,9 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         completed: false,
       };
       setTodos([newTodo, ...todos]);
-      handleSave();
+      // handleSave();
+      // note.todos = [newTodo, ...note.todos];
+      // editNote(note.noteid, note.todos);
     }
   };
 
@@ -38,7 +56,11 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         todo.id === todoId ? { ...todo, text: newText } : todo
       )
     );
-    handleSave();
+    // handleSave();
+    // note.todos = note.todos.map(todo =>
+    //   todo.id === todoId ? { ...todo, text: newText } : todo
+    // );
+    // editNote(note.noteid, note.todos);
   };
 
   const completeTodo = todoId => {
@@ -47,14 +69,22 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
       )
     );
-    handleSave();
+    // handleSave();
+    // note.todos = note.todos.map(todo =>
+    //   todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+    // );
+    // editNote(note.noteid, note.todos);
   };
 
   const deleteTodo = todoId => {
     if (global.confirm('Delete task?')) {
       setTodos(todos.filter(todo => todo.id !== todoId));
     }
-    handleSave();
+    // handleSave();
+    // if (global.confirm('Delete task?')) {
+    //   note.todos = note.todos.filter(todo => todo.id !== todoId);
+    // }
+    // editNote(note.noteid, note.todos);
   };
 
   const toggleModal = () => {
@@ -87,7 +117,13 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
           justifyContent="space-between"
           position="relative"
         >
-          <SaveBtn type="button" aria-label="Save note" onClick={handleSave}>
+          <SaveBtn
+            type="button"
+            aria-label="Save note"
+            // disabled={true}
+            ref={saveBtn}
+            onClick={handleSave}
+          >
             <FaSave size="16" />
           </SaveBtn>
           <h4>{note.name}</h4>
