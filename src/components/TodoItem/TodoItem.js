@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Reorder, useDragControls } from 'framer-motion';
 import { ImCross } from 'react-icons/im';
-import { FaCheckCircle, FaMarker, FaGripLines } from 'react-icons/fa';
+import { FaCheck, FaArrowAltCircleRight, FaGripLines } from 'react-icons/fa';
+import { MdEdit } from 'react-icons/md';
 import { Box } from 'components/Box/Box';
 import {
   Label,
@@ -51,12 +52,16 @@ function TodoItem({
       dragControls={controls}
     >
       <Box onPointerDown={e => controls.start(e)}>
-        <FaGripLines size="20" cursor="grab" />
+        <FaGripLines size="20" cursor="grab" color="#212121" />
       </Box>
       <Label>
         <Checkbox type="checkbox" checked={completed ? true : false} readOnly />
         <CheckBtn onClick={handleComplete}>
-          <FaCheckCircle size="20" />
+          {completed ? (
+            <FaCheck size="18" />
+          ) : (
+            <FaArrowAltCircleRight size="18" />
+          )}
         </CheckBtn>
 
         <TodoText>{text}</TodoText>
@@ -68,7 +73,7 @@ function TodoItem({
         disabled={completed ? true : false}
         className={completed ? '' : 'active'}
       >
-        <FaMarker />
+        <MdEdit size="18" />
       </EditBtn>
       <DeleteBtn type="button" aria-label="Delete task" onClick={handleDelete}>
         <ImCross />
