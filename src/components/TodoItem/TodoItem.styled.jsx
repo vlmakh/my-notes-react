@@ -21,8 +21,9 @@ export const Checkbox = styled.input`
 `;
 
 export const TodoText = styled.span`
-  width: 164px;
+  width: 176px;
   margin-left: 8px;
+  font-size: 14px;
   font-weight: 600;
   color: #212121;
 `;

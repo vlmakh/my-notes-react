@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 8px ;
+  padding: 4px 8px;
 
   transition: background-color 250ms linear;
 }

@@ -52,7 +52,7 @@ function TodoItem({
       dragControls={controls}
     >
       <Box onPointerDown={e => controls.start(e)}>
-        <FaGripLines size="20" cursor="grab" color="#212121" />
+        <FaGripLines size="18" cursor="grab" color="#212121" />
       </Box>
       <Label>
         <Checkbox type="checkbox" checked={completed ? true : false} readOnly />
