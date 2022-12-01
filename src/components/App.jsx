@@ -13,9 +13,13 @@ const startNotes = [
       { id: nanoid(6), text: 'task1', completed: false },
       { id: nanoid(6), text: 'task2', completed: false },
     ],
-    color: 'tomato',
+    color: getRandomHexColor(),
   },
 ];
+
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
 
 function App() {
   const savedData = JSON.parse(localStorage.getItem('mynotes'));
@@ -30,7 +34,7 @@ function App() {
       noteid: nanoid(4),
       name: 'New note',
       todos: [],
-      color: getRandomHexColor()
+      color: getRandomHexColor(),
     };
     setMynotes([...mynotes, newNote]);
   };
@@ -43,11 +47,10 @@ function App() {
           : noteItem;
       })
     );
-  }
-  ;
+  };
 
-  const deleteNote = noteId => {
-    if (global.confirm('Delete Note?')) {
+  const deleteNote = (noteId, name) => {
+    if (global.confirm(`Delete note: ${name}?`)) {
       setMynotes(mynotes.filter(note => note.noteid !== noteId));
     }
   };
@@ -61,10 +64,6 @@ function App() {
       })
     );
   };
-
-  function getRandomHexColor() {
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-  }
 
   return (
     <Box p={3} display="flex" flexWrap="wrap">
@@ -80,7 +79,7 @@ function App() {
         );
       })}
       <NoteAddBtn addNote={addNote} />
-    </Box>      
+    </Box>
   );
 }
 

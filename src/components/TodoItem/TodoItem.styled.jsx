@@ -4,8 +4,6 @@ export const Label = styled.label`
   display: flex;
   align-items: center;
   margin-left: 8px;
-  /* padding: 8px; */
-  /* cursor: pointer; */
 `;
 
 export const Checkbox = styled.input`
@@ -30,19 +28,12 @@ export const TodoText = styled.span`
 
 export const CheckBtn = styled.button`
   cursor: pointer;
-  /* margin-left: auto; */
   border: none;
   background-color: transparent;
   width: 20px;
   height: 30px;
   padding: 0;
-  color: green;
-
-  /* transition: color 250ms linear;
-
-  :hover {
-    color: #212121;
-  } */
+  color: green;  
 `;
 
 export const EditBtn = styled.button`  

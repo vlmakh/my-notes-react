@@ -78,9 +78,10 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
   };
 
   const deleteTodo = todoId => {
-    if (global.confirm('Delete task?')) {
-      setTodos(todos.filter(todo => todo.id !== todoId));
-    }
+    // if (global.confirm('Delete task?')) {
+    setTodos(todos.filter(todo => todo.id !== todoId));
+    // }
+
     // handleSave();
     // if (global.confirm('Delete task?')) {
     //   note.todos = note.todos.filter(todo => todo.id !== todoId);
@@ -135,7 +136,10 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
           <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
             <MdOutlineEdit size="20" />
           </EditBtn>
-          <DeleteBtn type="button" onClick={() => deleteNote(note.noteid)}>
+          <DeleteBtn
+            type="button"
+            onClick={() => deleteNote(note.noteid, note.name)}
+          >
             <MdDeleteForever size="20" />
           </DeleteBtn>
           {editOpen && (
