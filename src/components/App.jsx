@@ -1,5 +1,5 @@
 import { Box } from 'components/Box/Box';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { nanoid } from 'nanoid';
 
 import { NoteItem } from 'components/NoteItem/NoteItem';
@@ -39,7 +39,7 @@ function App() {
     setMynotes([...mynotes, newNote]);
   };
 
-  const editNote = (noteId, newTodos) => {
+  const editNote = useCallback((noteId, newTodos) => {
     setMynotes(
       mynotes.map(noteItem => {
         return noteItem.noteid === noteId
@@ -47,7 +47,7 @@ function App() {
           : noteItem;
       })
     );
-  };
+  }, [mynotes]);
 
   const deleteNote = (noteId, name) => {
     if (global.confirm(`Delete note: ${name}?`)) {

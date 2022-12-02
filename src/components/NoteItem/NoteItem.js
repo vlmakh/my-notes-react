@@ -1,41 +1,43 @@
 import { Box } from 'components/Box/Box';
-import { useState } from 'react';
-import { useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+// import { useRef } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
 import { MdOutlineEdit, MdDeleteForever } from 'react-icons/md';
-import { FaSave } from 'react-icons/fa';
-import { SaveBtn, EditBtn, DeleteBtn } from './NoteItem.styled';
+// import { FaSave } from 'react-icons/fa';
+// import { SaveBtn } from './NoteItem.styled';
+import { EditBtn, DeleteBtn } from './NoteItem.styled';
 import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 // import Badge from '@mui/material/Badge';
 
 function NoteItem({ note, editNote, deleteNote, editNoteName }) {
   const [todos, setTodos] = useState(note.todos);
   const [editOpen, setEditOpen] = useState(false);
-  const saveBtn = useRef();
+  // const saveBtn = useRef();
 
-  // const noteId = useRef(note.noteid)
-  const isFirstRender = useRef(true);
+  // const isFirstRender = useRef(true);
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      saveBtn.current.disabled = true;
-      saveBtn.current.classList.remove('active');
-      return;
-    }
+    // if (isFirstRender.current) {
+    //   isFirstRender.current = false;
+    //   saveBtn.current.disabled = true;
+    //   saveBtn.current.classList.remove('active');
+    //   return;
+    // }
 
-    saveBtn.current.disabled = false;
-    saveBtn.current.classList.add('active');
-    // editNote(noteId, todos);
-  }, [todos]);
-
-  const handleSave = event => {
+    // saveBtn.current.disabled = false;
+    // saveBtn.current.classList.add('active');
+    // }, [todos]);
     editNote(note.noteid, todos);
-    event.currentTarget.disabled = true;
-    saveBtn.current.classList.remove('active');
-  };
+    // console.log(todos);
+  }, [note.noteid, todos]); // eslint-disable-line
+
+  // const handleSave = event => {
+  //   editNote(note.noteid, todos);
+  //   event.currentTarget.disabled = true;
+  //   saveBtn.current.classList.remove('active');
+  // };
 
   const addTodo = data => {
     if (data.trim() !== '') {
@@ -120,17 +122,15 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
           justifyContent="space-between"
           position="relative"
         >
-          <SaveBtn
+          {/* <SaveBtn
             type="button"
             aria-label="Save note"
-            // disabled={true}
             ref={saveBtn}
             onClick={handleSave}
           >
             <FaSave size="16" />
-          </SaveBtn>
+          </SaveBtn> */}
 
-          {/* <Badge badgeContent={0} color="secondary" showZero /> */}
           <h4>{note.name}</h4>
 
           <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
