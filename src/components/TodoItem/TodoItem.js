@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Reorder, useDragControls } from 'framer-motion';
+import { useDragControls } from 'framer-motion';
 import { ImCross } from 'react-icons/im';
 import { FaCheck, FaArrowAltCircleRight, FaGripLines } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
 import { Box } from 'components/Box/Box';
 import {
+  ReorderItemStyled,
   Label,
   TodoText,
   DeleteBtn,
@@ -12,7 +13,6 @@ import {
   CheckBtn,
   EditBtn,
 } from './TodoItem.styled';
-import css from './TodoItem.module.css';
 import { TodoEditModal } from 'components/TodoEditModal/TodoEditModal';
 
 function TodoItem({
@@ -45,9 +45,8 @@ function TodoItem({
   };
 
   return (
-    <Reorder.Item
+    <ReorderItemStyled
       value={todo}
-      className={css.todoItem}
       dragListener={false}
       dragControls={controls}
     >
@@ -85,7 +84,7 @@ function TodoItem({
           cancelEdit={toggleModal}
         />
       )}
-    </Reorder.Item>
+    </ReorderItemStyled>
   );
 }
 

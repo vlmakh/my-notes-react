@@ -1,4 +1,22 @@
 import styled from '@emotion/styled';
+import { Reorder } from 'framer-motion';
+
+export const ReorderItemStyled = styled(Reorder.Item)`
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+
+  transition: background-color 250ms linear;
+
+:hover {
+  background-color: lightgrey;
+}
+
+:not(:last-child) {
+  border-bottom: 1px solid lightgrey;
+}
+`;
 
 export const Label = styled.label`
   display: flex;
