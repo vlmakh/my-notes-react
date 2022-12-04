@@ -1,59 +1,10 @@
 import { Box } from 'components/Box/Box';
-import { useEffect, useReducer, createContext } from 'react';
-import { nanoid } from 'nanoid';
-
+import { useEffect, useReducer } from 'react';
 import { NoteItem } from 'components/NoteItem/NoteItem';
 import { NoteAddBtn } from 'components/NoteAddBtn/NoteAddBtn';
-
-const startNotes = [
-  {
-    noteid: nanoid(4),
-    name: 'New note',
-    todos: [
-      { id: nanoid(6), text: 'task1', completed: false },
-      { id: nanoid(6), text: 'task2', completed: false },
-    ],
-    color: getRandomHexColor(),
-  },
-];
-
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
-
-const MyContext = createContext();
-
-const reducer = (mynotes, action) => {
-  switch (action.type) {
-    case 'addNote':
-      const newNote = {
-        noteid: nanoid(4),
-        name: 'New note',
-        todos: [],
-        color: getRandomHexColor(),
-      };
-      return [...mynotes, newNote];
-    case 'editNote':
-      return mynotes.map(noteItem => {
-        return noteItem.noteid === action.noteId
-          ? { ...noteItem, todos: action.newTodos }
-          : noteItem;
-      });
-    case 'deleteNote':
-      if (global.confirm(`Delete note: ${action.name}?`)) {
-        return mynotes.filter(note => note.noteid !== action.noteId);
-      }
-      break;
-    case 'editNoteName':
-      return mynotes.map(noteItem => {
-        return noteItem.noteid === action.noteId
-          ? { ...noteItem, name: action.newName }
-          : noteItem;
-      });
-    default:
-      return mynotes;
-  }
-};
+import { reducer } from 'utils/reducer';
+import { startNotes } from 'utils/startNotes';
+import { MyContext } from 'utils/context';
 
 function App() {
   const savedData = JSON.parse(localStorage.getItem('mynotes'));
@@ -96,4 +47,4 @@ function App() {
   );
 }
 
-export { App, MyContext };
+export { App };

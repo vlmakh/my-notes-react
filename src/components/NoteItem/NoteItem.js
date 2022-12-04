@@ -6,7 +6,7 @@ import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
 import { MdOutlineEdit, MdDeleteForever } from 'react-icons/md';
 import { EditBtn, DeleteBtn } from './NoteItem.styled';
 import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
-import { MyContext } from 'components/App';
+import { MyContext } from 'utils/context';
 
 function NoteItem({ note, deleteNote, editNoteName }) {
   const [todos, setTodos] = useState(note.todos);
