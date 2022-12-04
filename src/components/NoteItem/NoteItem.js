@@ -1,43 +1,21 @@
 import { Box } from 'components/Box/Box';
-import { useState, useEffect } from 'react';
-// import { useRef } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
 import { MdOutlineEdit, MdDeleteForever } from 'react-icons/md';
-// import { FaSave } from 'react-icons/fa';
-// import { SaveBtn } from './NoteItem.styled';
 import { EditBtn, DeleteBtn } from './NoteItem.styled';
 import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
-// import Badge from '@mui/material/Badge';
+import { MyContext } from 'utils/context';
 
-function NoteItem({ note, editNote, deleteNote, editNoteName }) {
+function NoteItem({ note, deleteNote, editNoteName }) {
   const [todos, setTodos] = useState(note.todos);
   const [editOpen, setEditOpen] = useState(false);
-  // const saveBtn = useRef();
-
-  // const isFirstRender = useRef(true);
+  const { dispatch } = useContext(MyContext);
 
   useEffect(() => {
-    // if (isFirstRender.current) {
-    //   isFirstRender.current = false;
-    //   saveBtn.current.disabled = true;
-    //   saveBtn.current.classList.remove('active');
-    //   return;
-    // }
-
-    // saveBtn.current.disabled = false;
-    // saveBtn.current.classList.add('active');
-    // }, [todos]);
-    editNote(note.noteid, todos);
-    // console.log(todos);
-  }, [note.noteid, todos]); // eslint-disable-line
-
-  // const handleSave = event => {
-  //   editNote(note.noteid, todos);
-  //   event.currentTarget.disabled = true;
-  //   saveBtn.current.classList.remove('active');
-  // };
+    dispatch({ type: 'editNote', noteId: note.noteid, newTodos: todos });
+  }, [dispatch, note.noteid, todos]);
 
   const addTodo = data => {
     if (data.trim() !== '') {
@@ -47,9 +25,6 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         completed: false,
       };
       setTodos([newTodo, ...todos]);
-      // handleSave();
-      // note.todos = [newTodo, ...note.todos];
-      // editNote(note.noteid, note.todos);
     }
   };
 
@@ -59,11 +34,6 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         todo.id === todoId ? { ...todo, text: newText } : todo
       )
     );
-    // handleSave();
-    // note.todos = note.todos.map(todo =>
-    //   todo.id === todoId ? { ...todo, text: newText } : todo
-    // );
-    // editNote(note.noteid, note.todos);
   };
 
   const completeTodo = todoId => {
@@ -72,23 +42,10 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
       )
     );
-    // handleSave();
-    // note.todos = note.todos.map(todo =>
-    //   todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
-    // );
-    // editNote(note.noteid, note.todos);
   };
 
   const deleteTodo = todoId => {
-    // if (global.confirm('Delete task?')) {
     setTodos(todos.filter(todo => todo.id !== todoId));
-    // }
-
-    // handleSave();
-    // if (global.confirm('Delete task?')) {
-    //   note.todos = note.todos.filter(todo => todo.id !== todoId);
-    // }
-    // editNote(note.noteid, note.todos);
   };
 
   const toggleModal = () => {

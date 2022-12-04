@@ -1,85 +1,49 @@
 import { Box } from 'components/Box/Box';
-import { useState, useEffect, useCallback } from 'react';
-import { nanoid } from 'nanoid';
-
+import { useEffect, useReducer } from 'react';
 import { NoteItem } from 'components/NoteItem/NoteItem';
 import { NoteAddBtn } from 'components/NoteAddBtn/NoteAddBtn';
-
-const startNotes = [
-  {
-    noteid: nanoid(4),
-    name: 'New note',
-    todos: [
-      { id: nanoid(6), text: 'task1', completed: false },
-      { id: nanoid(6), text: 'task2', completed: false },
-    ],
-    color: getRandomHexColor(),
-  },
-];
-
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
+import { reducer } from 'utils/reducer';
+import { startNotes } from 'utils/startNotes';
+import { MyContext } from 'utils/context';
 
 function App() {
   const savedData = JSON.parse(localStorage.getItem('mynotes'));
-  const [mynotes, setMynotes] = useState(savedData ? savedData : startNotes);
+  const [mynotes, dispatch] = useReducer(
+    reducer,
+    savedData ? savedData : startNotes
+  );
 
   useEffect(() => {
     localStorage.setItem('mynotes', JSON.stringify(mynotes));
   }, [mynotes]);
 
-  const addNote = () => {
-    const newNote = {
-      noteid: nanoid(4),
-      name: 'New note',
-      todos: [],
-      color: getRandomHexColor(),
-    };
-    setMynotes([...mynotes, newNote]);
-  };
-
-  const editNote = useCallback((noteId, newTodos) => {
-    setMynotes(
-      mynotes.map(noteItem => {
-        return noteItem.noteid === noteId
-          ? { ...noteItem, todos: newTodos }
-          : noteItem;
-      })
-    );
-  }, [mynotes]);
-
-  const deleteNote = (noteId, name) => {
-    if (global.confirm(`Delete note: ${name}?`)) {
-      setMynotes(mynotes.filter(note => note.noteid !== noteId));
-    }
-  };
-
-  const editNoteName = (noteId, newName) => {
-    setMynotes(
-      mynotes.map(noteItem => {
-        return noteItem.noteid === noteId
-          ? { ...noteItem, name: newName }
-          : noteItem;
-      })
-    );
-  };
-
   return (
-    <Box p={3} display="flex" flexWrap="wrap">
-      {mynotes.map(noteItem => {
-        return (
-          <NoteItem
-            key={noteItem.noteid}
-            note={noteItem}
-            editNote={editNote}
-            deleteNote={deleteNote}
-            editNoteName={editNoteName}
-          />
-        );
-      })}
-      <NoteAddBtn addNote={addNote} />
-    </Box>
+    <MyContext.Provider value={{ dispatch }}>
+      <Box p={3} display="flex" flexWrap="wrap">
+        {mynotes.map(noteItem => {
+          return (
+            <NoteItem
+              key={noteItem.noteid}
+              note={noteItem}
+              editNote={(noteId, newTodos) => {
+                dispatch({ type: 'editNote', noteId, newTodos });
+              }}
+              deleteNote={(noteId, name) => {
+                dispatch({ type: 'deleteNote', noteId, name });
+              }}
+              editNoteName={(noteId, newName) => {
+                dispatch({ type: 'editNoteName', noteId, newName });
+              }}
+            />
+          );
+        })}
+        <NoteAddBtn
+          addNote={() => {
+            dispatch({ type: 'addNote' });
+          }}
+        />
+      </Box>
+    </MyContext.Provider>
   );
 }
 
