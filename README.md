@@ -1,5 +1,7 @@
 # My Notes
 
+Simple app to make notes
+
 Application is written using React hooks.
 
 Attached libraries:
