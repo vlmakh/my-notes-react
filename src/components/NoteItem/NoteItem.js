@@ -1,5 +1,5 @@
 import { Box } from 'components/Box/Box';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 // import { useRef } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
@@ -10,11 +10,13 @@ import { MdOutlineEdit, MdDeleteForever } from 'react-icons/md';
 import { EditBtn, DeleteBtn } from './NoteItem.styled';
 import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 // import Badge from '@mui/material/Badge';
+import { MyContext } from 'components/App';
 
 function NoteItem({ note, editNote, deleteNote, editNoteName }) {
   const [todos, setTodos] = useState(note.todos);
   const [editOpen, setEditOpen] = useState(false);
   // const saveBtn = useRef();
+  const { dispatch } = useContext(MyContext);
 
   // const isFirstRender = useRef(true);
 
@@ -25,11 +27,13 @@ function NoteItem({ note, editNote, deleteNote, editNoteName }) {
     //   saveBtn.current.classList.remove('active');
     //   return;
     // }
-
     // saveBtn.current.disabled = false;
     // saveBtn.current.classList.add('active');
     // }, [todos]);
-    editNote(note.noteid, todos);
+
+    dispatch({ type: 'editNote', noteId: note.noteid, newTodos: todos });
+
+    // editNote(note.noteid, todos);
     // console.log(todos);
   }, [note.noteid, todos]); // eslint-disable-line
 
