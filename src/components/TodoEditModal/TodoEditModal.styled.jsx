@@ -11,7 +11,7 @@ export const EditTodoForm = styled.form`
   width: 100%;
   height: 100%;
   z-index: 100;
-  background-color: white;
+  background-color: lightgrey;
 `
 
 export const SaveBtn = styled.button`

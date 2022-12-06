@@ -80,15 +80,6 @@ function NoteItem({ note, deleteNote, editNoteName }) {
           justifyContent="space-between"
           position="relative"
         >
-          {/* <SaveBtn
-            type="button"
-            aria-label="Save note"
-            ref={saveBtn}
-            onClick={handleSave}
-          >
-            <FaSave size="16" />
-          </SaveBtn> */}
-
           <h4>{note.name}</h4>
 
           <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
@@ -100,11 +91,11 @@ function NoteItem({ note, deleteNote, editNoteName }) {
           >
             <MdDeleteForever size="20" />
           </DeleteBtn>
+
           {editOpen && (
             <NoteEditModal
               saveNoteName={handleEditName}
               nameToUpdate={note.name}
-              bgColor={note.color}
               cancelEdit={toggleModal}
             />
           )}
