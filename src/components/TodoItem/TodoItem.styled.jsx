@@ -36,14 +36,6 @@ export const Checkbox = styled.input`
   }
 `;
 
-export const TodoText = styled.span`
-  width: 176px;
-  margin-left: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #212121;
-`;
-
 export const CheckBtn = styled.button`
   cursor: pointer;
   border: none;
@@ -54,8 +46,18 @@ export const CheckBtn = styled.button`
   color: green;  
 `;
 
+export const TodoText = styled.span`
+  /* width: 176px; */
+  /* flex-grow: 1; */
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #212121;
+`;
+
+
 export const EditBtn = styled.button`  
-  margin-left: auto;
+  /* margin-left: auto; */
   border: none;
   background-color: transparent;
   width: 20px;

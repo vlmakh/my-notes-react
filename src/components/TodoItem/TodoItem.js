@@ -65,18 +65,26 @@ function TodoItem({
 
         <TodoText>{text}</TodoText>
       </Label>
-      <EditBtn
-        type="button"
-        aria-label="Edit task"
-        onClick={toggleModal}
-        disabled={completed ? true : false}
-        className={completed ? '' : 'active'}
-      >
-        <MdEdit size="18" />
-      </EditBtn>
-      <DeleteBtn type="button" aria-label="Delete task" onClick={handleDelete}>
-        <ImCross />
-      </DeleteBtn>
+
+      <Box ml="auto" pl={2} display="flex">
+        <EditBtn
+          type="button"
+          aria-label="Edit task"
+          onClick={toggleModal}
+          disabled={completed ? true : false}
+          className={completed ? '' : 'active'}
+        >
+          <MdEdit size="18" />
+        </EditBtn>
+        <DeleteBtn
+          type="button"
+          aria-label="Delete task"
+          onClick={handleDelete}
+        >
+          <ImCross />
+        </DeleteBtn>
+      </Box>
+
       {editOpen && (
         <TodoEditModal
           saveTodo={handleEdit}
