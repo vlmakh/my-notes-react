@@ -1,8 +1,13 @@
-import { EditNoteForm, SaveBtn } from './NoteEditModal.styled';
+import { EditNoteForm, EditNoteInput, SaveBtn } from './NoteEditModal.styled';
 import { FaSave } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 
-export function NoteEditModal({ nameToUpdate, saveNoteName, cancelEdit }) {
+export function NoteEditModal({
+  nameToUpdate,
+  saveNoteName,
+  cancelEdit,
+  bcgNoteColor,
+}) {
   const [newName, setNewName] = useState(nameToUpdate);
 
   useEffect(() => {
@@ -29,12 +34,13 @@ export function NoteEditModal({ nameToUpdate, saveNoteName, cancelEdit }) {
   };
 
   return (
-    <EditNoteForm onSubmit={handleSubmit}>
-      <input
+    <EditNoteForm onSubmit={handleSubmit} bcgNoteColor={bcgNoteColor}>
+      <EditNoteInput
         type="text"
         name="newName"
         value={newName}
         onChange={onFormInput}
+        autoComplete="off"
       />
       <SaveBtn type="submit" aria-label="Save task">
         <FaSave size="20" />

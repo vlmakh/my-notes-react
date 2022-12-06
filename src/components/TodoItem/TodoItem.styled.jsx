@@ -9,13 +9,13 @@ export const ReorderItemStyled = styled(Reorder.Item)`
 
   transition: background-color 250ms linear;
 
-:hover {
-  background-color: lightgrey;
-}
+  :hover {
+    background-color: lightgrey;
+  }
 
-:not(:last-child) {
-  border-bottom: 1px solid lightgrey;
-}
+  :not(:last-child) {
+    border-bottom: 1px solid lightgrey;
+  }
 `;
 
 export const Label = styled.label`
@@ -43,20 +43,17 @@ export const CheckBtn = styled.button`
   width: 20px;
   height: 30px;
   padding: 0;
-  color: green;  
+  color: green;
 `;
 
 export const TodoText = styled.span`
-  /* width: 176px; */
-  /* flex-grow: 1; */
   margin-left: 8px;
   font-size: 14px;
   font-weight: 600;
   color: #212121;
 `;
 
-
-export const EditBtn = styled.button`  
+export const EditBtn = styled.button`
   /* margin-left: auto; */
   border: none;
   background-color: transparent;

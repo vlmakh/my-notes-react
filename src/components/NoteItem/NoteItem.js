@@ -97,6 +97,7 @@ function NoteItem({ note, deleteNote, editNoteName }) {
               saveNoteName={handleEditName}
               nameToUpdate={note.name}
               cancelEdit={toggleModal}
+              bcgNoteColor={bcgNoteColor}
             />
           )}
         </Box>

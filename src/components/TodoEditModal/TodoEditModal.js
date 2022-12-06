@@ -1,4 +1,4 @@
-import { EditTodoForm, SaveBtn } from './TodoEditModal.styled';
+import { EditTodoForm, EditTodoInput, SaveBtn } from './TodoEditModal.styled';
 import { FaSave } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 
@@ -30,11 +30,12 @@ export function TodoEditModal({ textToUpdate, saveTodo, cancelEdit }) {
 
   return (
     <EditTodoForm onSubmit={handleSubmit}>
-      <input
+      <EditTodoInput
         type="text"
         name="newText"
         value={newText}
         onChange={onFormInput}
+        autoComplete="off"
       />
       <SaveBtn type="submit" aria-label="Save task">
         <FaSave size="20" />
