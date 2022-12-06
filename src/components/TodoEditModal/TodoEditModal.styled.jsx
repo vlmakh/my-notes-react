@@ -3,16 +3,24 @@ import styled from '@emotion/styled';
 export const EditTodoForm = styled.form`
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  /* padding: 0 16px; */
   top: 0;
-  /* left: 0; */
+  left: 0;
+  padding: 0 8px;
   width: 100%;
   height: 100%;
   z-index: 100;
-  background-color: white;
-`
+  background-color: lightgrey;
+  box-sizing: border-box;
+`;
+
+export const EditTodoInput = styled.input`
+  flex-grow: 1;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: transparent;
+`;
 
 export const SaveBtn = styled.button`
   cursor: pointer;

@@ -12,6 +12,7 @@ function NoteItem({ note, deleteNote, editNoteName }) {
   const [todos, setTodos] = useState(note.todos);
   const [editOpen, setEditOpen] = useState(false);
   const { dispatch } = useContext(MyContext);
+  const bcgNoteColor = note.color + '33';
 
   useEffect(() => {
     dispatch({ type: 'editNote', noteId: note.noteid, newTodos: todos });
@@ -60,7 +61,7 @@ function NoteItem({ note, deleteNote, editNoteName }) {
   return (
     <Box>
       <Box
-        backgroundColor="white"
+        backgroundColor={bcgNoteColor}
         width="300px"
         mr={3}
         mb={3}
@@ -79,32 +80,26 @@ function NoteItem({ note, deleteNote, editNoteName }) {
           justifyContent="space-between"
           position="relative"
         >
-          {/* <SaveBtn
-            type="button"
-            aria-label="Save note"
-            ref={saveBtn}
-            onClick={handleSave}
-          >
-            <FaSave size="16" />
-          </SaveBtn> */}
-
           <h4>{note.name}</h4>
 
-          <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
-            <MdOutlineEdit size="20" />
-          </EditBtn>
-          <DeleteBtn
-            type="button"
-            onClick={() => deleteNote(note.noteid, note.name)}
-          >
-            <MdDeleteForever size="20" />
-          </DeleteBtn>
+          <Box ml="auto" pl={2} display="flex">
+            <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
+              <MdOutlineEdit size="20" />
+            </EditBtn>
+            <DeleteBtn
+              type="button"
+              onClick={() => deleteNote(note.noteid, note.name)}
+            >
+              <MdDeleteForever size="20" />
+            </DeleteBtn>
+          </Box>
+
           {editOpen && (
             <NoteEditModal
               saveNoteName={handleEditName}
               nameToUpdate={note.name}
-              bgColor={note.color}
               cancelEdit={toggleModal}
+              bcgNoteColor={bcgNoteColor}
             />
           )}
         </Box>

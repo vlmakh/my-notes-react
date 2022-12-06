@@ -9,14 +9,15 @@ justify-content: center;
   height: 40px;
   border: 1px solid grey;
   border-radius: 50%;
-  background-color: white;
+  background-color: lightgrey;
   color: grey;
   box-shadow: none;
 
-  transition: box-shadow 250ms linear, color 250ms linear;
+  transition: box-shadow 250ms linear, color 250ms linear, background-color 250ms linear;
 
   :hover {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
     color: #212121;
+    background-color: white;
   }
 `;
