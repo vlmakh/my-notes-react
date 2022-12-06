@@ -12,6 +12,7 @@ export const AddForm = styled.form`
 export const InputNew = styled.input`
     padding: 4px;
     border: none;
+    background-color: transparent;
 
     :focus-visible {
       outline: none;
