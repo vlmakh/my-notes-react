@@ -82,15 +82,17 @@ function NoteItem({ note, deleteNote, editNoteName }) {
         >
           <h4>{note.name}</h4>
 
-          <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
-            <MdOutlineEdit size="20" />
-          </EditBtn>
-          <DeleteBtn
-            type="button"
-            onClick={() => deleteNote(note.noteid, note.name)}
-          >
-            <MdDeleteForever size="20" />
-          </DeleteBtn>
+          <Box ml="auto" pl={2} display="flex">
+            <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
+              <MdOutlineEdit size="20" />
+            </EditBtn>
+            <DeleteBtn
+              type="button"
+              onClick={() => deleteNote(note.noteid, note.name)}
+            >
+              <MdDeleteForever size="20" />
+            </DeleteBtn>
+          </Box>
 
           {editOpen && (
             <NoteEditModal

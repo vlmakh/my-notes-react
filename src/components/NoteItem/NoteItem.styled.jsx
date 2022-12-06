@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const EditBtn = styled.button`
   cursor: pointer;
-  margin-left: auto;
   border: none;
   background-color: transparent;
   width: 20px;
