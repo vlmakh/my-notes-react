@@ -17,7 +17,6 @@ export const EditTodoForm = styled.form`
 
 export const EditTodoInput = styled.input`
   flex-grow: 1;
-  font-size: 14px;
   font-weight: 600;
   background-color: transparent;
 `;
