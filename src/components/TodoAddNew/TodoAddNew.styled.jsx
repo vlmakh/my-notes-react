@@ -7,6 +7,7 @@ export const AddForm = styled.form`
     padding: 8px 16px;
     margin: 0;
     border-bottom: 1px solid grey;
+    background-color: transparent;
 `
 
 export const InputNew = styled.input`

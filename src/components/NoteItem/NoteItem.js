@@ -12,7 +12,7 @@ function NoteItem({ note, deleteNote, editNoteName }) {
   const [todos, setTodos] = useState(note.todos);
   const [editOpen, setEditOpen] = useState(false);
   const { dispatch } = useContext(MyContext);
-  const bcgNoteColor = note.color + '33';
+  const bcgNoteColor = note.color + '55';
 
   useEffect(() => {
     dispatch({ type: 'editNote', noteId: note.noteid, newTodos: todos });
@@ -61,7 +61,7 @@ function NoteItem({ note, deleteNote, editNoteName }) {
   return (
     <Box>
       <Box
-        backgroundColor={bcgNoteColor}
+        backgroundColor="white"
         width="300px"
         mr={3}
         mb={3}
@@ -99,12 +99,11 @@ function NoteItem({ note, deleteNote, editNoteName }) {
               saveNoteName={handleEditName}
               nameToUpdate={note.name}
               cancelEdit={toggleModal}
-              bcgNoteColor={bcgNoteColor}
             />
           )}
         </Box>
 
-        <TodoAddNew onSubmit={addTodo} />
+        <TodoAddNew onSubmit={addTodo} bcgNoteColor={bcgNoteColor} />
 
         <TodoList
           todos={todos}
