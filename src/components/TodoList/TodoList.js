@@ -1,6 +1,5 @@
-import { Reorder } from 'framer-motion';
-import css from './TodoList.module.css';
 import { TodoItem } from 'components/TodoItem/TodoItem';
+import { ReorderListStyled } from './TodoList.styled';
 
 export function TodoList({
   todos,
@@ -10,12 +9,7 @@ export function TodoList({
   deleteTodo,
 }) {
   return (
-    <Reorder.Group
-      axis="y"
-      values={todos}
-      onReorder={setTodos}
-      className={css.todoList}
-    >
+    <ReorderListStyled axis="y" values={todos} onReorder={setTodos}>
       {todos.map(todo => {
         return (
           <TodoItem
@@ -30,6 +24,6 @@ export function TodoList({
           />
         );
       })}
-    </Reorder.Group>
+    </ReorderListStyled>
   );
 }
