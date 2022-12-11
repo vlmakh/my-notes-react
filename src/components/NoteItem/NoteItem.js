@@ -12,7 +12,6 @@ import { EditBtn, DeleteBtn } from './NoteItem.styled';
 import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 import { MyContext } from 'utils/context';
 import { HexColorPicker } from 'react-colorful';
-// import { NoteColorModal } from 'components/NoteColorModal/NoteColorModal';
 
 function NoteItem({ note }) {
   const [todos, setTodos] = useState(note.todos);
@@ -85,12 +84,6 @@ function NoteItem({ note }) {
         <Box position="absolute" top="0" left="0" zIndex="200">
           <HexColorPicker color={noteColor} onChange={handleNoteColor} />
         </Box>
-
-        // <NoteColorModal
-        //   saveNoteColor={handleNoteColor}
-        //   colorToUpdate={note.color}
-        //   cancelEdit={toggleNoteColorModal}
-        // />
       )}
 
       <Box
