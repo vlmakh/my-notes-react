@@ -52,16 +52,16 @@ function NoteItem({ note }) {
     setTodos(todos.filter(todo => todo.id !== todoId));
   };
 
-  const toggleNoteNameChange = () => {
+  const toggleNoteNameModal = () => {
     setEditNameOpen(!editNameOpen);
   };
 
   const handleEditName = newName => {
-    toggleNoteNameChange();
+    toggleNoteNameModal();
     dispatch({ type: 'editNoteName', noteId: note.noteid, newName });
   };
 
-  const toggleColorChoose = () => {
+  const toggleNoteColorModal = () => {
     setEditColorOpen(!editColorOpen);
     dispatch({
       type: 'editNoteColor',
@@ -109,14 +109,14 @@ function NoteItem({ note }) {
             <EditBtn
               type="button"
               aria-label="Edit color"
-              onClick={toggleColorChoose}
+              onClick={toggleNoteColorModal}
             >
               <MdOutlineEdit size="20" />
             </EditBtn>
             <EditBtn
               type="button"
               aria-label="Edit note"
-              onClick={toggleNoteNameChange}
+              onClick={toggleNoteNameModal}
             >
               <MdOutlineEdit size="20" />
             </EditBtn>
@@ -138,7 +138,7 @@ function NoteItem({ note }) {
             <NoteEditModal
               saveNoteName={handleEditName}
               nameToUpdate={note.name}
-              cancelEdit={toggleNoteNameChange}
+              cancelEdit={toggleNoteNameModal}
             />
           )}
         </Box>
