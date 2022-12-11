@@ -68,16 +68,15 @@ function NoteItem({ note }) {
 
   const toggleNoteColorModal = () => {
     setEditColorOpen(!editColorOpen);
+  };
+
+  const handleNoteColor = newColor => {
+    setNoteColor(newColor);
     dispatch({
       type: 'editNoteColor',
       noteId: note.noteid,
       newColor: noteColor,
     });
-  };
-
-  const handleNoteColor = newColor => {
-    setNoteColor(newColor);
-    // console.log(newColor);
   };
 
   return (
