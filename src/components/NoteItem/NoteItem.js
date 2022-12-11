@@ -52,12 +52,12 @@ function NoteItem({ note }) {
     setTodos(todos.filter(todo => todo.id !== todoId));
   };
 
-  const toggleModal = () => {
+  const toggleNoteNameChange = () => {
     setEditNameOpen(!editNameOpen);
   };
 
   const handleEditName = newName => {
-    toggleModal();
+    toggleNoteNameChange();
     dispatch({ type: 'editNoteName', noteId: note.noteid, newName });
   };
 
@@ -113,7 +113,11 @@ function NoteItem({ note }) {
             >
               <MdOutlineEdit size="20" />
             </EditBtn>
-            <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
+            <EditBtn
+              type="button"
+              aria-label="Edit note"
+              onClick={toggleNoteNameChange}
+            >
               <MdOutlineEdit size="20" />
             </EditBtn>
             <DeleteBtn
@@ -134,7 +138,7 @@ function NoteItem({ note }) {
             <NoteEditModal
               saveNoteName={handleEditName}
               nameToUpdate={note.name}
-              cancelEdit={toggleModal}
+              cancelEdit={toggleNoteNameChange}
             />
           )}
         </Box>
