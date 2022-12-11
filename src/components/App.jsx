@@ -23,11 +23,7 @@ function App() {
         {mynotes.map(noteItem => {
           return <NoteItem key={noteItem.noteid} note={noteItem} />;
         })}
-        <NoteAddBtn
-          addNote={() => {
-            dispatch({ type: 'addNote' });
-          }}
-        />
+        <NoteAddBtn />
       </Box>
     </MyContext.Provider>
   );
