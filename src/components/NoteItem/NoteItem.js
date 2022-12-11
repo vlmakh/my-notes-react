@@ -3,11 +3,16 @@ import { useState, useEffect, useContext } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
-import { MdOutlineEdit, MdDeleteForever } from 'react-icons/md';
+import {
+  MdOutlineEdit,
+  MdDeleteForever,
+  MdFormatColorFill,
+} from 'react-icons/md';
 import { EditBtn, DeleteBtn } from './NoteItem.styled';
 import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 import { MyContext } from 'utils/context';
 import { HexColorPicker } from 'react-colorful';
+// import { NoteColorModal } from 'components/NoteColorModal/NoteColorModal';
 
 function NoteItem({ note }) {
   const [todos, setTodos] = useState(note.todos);
@@ -81,6 +86,12 @@ function NoteItem({ note }) {
         <Box position="absolute" top="0" left="0" zIndex="200">
           <HexColorPicker color={noteColor} onChange={handleNoteColor} />
         </Box>
+
+        // <NoteColorModal
+        //   saveNoteColor={handleNoteColor}
+        //   colorToUpdate={note.color}
+        //   cancelEdit={toggleNoteColorModal}
+        // />
       )}
 
       <Box
@@ -105,13 +116,13 @@ function NoteItem({ note }) {
         >
           <h4>{note.name}</h4>
 
-          <Box ml="auto" pl={2} display="flex">
+          <Box ml="auto" display="flex">
             <EditBtn
               type="button"
               aria-label="Edit color"
               onClick={toggleNoteColorModal}
             >
-              <MdOutlineEdit size="20" />
+              <MdFormatColorFill size="20" />
             </EditBtn>
             <EditBtn
               type="button"
