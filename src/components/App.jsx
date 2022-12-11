@@ -21,22 +21,7 @@ function App() {
     <MyContext.Provider value={{ dispatch }}>
       <Box p={3} display="flex" flexWrap="wrap">
         {mynotes.map(noteItem => {
-          return (
-            <NoteItem
-              key={noteItem.noteid}
-              note={noteItem}
-              
-              deleteNote={(noteId, name) => {
-                dispatch({ type: 'deleteNote', noteId, name });
-              }}
-              editNoteName={(noteId, newName) => {
-                dispatch({ type: 'editNoteName', noteId, newName });
-              }}
-              editNoteColor={(noteId, newColor) => {
-                dispatch({ type: 'editNoteColor', noteId, newColor });
-              }}
-            />
-          );
+          return <NoteItem key={noteItem.noteid} note={noteItem} />;
         })}
         <NoteAddBtn
           addNote={() => {

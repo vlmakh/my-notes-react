@@ -9,7 +9,7 @@ import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 import { MyContext } from 'utils/context';
 import { HexColorPicker } from 'react-colorful';
 
-function NoteItem({ note, deleteNote, editNoteName, editNoteColor }) {
+function NoteItem({ note }) {
   const [todos, setTodos] = useState(note.todos);
   const [noteColor, setNoteColor] = useState(note.color);
   const [editNameOpen, setEditNameOpen] = useState(false);
@@ -58,12 +58,16 @@ function NoteItem({ note, deleteNote, editNoteName, editNoteColor }) {
 
   const handleEditName = newName => {
     toggleModal();
-    editNoteName(note.noteid, newName);
+    dispatch({ type: 'editNoteName', noteId: note.noteid, newName });
   };
 
   const toggleColorChoose = () => {
     setEditColorOpen(!editColorOpen);
-    editNoteColor(note.noteid, noteColor);
+    dispatch({
+      type: 'editNoteColor',
+      noteId: note.noteid,
+      newColor: noteColor,
+    });
   };
 
   const handleNoteColor = newColor => {
@@ -114,7 +118,13 @@ function NoteItem({ note, deleteNote, editNoteName, editNoteColor }) {
             </EditBtn>
             <DeleteBtn
               type="button"
-              onClick={() => deleteNote(note.noteid, note.name)}
+              onClick={() => {
+                dispatch({
+                  type: 'deleteNote',
+                  noteId: note.noteid,
+                  name: note.name,
+                });
+              }}
             >
               <MdDeleteForever size="20" />
             </DeleteBtn>
