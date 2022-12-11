@@ -25,14 +25,15 @@ function App() {
             <NoteItem
               key={noteItem.noteid}
               note={noteItem}
-              editNote={(noteId, newTodos) => {
-                dispatch({ type: 'editNote', noteId, newTodos });
-              }}
+              
               deleteNote={(noteId, name) => {
                 dispatch({ type: 'deleteNote', noteId, name });
               }}
               editNoteName={(noteId, newName) => {
                 dispatch({ type: 'editNoteName', noteId, newName });
+              }}
+              editNoteColor={(noteId, newColor) => {
+                dispatch({ type: 'editNoteColor', noteId, newColor });
               }}
             />
           );

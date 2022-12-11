@@ -7,10 +7,13 @@ import { MdOutlineEdit, MdDeleteForever } from 'react-icons/md';
 import { EditBtn, DeleteBtn } from './NoteItem.styled';
 import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 import { MyContext } from 'utils/context';
+import { HexColorPicker } from 'react-colorful';
 
-function NoteItem({ note, deleteNote, editNoteName }) {
+function NoteItem({ note, deleteNote, editNoteName, editNoteColor }) {
   const [todos, setTodos] = useState(note.todos);
-  const [editOpen, setEditOpen] = useState(false);
+  const [noteColor, setNoteColor] = useState(note.color);
+  const [editNameOpen, setEditNameOpen] = useState(false);
+  const [editColorOpen, setEditColorOpen] = useState(false);
   const { dispatch } = useContext(MyContext);
   const bcgNoteColor = note.color + '55';
 
@@ -50,7 +53,7 @@ function NoteItem({ note, deleteNote, editNoteName }) {
   };
 
   const toggleModal = () => {
-    setEditOpen(!editOpen);
+    setEditNameOpen(!editNameOpen);
   };
 
   const handleEditName = newName => {
@@ -58,8 +61,24 @@ function NoteItem({ note, deleteNote, editNoteName }) {
     editNoteName(note.noteid, newName);
   };
 
+  const toggleColorChoose = () => {
+    setEditColorOpen(!editColorOpen);
+    editNoteColor(note.noteid, noteColor);
+  };
+
+  const handleNoteColor = newColor => {
+    setNoteColor(newColor);
+    // console.log(newColor);
+  };
+
   return (
-    <Box>
+    <Box position="relative">
+      {editColorOpen && (
+        <Box position="absolute" top="0" left="0" zIndex="200">
+          <HexColorPicker color={noteColor} onChange={handleNoteColor} />
+        </Box>
+      )}
+
       <Box
         backgroundColor="white"
         width="300px"
@@ -83,6 +102,13 @@ function NoteItem({ note, deleteNote, editNoteName }) {
           <h4>{note.name}</h4>
 
           <Box ml="auto" pl={2} display="flex">
+            <EditBtn
+              type="button"
+              aria-label="Edit color"
+              onClick={toggleColorChoose}
+            >
+              <MdOutlineEdit size="20" />
+            </EditBtn>
             <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
               <MdOutlineEdit size="20" />
             </EditBtn>
@@ -94,7 +120,7 @@ function NoteItem({ note, deleteNote, editNoteName }) {
             </DeleteBtn>
           </Box>
 
-          {editOpen && (
+          {editNameOpen && (
             <NoteEditModal
               saveNoteName={handleEditName}
               nameToUpdate={note.name}

@@ -28,6 +28,12 @@ export const reducer = (mynotes, action) => {
           ? { ...noteItem, name: action.newName }
           : noteItem;
       });
+    case 'editNoteColor':
+      return mynotes.map(noteItem => {
+        return noteItem.noteid === action.noteId
+          ? { ...noteItem, color: action.newColor }
+          : noteItem;
+      });
     default:
       return mynotes;
   }
