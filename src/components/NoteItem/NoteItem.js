@@ -3,14 +3,21 @@ import { useState, useEffect, useContext } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
-import { MdOutlineEdit, MdDeleteForever } from 'react-icons/md';
+import {
+  MdOutlineEdit,
+  MdDeleteForever,
+  MdFormatColorFill,
+} from 'react-icons/md';
 import { EditBtn, DeleteBtn } from './NoteItem.styled';
 import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 import { MyContext } from 'utils/context';
+import { HexColorPicker } from 'react-colorful';
 
-function NoteItem({ note, deleteNote, editNoteName }) {
+function NoteItem({ note }) {
   const [todos, setTodos] = useState(note.todos);
-  const [editOpen, setEditOpen] = useState(false);
+  const [noteColor, setNoteColor] = useState(note.color);
+  const [editNameOpen, setEditNameOpen] = useState(false);
+  const [editColorOpen, setEditColorOpen] = useState(false);
   const { dispatch } = useContext(MyContext);
   const bcgNoteColor = note.color + '55';
 
@@ -49,17 +56,36 @@ function NoteItem({ note, deleteNote, editNoteName }) {
     setTodos(todos.filter(todo => todo.id !== todoId));
   };
 
-  const toggleModal = () => {
-    setEditOpen(!editOpen);
+  const toggleNoteNameModal = () => {
+    setEditNameOpen(!editNameOpen);
   };
 
   const handleEditName = newName => {
-    toggleModal();
-    editNoteName(note.noteid, newName);
+    toggleNoteNameModal();
+    dispatch({ type: 'editNoteName', noteId: note.noteid, newName });
+  };
+
+  const toggleNoteColorModal = () => {
+    setEditColorOpen(!editColorOpen);
+  };
+
+  const handleNoteColor = newColor => {
+    setNoteColor(newColor);
+    dispatch({
+      type: 'editNoteColor',
+      noteId: note.noteid,
+      newColor: noteColor,
+    });
   };
 
   return (
-    <Box>
+    <Box position="relative">
+      {editColorOpen && (
+        <Box position="absolute" top="0" left="0" zIndex="200">
+          <HexColorPicker color={noteColor} onChange={handleNoteColor} />
+        </Box>
+      )}
+
       <Box
         backgroundColor="white"
         width="300px"
@@ -82,23 +108,40 @@ function NoteItem({ note, deleteNote, editNoteName }) {
         >
           <h4>{note.name}</h4>
 
-          <Box ml="auto" pl={2} display="flex">
-            <EditBtn type="button" aria-label="Edit note" onClick={toggleModal}>
+          <Box ml="auto" display="flex">
+            <EditBtn
+              type="button"
+              aria-label="Edit color"
+              onClick={toggleNoteColorModal}
+            >
+              <MdFormatColorFill size="20" />
+            </EditBtn>
+            <EditBtn
+              type="button"
+              aria-label="Edit note"
+              onClick={toggleNoteNameModal}
+            >
               <MdOutlineEdit size="20" />
             </EditBtn>
             <DeleteBtn
               type="button"
-              onClick={() => deleteNote(note.noteid, note.name)}
+              onClick={() => {
+                dispatch({
+                  type: 'deleteNote',
+                  noteId: note.noteid,
+                  name: note.name,
+                });
+              }}
             >
               <MdDeleteForever size="20" />
             </DeleteBtn>
           </Box>
 
-          {editOpen && (
+          {editNameOpen && (
             <NoteEditModal
               saveNoteName={handleEditName}
               nameToUpdate={note.name}
-              cancelEdit={toggleModal}
+              cancelEdit={toggleNoteNameModal}
             />
           )}
         </Box>
