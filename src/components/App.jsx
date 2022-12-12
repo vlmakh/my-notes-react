@@ -1,4 +1,4 @@
-import { Box } from 'components/Box/Box';
+import { MasonryBox } from 'components/Box/Box';
 import { useEffect, useReducer } from 'react';
 import { NoteItem } from 'components/NoteItem/NoteItem';
 import { NoteAddBtn } from 'components/NoteAddBtn/NoteAddBtn';
@@ -17,14 +17,26 @@ function App() {
     localStorage.setItem('mynotes', JSON.stringify(mynotes));
   }, [mynotes]);
 
+  const breakpointColumnsObj = {
+    default: 7,
+    2211: 6,
+    1895: 5,
+    1579: 4,
+    1263: 3,
+    947: 2,
+    631: 1,
+  };
+
   return (
     <MyContext.Provider value={{ dispatch }}>
-      <Box p={3} display="flex" flexWrap="wrap">
+      {/* <Box p={3} display="flex" flexWrap="wrap"> */}
+      <MasonryBox breakpointCols={breakpointColumnsObj}>
         {mynotes.map(noteItem => {
           return <NoteItem key={noteItem.noteid} note={noteItem} />;
         })}
         <NoteAddBtn />
-      </Box>
+      </MasonryBox>
+      {/* </Box> */}
     </MyContext.Provider>
   );
 }

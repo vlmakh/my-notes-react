@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import Masonry from 'react-masonry-css';
+
 import {
   typography,
   space,
@@ -20,3 +22,9 @@ export const Box = styled('div')(
   flexbox,
   position
 );
+
+export const MasonryBox = styled(Masonry)`
+  display: flex;
+  padding: 8px;
+  width: auto;
+`;

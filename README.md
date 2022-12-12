@@ -11,7 +11,8 @@ Attached libraries:
 - react-icons;
 - nanoid;
 - framer-motion;
-- react-colorful.
+- react-colorful;
+- react-masonry-css.
 
 Added the ability to add new tasks, to mark tasks as completed, to delete tasks,
 to edit tasks (Ecs - cancel, Enter - confirm).
