@@ -25,6 +25,7 @@ export const Box = styled('div')(
 
 export const MasonryBox = styled(Masonry)`
   display: flex;
+  column-gap: 16px;
   padding: 8px;
   width: auto;
 `;

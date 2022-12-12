@@ -82,8 +82,8 @@ function NoteItem({ note }) {
     <Box
       position="relative"
       backgroundColor="white"
-      width="298px"
-      mr={3}
+      maxWidth="100%"
+      // mr={3}
       mb={3}
       border="1px solid grey"
       borderRadius="8px"
