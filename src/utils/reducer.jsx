@@ -34,6 +34,11 @@ export const reducer = (mynotes, action) => {
           ? { ...noteItem, color: action.newColor }
           : noteItem;
       });
+    case 'editNoteOrder':
+      const dragNote = action.dragNote;
+      mynotes = mynotes.filter(note => note.noteid !== dragNote.noteid);
+      mynotes.splice(action.idx, 0, dragNote);
+      return mynotes;
     default:
       return mynotes;
   }

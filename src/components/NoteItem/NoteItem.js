@@ -13,7 +13,7 @@ import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 import { MyContext } from 'utils/context';
 import { HexColorPicker } from 'react-colorful';
 
-function NoteItem({ note }) {
+function NoteItem({ note, idx, dragNote, setTemporaryNote }) {
   const [todos, setTodos] = useState(note.todos);
   const [noteColor, setNoteColor] = useState(note.color);
   const [editNameOpen, setEditNameOpen] = useState(false);
@@ -78,83 +78,107 @@ function NoteItem({ note }) {
     });
   };
 
+  const dragStartHandler = (e, note, idx) => {
+    // console.log('drag: ', note);
+
+    setTemporaryNote(note);
+  };
+
+  const dragOverHandler = e => {
+    e.preventDefault();
+    // console.log(dragNote);
+  };
+  const dropHandler = (e, idx) => {
+    e.preventDefault();
+    // console.log('drag: ', dragNote);
+    // console.log('drop: ', note);
+    dispatch({ type: 'editNoteOrder', idx, dragNote });
+  };
+
   return (
     <Box
       position="relative"
-      backgroundColor="white"
-      maxWidth="100%"
-      // mr={3}
-      mb={3}
-      border="1px solid grey"
-      borderRadius="8px"
-      overflow="hidden"
-      boxShadow="0px 4px 8px rgba(0, 0, 0, 0.6)"
+      draggable={true}
+      onDragStart={e => dragStartHandler(e, note, idx)}
+      onDragOver={e => dragOverHandler(e)}
+      onDrop={e => dropHandler(e, idx)}
     >
-      {editColorOpen && (
-        <Box position="absolute" top="0" left="0" zIndex="200">
-          <HexColorPicker color={noteColor} onChange={handleNoteColor} />
-        </Box>
-      )}
-
       <Box
-        bg={note.color}
-        py={2}
-        px={2}
-        textAlign="center"
-        color="white"
-        display="flex"
-        justifyContent="space-between"
-        position="relative"
+        backgroundColor="white"
+        maxWidth="100%"
+        // mr={3}
+        mb={3}
+        border="1px solid grey"
+        borderRadius="8px"
+        overflow="hidden"
+        boxShadow="0px 4px 8px rgba(0, 0, 0, 0.6)"
       >
-        <h4>{note.name}</h4>
+        {editColorOpen && (
+          <Box position="absolute" top="0" left="0" zIndex="200">
+            <HexColorPicker color={noteColor} onChange={handleNoteColor} />
+          </Box>
+        )}
 
-        <Box ml="auto" display="flex">
-          <EditBtn
-            type="button"
-            aria-label="Edit color"
-            onClick={toggleNoteColorModal}
-          >
-            <MdFormatColorFill size="20" />
-          </EditBtn>
-          <EditBtn
-            type="button"
-            aria-label="Edit note"
-            onClick={toggleNoteNameModal}
-          >
-            <MdOutlineEdit size="20" />
-          </EditBtn>
-          <DeleteBtn
-            type="button"
-            onClick={() => {
-              dispatch({
-                type: 'deleteNote',
-                noteId: note.noteid,
-                name: note.name,
-              });
-            }}
-          >
-            <MdDeleteForever size="20" />
-          </DeleteBtn>
+        <Box
+          bg={note.color}
+          py={2}
+          px={2}
+          textAlign="center"
+          color="white"
+          display="flex"
+          justifyContent="space-between"
+          position="relative"
+        >
+          <h4>{note.name}</h4>
+
+          <Box ml="auto" display="flex">
+            <EditBtn
+              type="button"
+              aria-label="Edit color"
+              onClick={toggleNoteColorModal}
+            >
+              <MdFormatColorFill size="20" />
+            </EditBtn>
+            <EditBtn
+              type="button"
+              aria-label="Edit note"
+              onClick={toggleNoteNameModal}
+            >
+              <MdOutlineEdit size="20" />
+            </EditBtn>
+            <DeleteBtn
+              type="button"
+              onClick={() => {
+                dispatch({
+                  type: 'deleteNote',
+                  noteId: note.noteid,
+                  name: note.name,
+                });
+              }}
+            >
+              <MdDeleteForever size="20" />
+            </DeleteBtn>
+          </Box>
+
+          {editNameOpen && (
+            <NoteEditModal
+              saveNoteName={handleEditName}
+              nameToUpdate={note.name}
+              cancelEdit={toggleNoteNameModal}
+            />
+          )}
         </Box>
 
-        {editNameOpen && (
-          <NoteEditModal
-            saveNoteName={handleEditName}
-            nameToUpdate={note.name}
-            cancelEdit={toggleNoteNameModal}
-          />
-        )}
+        <TodoAddNew onSubmit={addTodo} bcgNoteColor={bcgNoteColor} />
+
+        <TodoList
+          todos={todos}
+          setTodos={setTodos}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
+          completeTodo={completeTodo}
+        ></TodoList>
       </Box>
-
-      <TodoAddNew onSubmit={addTodo} bcgNoteColor={bcgNoteColor} />
-
-      <TodoList
-        todos={todos}
-        setTodos={setTodos}
-        deleteTodo={deleteTodo}
-        editTodo={editTodo}
-        completeTodo={completeTodo}
-      ></TodoList>
     </Box>
   );
 }

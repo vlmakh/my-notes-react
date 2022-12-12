@@ -1,5 +1,5 @@
 import { MasonryBox } from 'components/Box/Box';
-import { useEffect, useReducer } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import { NoteItem } from 'components/NoteItem/NoteItem';
 import { NoteAddBtn } from 'components/NoteAddBtn/NoteAddBtn';
 import { reducer } from 'utils/reducer';
@@ -12,10 +12,15 @@ function App() {
     reducer,
     savedData ? savedData : startNotes
   );
-
+  const [dragNote, setDragNote] = useState(null);
+  
   useEffect(() => {
     localStorage.setItem('mynotes', JSON.stringify(mynotes));
   }, [mynotes]);
+
+  const setTemporaryNote = (note) => {
+    setDragNote(note)
+  }
 
   const breakpointColumnsObj = {
     default: 7,
@@ -31,11 +36,11 @@ function App() {
     <MyContext.Provider value={{ dispatch }}>
       {/* <Box p={3} display="flex" flexWrap="wrap"> */}
       <MasonryBox breakpointCols={breakpointColumnsObj}>
-        {mynotes.map(noteItem => {
-          return <NoteItem key={noteItem.noteid} note={noteItem} />;
+        {mynotes.map((noteItem, idx) => {
+          return <NoteItem key={noteItem.noteid} idx={idx} note={noteItem} dragNote={dragNote} setTemporaryNote={setTemporaryNote} />;
         })}
         <NoteAddBtn />
-      </MasonryBox>
+      </MasonryBox>      
       {/* </Box> */}
     </MyContext.Provider>
   );
