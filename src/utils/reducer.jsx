@@ -35,9 +35,9 @@ export const reducer = (mynotes, action) => {
           : noteItem;
       });
     case 'editNoteOrder':
-      const dragNote = action.dragNote;
-      mynotes = mynotes.filter(note => note.noteid !== dragNote.noteid);
-      mynotes.splice(action.idx, 0, dragNote);
+      const isDraggingNote = action.isDraggingNote;
+      mynotes = mynotes.filter(note => note.noteid !== isDraggingNote.noteid);
+      mynotes.splice(action.idx, 0, isDraggingNote);
       return mynotes;
     default:
       return mynotes;

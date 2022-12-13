@@ -12,15 +12,11 @@ function App() {
     reducer,
     savedData ? savedData : startNotes
   );
-  const [dragNote, setDragNote] = useState(null);
-  
+  const [isDraggingNote, setIsDraggingNote] = useState(null);
+
   useEffect(() => {
     localStorage.setItem('mynotes', JSON.stringify(mynotes));
   }, [mynotes]);
-
-  const setTemporaryNote = (note) => {
-    setDragNote(note)
-  }
 
   const breakpointColumnsObj = {
     default: 7,
@@ -34,14 +30,20 @@ function App() {
 
   return (
     <MyContext.Provider value={{ dispatch }}>
-      {/* <Box p={3} display="flex" flexWrap="wrap"> */}
       <MasonryBox breakpointCols={breakpointColumnsObj}>
         {mynotes.map((noteItem, idx) => {
-          return <NoteItem key={noteItem.noteid} idx={idx} note={noteItem} dragNote={dragNote} setTemporaryNote={setTemporaryNote} />;
+          return (
+            <NoteItem
+              key={noteItem.noteid}
+              idx={idx}
+              note={noteItem}
+              isDraggingNote={isDraggingNote}
+              setIsDraggingNote={setIsDraggingNote}
+            />
+          );
         })}
         <NoteAddBtn />
-      </MasonryBox>      
-      {/* </Box> */}
+      </MasonryBox>
     </MyContext.Provider>
   );
 }

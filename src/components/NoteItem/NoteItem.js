@@ -13,7 +13,7 @@ import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 import { MyContext } from 'utils/context';
 import { HexColorPicker } from 'react-colorful';
 
-function NoteItem({ note, idx, dragNote, setTemporaryNote }) {
+function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote }) {
   const [todos, setTodos] = useState(note.todos);
   const [noteColor, setNoteColor] = useState(note.color);
   const [editNameOpen, setEditNameOpen] = useState(false);
@@ -79,20 +79,15 @@ function NoteItem({ note, idx, dragNote, setTemporaryNote }) {
   };
 
   const dragStartHandler = (e, note, idx) => {
-    // console.log('drag: ', note);
-
-    setTemporaryNote(note);
+    setIsDraggingNote(note);
   };
 
   const dragOverHandler = e => {
     e.preventDefault();
-    // console.log(dragNote);
   };
   const dropHandler = (e, idx) => {
     e.preventDefault();
-    // console.log('drag: ', dragNote);
-    // console.log('drop: ', note);
-    dispatch({ type: 'editNoteOrder', idx, dragNote });
+    dispatch({ type: 'editNoteOrder', idx, isDraggingNote });
   };
 
   return (
@@ -128,6 +123,7 @@ function NoteItem({ note, idx, dragNote, setTemporaryNote }) {
           display="flex"
           justifyContent="space-between"
           position="relative"
+          cursor="grab"
         >
           <h4>{note.name}</h4>
 

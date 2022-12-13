@@ -26,3 +26,7 @@ Added the ability to change note name (Ecs - cancel, Enter - confirm).
 AutoSave of current data is implemented using localStorage.
 
 Added the ability to change color of note.
+
+Added masonry layout of notes.
+
+Added the ability to move notes using vanilla React
