@@ -78,25 +78,25 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote }) {
     });
   };
 
-  const dragStartHandler = (e, note, idx) => {
-    setIsDraggingNote(note);
-  };
+  // const dragStartHandler = (e, note, idx) => {
+  //   setIsDraggingNote(note);
+  // };
 
-  const dragOverHandler = e => {
-    e.preventDefault();
-  };
-  const dropHandler = (e, idx) => {
-    e.preventDefault();
-    dispatch({ type: 'editNoteOrder', idx, isDraggingNote });
-  };
+  // const dragOverHandler = e => {
+  //   e.preventDefault();
+  // };
+  // const dropHandler = (e, idx) => {
+  //   e.preventDefault();
+  //   dispatch({ type: 'editNoteOrder', idx, isDraggingNote });
+  // };
 
   return (
     <Box
       position="relative"
-      draggable={true}
-      onDragStart={e => dragStartHandler(e, note, idx)}
-      onDragOver={e => dragOverHandler(e)}
-      onDrop={e => dropHandler(e, idx)}
+      // draggable={true}
+      // onDragStart={e => dragStartHandler(e, note, idx)}
+      // onDragOver={e => dragOverHandler(e)}
+      // onDrop={e => dropHandler(e, idx)}
     >
       <Box
         backgroundColor="white"
