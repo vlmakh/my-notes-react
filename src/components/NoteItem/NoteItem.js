@@ -13,7 +13,7 @@ import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 import { MyContext } from 'utils/context';
 import { HexColorPicker } from 'react-colorful';
 
-function NoteItem({ note }) {
+function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote }) {
   const [todos, setTodos] = useState(note.todos);
   const [noteColor, setNoteColor] = useState(note.color);
   const [editNameOpen, setEditNameOpen] = useState(false);
@@ -78,24 +78,41 @@ function NoteItem({ note }) {
     });
   };
 
-  return (
-    <Box position="relative">
-      {editColorOpen && (
-        <Box position="absolute" top="0" left="0" zIndex="200">
-          <HexColorPicker color={noteColor} onChange={handleNoteColor} />
-        </Box>
-      )}
+  // const dragStartHandler = (e, note, idx) => {
+  //   setIsDraggingNote(note);
+  // };
 
+  // const dragOverHandler = e => {
+  //   e.preventDefault();
+  // };
+  // const dropHandler = (e, idx) => {
+  //   e.preventDefault();
+  //   dispatch({ type: 'editNoteOrder', idx, isDraggingNote });
+  // };
+
+  return (
+    <Box
+      position="relative"
+      // draggable={true}
+      // onDragStart={e => dragStartHandler(e, note, idx)}
+      // onDragOver={e => dragOverHandler(e)}
+      // onDrop={e => dropHandler(e, idx)}
+    >
       <Box
         backgroundColor="white"
-        width="300px"
-        mr={3}
+        maxWidth="100%"
         mb={3}
         border="1px solid grey"
         borderRadius="8px"
         overflow="hidden"
         boxShadow="0px 4px 8px rgba(0, 0, 0, 0.6)"
       >
+        {editColorOpen && (
+          <Box position="absolute" top="0" left="0" zIndex="200">
+            <HexColorPicker color={noteColor} onChange={handleNoteColor} />
+          </Box>
+        )}
+
         <Box
           bg={note.color}
           py={2}

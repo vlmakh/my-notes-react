@@ -1,5 +1,5 @@
-import { Box } from 'components/Box/Box';
-import { useEffect, useReducer } from 'react';
+import { MasonryBox } from 'components/Box/Box';
+import { useState, useEffect, useReducer } from 'react';
 import { NoteItem } from 'components/NoteItem/NoteItem';
 import { NoteAddBtn } from 'components/NoteAddBtn/NoteAddBtn';
 import { reducer } from 'utils/reducer';
@@ -12,19 +12,38 @@ function App() {
     reducer,
     savedData ? savedData : startNotes
   );
+  const [isDraggingNote, setIsDraggingNote] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('mynotes', JSON.stringify(mynotes));
   }, [mynotes]);
 
+  const breakpointColumnsObj = {
+    default: 7,
+    2211: 6,
+    1895: 5,
+    1579: 4,
+    1263: 3,
+    947: 2,
+    631: 1,
+  };
+
   return (
     <MyContext.Provider value={{ dispatch }}>
-      <Box p={3} display="flex" flexWrap="wrap">
-        {mynotes.map(noteItem => {
-          return <NoteItem key={noteItem.noteid} note={noteItem} />;
+      <MasonryBox breakpointCols={breakpointColumnsObj}>
+        {mynotes.map((noteItem, idx) => {
+          return (
+            <NoteItem
+              key={noteItem.noteid}
+              idx={idx}
+              note={noteItem}
+              isDraggingNote={isDraggingNote}
+              setIsDraggingNote={setIsDraggingNote}
+            />
+          );
         })}
         <NoteAddBtn />
-      </Box>
+      </MasonryBox>
     </MyContext.Provider>
   );
 }
