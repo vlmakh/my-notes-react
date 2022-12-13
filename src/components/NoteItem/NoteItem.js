@@ -101,7 +101,6 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote }) {
       <Box
         backgroundColor="white"
         maxWidth="100%"
-        // mr={3}
         mb={3}
         border="1px solid grey"
         borderRadius="8px"
@@ -123,7 +122,6 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote }) {
           display="flex"
           justifyContent="space-between"
           position="relative"
-          cursor="grab"
         >
           <h4>{note.name}</h4>
 
