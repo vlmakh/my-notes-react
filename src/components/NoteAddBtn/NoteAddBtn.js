@@ -28,6 +28,7 @@ export function NoteAddBtn({ dragNotes, toggleDragNotes }) {
           name="drag"
           type="checkbox"
           checked={dragNotes ? true : false}
+          readOnly
         />
       </Label>
     </Box>
