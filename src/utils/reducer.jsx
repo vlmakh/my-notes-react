@@ -39,9 +39,6 @@ export const reducer = (mynotes, action) => {
       mynotes = mynotes.filter(note => note.noteid !== isDraggingNote.noteid);
       mynotes.splice(action.idx, 0, isDraggingNote);
       return mynotes;
-    case 'toggleDragNotes':
-      
-      return mynotes;
     default:
       return mynotes;
   }
