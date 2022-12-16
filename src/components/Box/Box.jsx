@@ -20,12 +20,16 @@ export const Box = styled('div')(
   border,
   shadow,
   flexbox,
-  position
+  position,
 );
 
 export const MasonryBox = styled(Masonry)`
   display: flex;
   column-gap: 16px;
   padding: 8px;
-  width: auto;
+  width: auto;  
 `;
+
+export const NoteBox = styled(Box)`
+  cursor: ${p => (p.draggable ? 'grab' : 'default')};
+`

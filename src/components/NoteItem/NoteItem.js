@@ -1,4 +1,4 @@
-import { Box } from 'components/Box/Box';
+import { Box, NoteBox } from 'components/Box/Box';
 import { useState, useEffect, useContext } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
@@ -13,7 +13,7 @@ import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 import { MyContext } from 'utils/context';
 import { HexColorPicker } from 'react-colorful';
 
-function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote }) {
+function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const [todos, setTodos] = useState(note.todos);
   const [noteColor, setNoteColor] = useState(note.color);
   const [editNameOpen, setEditNameOpen] = useState(false);
@@ -78,25 +78,25 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote }) {
     });
   };
 
-  // const dragStartHandler = (e, note, idx) => {
-  //   setIsDraggingNote(note);
-  // };
+  const dragStartHandler = (e, note, idx) => {
+    setIsDraggingNote(note);
+  };
 
-  // const dragOverHandler = e => {
-  //   e.preventDefault();
-  // };
-  // const dropHandler = (e, idx) => {
-  //   e.preventDefault();
-  //   dispatch({ type: 'editNoteOrder', idx, isDraggingNote });
-  // };
+  const dragOverHandler = e => {
+    e.preventDefault();
+  };
+  const dropHandler = (e, idx) => {
+    e.preventDefault();
+    dispatch({ type: 'editNoteOrder', idx, isDraggingNote });
+  };
 
   return (
-    <Box
+    <NoteBox
       position="relative"
-      // draggable={true}
-      // onDragStart={e => dragStartHandler(e, note, idx)}
-      // onDragOver={e => dragOverHandler(e)}
-      // onDrop={e => dropHandler(e, idx)}
+      draggable={dragNotes ? true : false}
+      onDragStart={e => dragStartHandler(e, note, idx)}
+      onDragOver={e => dragOverHandler(e)}
+      onDrop={e => dropHandler(e, idx)}
     >
       <Box
         backgroundColor="white"
@@ -173,7 +173,7 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote }) {
           completeTodo={completeTodo}
         ></TodoList>
       </Box>
-    </Box>
+    </NoteBox>
   );
 }
 

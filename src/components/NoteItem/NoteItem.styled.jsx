@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const EditBtn = styled.button`
-margin-left: 8px;
+  margin-left: 8px;
   cursor: pointer;
   border: none;
   background-color: transparent;
@@ -33,3 +33,4 @@ export const DeleteBtn = styled.button`
     color: grey;
   }
 `;
+

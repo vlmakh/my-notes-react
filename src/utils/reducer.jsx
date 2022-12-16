@@ -34,11 +34,14 @@ export const reducer = (mynotes, action) => {
           ? { ...noteItem, color: action.newColor }
           : noteItem;
       });
-    // case 'editNoteOrder':
-    //   const isDraggingNote = action.isDraggingNote;
-    //   mynotes = mynotes.filter(note => note.noteid !== isDraggingNote.noteid);
-    //   mynotes.splice(action.idx, 0, isDraggingNote);
-    //   return mynotes;
+    case 'editNoteOrder':
+      const isDraggingNote = action.isDraggingNote;
+      mynotes = mynotes.filter(note => note.noteid !== isDraggingNote.noteid);
+      mynotes.splice(action.idx, 0, isDraggingNote);
+      return mynotes;
+    case 'toggleDragNotes':
+      
+      return mynotes;
     default:
       return mynotes;
   }

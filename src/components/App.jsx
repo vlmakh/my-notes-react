@@ -13,6 +13,7 @@ function App() {
     savedData ? savedData : startNotes
   );
   const [isDraggingNote, setIsDraggingNote] = useState(null);
+  const [dragNotes, setDragNotes] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('mynotes', JSON.stringify(mynotes));
@@ -28,6 +29,10 @@ function App() {
     631: 1,
   };
 
+  const toggleDragNotes = () => {
+    setDragNotes(!dragNotes)
+  }
+
   return (
     <MyContext.Provider value={{ dispatch }}>
       <MasonryBox breakpointCols={breakpointColumnsObj}>
@@ -39,10 +44,11 @@ function App() {
               note={noteItem}
               isDraggingNote={isDraggingNote}
               setIsDraggingNote={setIsDraggingNote}
+              dragNotes={dragNotes}
             />
           );
         })}
-        <NoteAddBtn />
+        <NoteAddBtn toggleDragNotes={toggleDragNotes} dragNotes={dragNotes} />
       </MasonryBox>
     </MyContext.Provider>
   );
