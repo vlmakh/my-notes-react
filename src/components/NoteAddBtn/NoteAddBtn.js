@@ -15,7 +15,7 @@ export function NoteAddBtn({ dragNotes, toggleDragNotes }) {
           dispatch({ type: 'addNote' });
         }}
       >
-        <MdAddCircleOutline size="24" />
+        Add Note <MdAddCircleOutline size="24" />
       </AddBtn>
 
       <Label
