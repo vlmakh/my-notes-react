@@ -47,10 +47,12 @@ export const CheckBtn = styled.button`
 `;
 
 export const TodoText = styled.span`
+  max-width: 220px;
   margin-left: 8px;
   font-size: 14px;
   font-weight: 600;
   color: #212121;
+  word-wrap: break-word;
 `;
 
 export const EditBtn = styled.button`
