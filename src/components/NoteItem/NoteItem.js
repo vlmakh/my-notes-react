@@ -100,7 +100,7 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
     >
       <Box
         backgroundColor="white"
-        maxWidth="100%"
+        maxWidth="360px"
         mb={3}
         border="1px solid grey"
         borderRadius="8px"

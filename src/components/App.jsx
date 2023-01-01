@@ -21,17 +21,17 @@ function App() {
 
   const breakpointColumnsObj = {
     default: 7,
-    2211: 6,
-    1895: 5,
-    1579: 4,
-    1263: 3,
-    947: 2,
-    631: 1,
+    2163: 6,
+    1855: 5,
+    1547: 4,
+    1239: 3,
+    931: 2,
+    623: 1,
   };
 
   const toggleDragNotes = () => {
-    setDragNotes(!dragNotes)
-  }
+    setDragNotes(!dragNotes);
+  };
 
   return (
     <MyContext.Provider value={{ dispatch }}>
