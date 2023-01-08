@@ -85,6 +85,7 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const dragOverHandler = e => {
     e.preventDefault();
   };
+
   const dropHandler = (e, idx) => {
     e.preventDefault();
     dispatch({ type: 'editNoteOrder', idx, isDraggingNote });

@@ -15,17 +15,10 @@ import {
 } from './TodoItem.styled';
 import { TodoEditModal } from 'components/TodoEditModal/TodoEditModal';
 
-function TodoItem({
-  id,
-  text,
-  completed,
-  todo,
-  completeTodo,
-  editTodo,
-  deleteTodo,
-}) {
+function TodoItem({ todo, completeTodo, editTodo, deleteTodo }) {
   const [editOpen, setEditOpen] = useState(false);
   const controls = useDragControls();
+  const { id, text, completed } = todo;
 
   const toggleModal = () => {
     setEditOpen(!editOpen);
