@@ -14,10 +14,7 @@ export function TodoList({
         return (
           <TodoItem
             key={todo.id}
-            id={todo.id}
-            text={todo.text}
             todo={todo}
-            completed={todo.completed}
             completeTodo={completeTodo}
             editTodo={editTodo}
             deleteTodo={deleteTodo}
