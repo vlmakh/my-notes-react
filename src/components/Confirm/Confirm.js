@@ -3,7 +3,7 @@ import { Form, Text, Button } from './Confirm.styled';
 
 export function Confirm({ onFormSubmit, toggleConfirm, name }) {
   return (
-    <Form>
+    <Form onSubmit={onFormSubmit}>
       <Text>
         Delete note <b>{name}</b>?
       </Text>
@@ -17,7 +17,7 @@ export function Confirm({ onFormSubmit, toggleConfirm, name }) {
           Cancel
         </Button>
 
-        <Button type="button" aria-label="Delete note" onClick={onFormSubmit}>
+        <Button type="submit" aria-label="Delete note">
           DELETE
         </Button>
       </Box>
