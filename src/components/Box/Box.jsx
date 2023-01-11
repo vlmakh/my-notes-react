@@ -29,7 +29,3 @@ export const MasonryBox = styled(Masonry)`
   padding: 8px;
   width: auto;  
 `;
-
-export const NoteBox = styled(Box)`
-  cursor: ${p => (p.draggable ? 'grab' : 'default')};
-`

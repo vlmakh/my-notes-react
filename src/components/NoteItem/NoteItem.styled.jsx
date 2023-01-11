@@ -1,5 +1,19 @@
 import styled from '@emotion/styled';
 
+export const NoteBoxOuter = styled.div`
+  position: relative;
+  cursor: ${p => (p.draggable ? 'grab' : 'default')};
+`;
+export const NoteBoxInner = styled.div`
+  background-color: white;
+  max-width: 360px;
+  margin-bottom: 8px;
+  border: 1px solid grey;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+`;
+
 export const EditBtn = styled.button`
   margin-left: 8px;
   cursor: pointer;
@@ -33,4 +47,3 @@ export const DeleteBtn = styled.button`
     color: grey;
   }
 `;
-

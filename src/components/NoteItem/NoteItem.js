@@ -1,4 +1,4 @@
-import { Box, NoteBox } from 'components/Box/Box';
+import { Box } from 'components/Box/Box';
 import { useState, useEffect, useContext } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
@@ -8,22 +8,43 @@ import {
   MdDeleteForever,
   MdFormatColorFill,
 } from 'react-icons/md';
-import { EditBtn, DeleteBtn } from './NoteItem.styled';
+import {
+  NoteBoxOuter,
+  NoteBoxInner,
+  EditBtn,
+  DeleteBtn,
+} from './NoteItem.styled';
 import { NoteEditModal } from 'components/NoteEditModal/NoteEditModal';
 import { MyContext } from 'utils/context';
 import { HexColorPicker } from 'react-colorful';
+import { Modal } from 'components/Modal/Modal';
+import { Confirm } from 'components/Confirm/Confirm';
 
 function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const [todos, setTodos] = useState(note.todos);
   const [noteColor, setNoteColor] = useState(note.color);
   const [editNameOpen, setEditNameOpen] = useState(false);
   const [editColorOpen, setEditColorOpen] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const { dispatch } = useContext(MyContext);
   const bcgNoteColor = note.color + '55';
 
   useEffect(() => {
     dispatch({ type: 'editNote', noteId: note.noteid, newTodos: todos });
   }, [dispatch, note.noteid, todos]);
+
+  const toggleConfirm = () => {
+    setShowConfirm(!showConfirm);
+  };
+
+  const handleDeleteNote = note => {
+    // toggleConfirm();
+    dispatch({
+      type: 'deleteNote',
+      noteId: note.noteid,
+      // name: note.name,
+    });
+  };
 
   const addTodo = data => {
     if (data.trim() !== '') {
@@ -92,22 +113,13 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   };
 
   return (
-    <NoteBox
-      position="relative"
+    <NoteBoxOuter
       draggable={dragNotes ? true : false}
       onDragStart={e => dragStartHandler(e, note, idx)}
       onDragOver={e => dragOverHandler(e)}
       onDrop={e => dropHandler(e, idx)}
     >
-      <Box
-        backgroundColor="white"
-        maxWidth="360px"
-        mb={3}
-        border="1px solid grey"
-        borderRadius="8px"
-        overflow="hidden"
-        boxShadow="0px 4px 8px rgba(0, 0, 0, 0.6)"
-      >
+      <NoteBoxInner>
         {editColorOpen && (
           <Box position="absolute" top="0" left="0" zIndex="200">
             <HexColorPicker color={noteColor} onChange={handleNoteColor} />
@@ -141,16 +153,7 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
             >
               <MdOutlineEdit size="20" />
             </EditBtn>
-            <DeleteBtn
-              type="button"
-              onClick={() => {
-                dispatch({
-                  type: 'deleteNote',
-                  noteId: note.noteid,
-                  name: note.name,
-                });
-              }}
-            >
+            <DeleteBtn type="button" onClick={() => setShowConfirm(true)}>
               <MdDeleteForever size="20" />
             </DeleteBtn>
           </Box>
@@ -161,6 +164,16 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
               nameToUpdate={note.name}
               cancelEdit={toggleNoteNameModal}
             />
+          )}
+
+          {showConfirm && (
+            <Modal onClose={toggleConfirm}>
+              <Confirm
+                onFormSubmit={() => handleDeleteNote(note)}
+                toggleConfirm={toggleConfirm}
+                name={note.name}
+              />
+            </Modal>
           )}
         </Box>
 
@@ -173,8 +186,8 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
           editTodo={editTodo}
           completeTodo={completeTodo}
         ></TodoList>
-      </Box>
-    </NoteBox>
+      </NoteBoxInner>
+    </NoteBoxOuter>
   );
 }
 

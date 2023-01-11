@@ -18,10 +18,7 @@ export const reducer = (mynotes, action) => {
           : noteItem;
       });
     case 'deleteNote':
-      if (global.confirm(`Delete note: ${action.name}?`)) {
         return mynotes.filter(note => note.noteid !== action.noteId);
-      }
-      break;
     case 'editNoteName':
       return mynotes.map(noteItem => {
         return noteItem.noteid === action.noteId
