@@ -1,8 +1,5 @@
 import styled from '@emotion/styled';
-import { keyframes } from '@emotion/react'
-import { fadeIn} from 'react-animations'
-
-const fadeInA = keyframes`${fadeIn}`
+import {fadeInAnim} from 'utils/animate'
 
 export const NoteBoxOuter = styled.div`
   position: relative;
@@ -18,7 +15,7 @@ export const NoteBoxInner = styled.div`
   overflow: hidden;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
 
-  animation: ${fadeInA} 500ms;
+  animation: ${fadeInAnim} 500ms;
 `;
 
 export const EditBtn = styled.button`

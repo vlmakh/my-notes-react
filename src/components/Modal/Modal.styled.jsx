@@ -1,8 +1,5 @@
 import styled from '@emotion/styled';
-import { keyframes } from '@emotion/react'
-import { fadeIn } from 'react-animations'
-
-const fadeInA = keyframes`${fadeIn}`
+import {fadeInAnim} from 'utils/animate'
 
 export const Overlay = styled.div`
   position: fixed;
@@ -13,7 +10,7 @@ export const Overlay = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 
-  animation: ${fadeInA} 500ms;
+  animation: ${fadeInAnim} 500ms;
 `;
 
 export const ModalWrap = styled.div`
