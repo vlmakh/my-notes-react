@@ -1,9 +1,14 @@
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/react'
+import { fadeIn} from 'react-animations'
+
+const fadeInA = keyframes`${fadeIn}`
 
 export const NoteBoxOuter = styled.div`
   position: relative;
   cursor: ${p => (p.draggable ? 'grab' : 'default')};
 `;
+
 export const NoteBoxInner = styled.div`
   background-color: white;
   max-width: 360px;
@@ -12,6 +17,8 @@ export const NoteBoxInner = styled.div`
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+
+  animation: ${fadeInA} 500ms;
 `;
 
 export const EditBtn = styled.button`
