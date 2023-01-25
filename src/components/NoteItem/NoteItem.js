@@ -38,11 +38,9 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   };
 
   const handleDeleteNote = note => {
-    // toggleConfirm();
     dispatch({
       type: 'deleteNote',
       noteId: note.noteid,
-      // name: note.name,
     });
   };
 
