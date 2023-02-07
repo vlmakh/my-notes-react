@@ -6,8 +6,7 @@ export const AddBtn = styled.button`
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  /* width: 40px; */
-  height: 40px;
+  height: 32px;
   border: 1px solid grey;
   border-radius: 16px;
   background-color: lightgrey;
@@ -32,6 +31,7 @@ export const Label = styled.label`
   align-items: center;
   margin-left: 8px;
   gap: 8px;
+  height: 32px;
   cursor: pointer;
   color: ${p => (p.checked ? '#212121' : 'grey')};
   font-size: 14px;
