@@ -1,0 +1,68 @@
+import {
+  StyledForm,
+  StyledField,
+  Label,
+  StyledErrorMsg,
+  Button,
+} from './Login.styled';
+import { Formik } from 'formik';
+import { login } from 'utils/operations';
+import * as yup from 'yup';
+import { useEffect } from 'react';
+
+let schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required(),
+});
+
+export function Login({ user, setUser, token, setToken, setIsLoggedIn }) {
+  // const isCheckingLogin = useSelector(state => state.auth.isCheckingLogin);
+
+  const handleSubmit = (values, { resetForm }) => {
+    login(values)
+      .then(data => {
+        // console.log(data);
+        resetForm();
+        setToken(data.token);
+        setUser({ name: data.user.name, email: data.user.email });
+        setIsLoggedIn(true);
+      })
+      .catch(error => console.log(error));
+  };
+
+  useEffect(() => {
+    localStorage.setItem('token', JSON.stringify(token));
+  }, [token]);
+
+  return (
+    <Formik
+      onSubmit={handleSubmit}
+      initialValues={{
+        email: '',
+        password: '',
+      }}
+      validationSchema={schema}
+    >
+      <StyledForm>
+        <Label htmlFor="email">
+          <span>email</span>
+          <StyledField name="email" type="text" placeholder=" "></StyledField>
+          <StyledErrorMsg component="div" name="email" />
+        </Label>
+
+        <Label htmlFor="password">
+          <span>password </span>
+          <StyledField
+            name="password"
+            type="password"
+            placeholder=" "
+            autoComplete="off"
+          ></StyledField>
+          <StyledErrorMsg component="div" name="password" />
+        </Label>
+
+        <Button type="submit">Login</Button>
+      </StyledForm>
+    </Formik>
+  );
+}
