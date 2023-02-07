@@ -1,57 +1,20 @@
-import { MasonryBox } from 'components/Box/Box';
-import { useState, useEffect, useReducer } from 'react';
-import { NoteItem } from 'components/NoteItem/NoteItem';
-import { NoteAddBtn } from 'components/NoteAddBtn/NoteAddBtn';
-import { reducer } from 'utils/reducer';
-import { startNotes } from 'utils/startNotes';
-import { MyContext } from 'utils/context';
+import { Routes, Route, Navigate } from 'react-router-dom';
+// import { lazy } from 'react';
+// import { PrivateRoute } from './PrivateRoute';
+// import { RestrictedRoute } from './RestrictedRoute';
+// import { HomePage } from 'pages/HomePage';
+import { NotesPage } from 'pages/NotesPage';
+// const NotesPage = lazy(() => import('pages/NotesPage'));
 
-function App() {
-  const savedData = JSON.parse(localStorage.getItem('mynotes'));
-  const [mynotes, dispatch] = useReducer(
-    reducer,
-    savedData ? savedData : startNotes
-  );
-  const [isDraggingNote, setIsDraggingNote] = useState(null);
-  const [dragNotes, setDragNotes] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem('mynotes', JSON.stringify(mynotes));
-  }, [mynotes]);
-
-  const breakpointColumnsObj = {
-    default: 7,
-    2163: 6,
-    1855: 5,
-    1547: 4,
-    1239: 3,
-    931: 2,
-    623: 1,
-  };
-
-  const toggleDragNotes = () => {
-    setDragNotes(!dragNotes);
-  };
-
+export const App = () => {
   return (
-    <MyContext.Provider value={{ dispatch }}>
-      <MasonryBox breakpointCols={breakpointColumnsObj}>
-        {mynotes.map((noteItem, idx) => {
-          return (
-            <NoteItem
-              key={noteItem.noteid}
-              idx={idx}
-              note={noteItem}
-              isDraggingNote={isDraggingNote}
-              setIsDraggingNote={setIsDraggingNote}
-              dragNotes={dragNotes}
-            />
-          );
-        })}
-        <NoteAddBtn toggleDragNotes={toggleDragNotes} dragNotes={dragNotes} />
-      </MasonryBox>
-    </MyContext.Provider>
+    <>
+      <Routes>
+        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/" element={<NotesPage />} />
+       
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </>
   );
-}
-
-export { App };
+};
