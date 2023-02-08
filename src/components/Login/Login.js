@@ -19,9 +19,10 @@ export function Login({ setUser, token, setToken, setIsLoggedIn }) {
   const handleSubmit = (values, { resetForm }) => {
     login(values)
       .then(data => {
+        // console.log(data);
         resetForm();
         setToken(data.token);
-        setUser({ name: data.user.name, email: data.user.email });
+        setUser(data.user.name);
         setIsLoggedIn(true);
       })
       .catch(error => console.log(error));

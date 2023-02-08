@@ -21,6 +21,7 @@ export const App = () => {
       .then(data => {
         // console.log(data);
         if (data) {
+          setUser(data.name)
           setIsLoggedIn(true);
           return;
         }

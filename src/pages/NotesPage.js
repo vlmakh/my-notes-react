@@ -4,6 +4,7 @@ import { useState, useEffect, useReducer } from 'react';
 import { Navigate } from 'react-router-dom';
 import { NoteItem } from 'components/NoteItem/NoteItem';
 import { BtnsBlock } from 'components/BtnsBlock/BtnsBlock';
+import { Button } from 'components/BtnsBlock/BtnsBlock.styled';
 import { reducer } from 'utils/reducer';
 import { MyContext } from 'utils/context';
 import { Footer } from 'components/Footer/Footer';
@@ -63,12 +64,12 @@ export default function NotesPage({
 
           {user && (
             <p>
-              <b>{user.name}</b>
+              <b>{user}</b>
             </p>
           )}
-          <button type="button" onClick={handleLogout}>
+          <Button type="button" onClick={handleLogout}>
             Logout
-          </button>
+          </Button>
         </Header>
 
         <MasonryBox breakpointCols={breakpointColumnsObj}>
