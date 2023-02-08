@@ -12,7 +12,7 @@ const token = {
   },
 };
 
-// const errorMsg = "Something's wrong. Please update page and try again";
+const errorMsg = "Something's wrong. Please update page and try again";
 
 export const signup = async credentials => {
   try {
@@ -27,14 +27,14 @@ export const signup = async credentials => {
 };
 
 export const login = async credentials => {
-  // try {
-  const response = await axios.post(`/users/login`, credentials);
-  token.set(response.data.token);
-  // console.log(response.data);
-  return response.data;
-  // } catch (error) {
-  //   console.log('There is mistake in login or password, please try again');
-  // }
+  try {
+    const response = await axios.post(`/users/login`, credentials);
+    token.set(response.data.token);
+    // console.log(response.data);
+    return response.data;
+  } catch (error) {
+    toast.error('There is mistake in login or password, please try again');
+  }
 };
 
 export const checkCurrentUser = async () => {
@@ -62,12 +62,12 @@ export const logout = async () => {
 };
 
 export const getNotes = async () => {
-  // try {
-  const response = await axios.get(`/notes`);
-  return response.data;
-  // } catch (error) {
-  //   console.log(errorMsg);
-  // }
+  try {
+    const response = await axios.get(`/notes`);
+    return response.data;
+  } catch (error) {
+    toast.error(errorMsg);
+  }
 };
 
 export const addNote = async newNote => {
@@ -82,13 +82,13 @@ export const addNote = async newNote => {
 
 export const deleteNote = async note => {
   const { _id, name } = note;
-  // try {
-  const response = await axios.delete(`/notes/${_id}`);
-  toast.success(`${name} was deleted`);
-  return response.data;
-  // } catch (error) {
-  //   toast.error(errorMsg);
-  // }
+  try {
+    const response = await axios.delete(`/notes/${_id}`);
+    toast.success(`${name} was deleted`);
+    return response.data;
+  } catch (error) {
+    toast.error(errorMsg);
+  }
 };
 
 export const updateNoteName = async (noteId, newName) => {
