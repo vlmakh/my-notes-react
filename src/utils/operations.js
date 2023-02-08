@@ -87,14 +87,14 @@ export const deleteNote = async note => {
   // }
 };
 
-export const updateNote = async note => {
-  const { _id, ...noteData } = note;
+export const updateNoteName = async (note, newName) => {
+  const { _id, todos, color } = note;
+  const newData = { name: newName, todos, color };
+
   // try {
-
-  const response = await axios.put(`/notes/${_id}`, noteData);
-  toast.success(`${noteData.name} was updated`);
+  const response = await axios.put(`/notes/${_id}`, newData);
+  toast.success(`${newName} was updated`);
   return response.data;
-
   // } catch (error) {
   //   toast.error(error);
   // }
