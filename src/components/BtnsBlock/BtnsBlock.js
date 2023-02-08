@@ -18,7 +18,6 @@ export function BtnsBlock({ dragNotes, toggleDragNotes }) {
   const handleAdd = () => {
     addNote(newNote)
       .then(data => {
-        // console.log(data);
         dispatch({ type: 'addNote', newNote: data });
       })
       .catch(error => console.log(error));
@@ -26,13 +25,7 @@ export function BtnsBlock({ dragNotes, toggleDragNotes }) {
 
   return (
     <Box display="flex">
-      <AddBtn
-        type="button"
-        onClick={handleAdd}
-        // onClick={() => {
-        //   dispatch({ type: 'addNote' });
-        // }}
-      >
+      <AddBtn type="button" onClick={handleAdd}>
         Add Note <MdAddCircleOutline size="24" />
       </AddBtn>
 

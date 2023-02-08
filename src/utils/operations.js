@@ -71,9 +71,13 @@ export const getNotes = async () => {
 };
 
 export const addNote = async newNote => {
-  const response = await axios.post(`/notes`, newNote);
-  toast.success(`${newNote.name} was added`);
-  return response.data;
+  try {
+    const response = await axios.post(`/notes`, newNote);
+    toast.success(`${newNote.name} was added`);
+    return response.data;
+  } catch (error) {
+    toast.error(error);
+  }
 };
 
 export const deleteNote = async note => {

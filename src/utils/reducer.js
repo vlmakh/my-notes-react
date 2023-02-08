@@ -8,10 +8,6 @@ export const reducer = (mynotes, action) => {
     case 'addNote':
       const newNote = {
         ...action.newNote,
-        // noteid: nanoid(4),
-        // name: 'New note',
-        // todos: [],
-        // color: getRandomHexColor(),
       };
       return [...mynotes, newNote];
     case 'editNoteTodos':
