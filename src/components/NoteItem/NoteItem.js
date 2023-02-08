@@ -31,20 +31,22 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const { dispatch } = useContext(MyContext);
   const bcgNoteColor = note.color + '55';
 
-  useEffect(() => {
-    updateNote(note)
-      .then(data => {
-        // console.log(data);
-        dispatch({ type: 'editNote', noteId: note._id, newTodos: todos });
-      })
-      .catch(error => console.log(error.message));
-  }, [dispatch, note, todos]);
+  // useEffect(() => {
+  //   updateNote(note)
+  //     .then(data => {
+  //       // console.log(data);
+  //       dispatch({ type: 'editNote', noteId: note._id, newTodos: todos });
+  //     })
+  //     .catch(error => console.log(error.message));
+  // }, [dispatch, note, todos]);
 
   const toggleConfirm = () => {
     setShowConfirm(!showConfirm);
   };
 
   const handleDeleteNote = note => {
+    // e.PreventDefault();
+    // console.log(note);
     deleteNote(note)
       .then(data => {
         // console.log(data);

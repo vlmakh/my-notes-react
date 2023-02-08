@@ -21,7 +21,6 @@ export const reducer = (mynotes, action) => {
           : noteItem;
       });
     case 'deleteNote':
-      console.log(action);
       return mynotes.filter(note => note._id !== action.noteId);
     case 'editNoteName':
       return mynotes.map(noteItem => {
