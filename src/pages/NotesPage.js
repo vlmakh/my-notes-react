@@ -1,4 +1,4 @@
-import { Header } from 'components/Header/Header';
+import { Header, LogoText, My, UserName } from 'components/Header/Header';
 import { MasonryBox } from 'components/Box/Box';
 import { useState, useEffect, useReducer } from 'react';
 import { Navigate } from 'react-router-dom';
@@ -8,8 +8,8 @@ import { Button } from 'components/BtnsBlock/BtnsBlock.styled';
 import { reducer } from 'utils/reducer';
 import { MyContext } from 'utils/context';
 import { Footer } from 'components/Footer/Footer';
-import { LogoText, My } from 'components/Header/Header';
 import { getNotes, logout } from 'utils/operations';
+import { Box } from 'components/Box/Box';
 
 export default function NotesPage({
   user,
@@ -62,14 +62,12 @@ export default function NotesPage({
             <My>My</My>Notes
           </LogoText>
 
-          {user && (
-            <p>
-              <b>{user}</b>
-            </p>
-          )}
-          <Button type="button" onClick={handleLogout}>
-            Logout
-          </Button>
+          <Box display="flex" alignItems="center">
+            {user && <UserName>{user}</UserName>}
+            <Button type="button" onClick={handleLogout}>
+              Logout
+            </Button>
+          </Box>
         </Header>
 
         <MasonryBox breakpointCols={breakpointColumnsObj}>
