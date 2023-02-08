@@ -1,14 +1,15 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-// import { lazy } from 'react';
+import { lazy } from 'react';
 // import { PrivateRoute } from './PrivateRoute';
 // import { RestrictedRoute } from './RestrictedRoute';
 import { HomePage } from 'pages/HomePage';
-import { NotesPage } from 'pages/NotesPage';
 import { useState, useEffect } from 'react';
 import { Signup } from 'components/Signup/Signup';
 import { Login } from 'components/Login/Login';
 import { Toaster } from 'react-hot-toast';
 import { checkCurrentUser } from 'utils/operations';
+
+const NotesPage = lazy(() => import('pages/NotesPage'));
 
 export const App = () => {
   const savedToken = JSON.parse(localStorage.getItem('token'));
@@ -35,21 +36,11 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <HomePage
-              isLoggedIn={isLoggedIn}
-              token={token}
-              setIsLoggedIn={setIsLoggedIn}
-            />
-          }
-        >
+        <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />}>
           <Route
             index
             element={
               <Login
-                user={user}
                 setUser={setUser}
                 token={token}
                 setToken={setToken}

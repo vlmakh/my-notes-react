@@ -58,7 +58,6 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const handleDeleteNote = note => {
     deleteNote(note)
       .then(data => {
-        // console.log(data);
         dispatch({ type: 'deleteNote', noteId: data._id });
       })
       .catch(error => console.log(error));

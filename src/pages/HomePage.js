@@ -5,7 +5,7 @@ import { Footer } from 'components/Footer/Footer';
 import { Box } from 'components/Box/Box';
 import { LoginBox, MenuLink } from 'components/Login/Login.styled';
 
-function HomePage({ isLoggedIn, setIsLoggedIn }) {
+function HomePage({ isLoggedIn }) {
   return (
     <>
       {isLoggedIn && <Navigate to="/notes" />}

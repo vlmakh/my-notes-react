@@ -5,21 +5,22 @@ import { Navigate } from 'react-router-dom';
 import { NoteItem } from 'components/NoteItem/NoteItem';
 import { BtnsBlock } from 'components/BtnsBlock/BtnsBlock';
 import { reducer } from 'utils/reducer';
-// import { startNotes } from 'utils/startNotes';
 import { MyContext } from 'utils/context';
 import { Footer } from 'components/Footer/Footer';
 import { LogoText, My } from 'components/Header/Header';
 import { getNotes, logout } from 'utils/operations';
 
-function NotesPage({ user, isLoggedIn, setIsLoggedIn, setToken }) {
-  // const savedData = JSON.parse(localStorage.getItem('mynotes'));
-
+export default function NotesPage({
+  user,
+  isLoggedIn,
+  setIsLoggedIn,
+  setToken,
+}) {
   const [mynotes, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
     getNotes()
       .then(data => {
-        // console.log(data);
         dispatch({ type: 'getNotes', notes: data });
       })
       .catch(error => console.log(error.message));
@@ -27,12 +28,6 @@ function NotesPage({ user, isLoggedIn, setIsLoggedIn, setToken }) {
 
   const [isDraggingNote, setIsDraggingNote] = useState(null);
   const [dragNotes, setDragNotes] = useState(false);
-  // const [isLoading, setIsLoading] = useState(null);
-
-  // useEffect(() => {
-  //   console.log('mynotes changed');
-  //   localStorage.setItem('mynotes', JSON.stringify(mynotes));
-  // }, [mynotes]);
 
   const breakpointColumnsObj = {
     default: 7,
@@ -51,11 +46,10 @@ function NotesPage({ user, isLoggedIn, setIsLoggedIn, setToken }) {
   const handleLogout = () => {
     logout()
       .then(data => {
-        // console.log(data);
         setIsLoggedIn(false);
         setToken(null);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   return (
@@ -99,5 +93,3 @@ function NotesPage({ user, isLoggedIn, setIsLoggedIn, setToken }) {
     </>
   );
 }
-
-export { NotesPage };
