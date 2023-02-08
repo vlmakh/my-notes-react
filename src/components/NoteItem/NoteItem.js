@@ -1,5 +1,5 @@
 import { Box } from 'components/Box/Box';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
@@ -20,7 +20,7 @@ import { MyContext } from 'utils/context';
 import { HexColorPicker } from 'react-colorful';
 import { Modal } from 'components/Modal/Modal';
 import { Confirm } from 'components/Confirm/Confirm';
-import { deleteNote, updateNoteName } from 'utils/operations';
+import { deleteNote, updateNoteName, updateNoteTodos } from 'utils/operations';
 
 function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const [todos, setTodos] = useState(note.todos);
@@ -31,14 +31,18 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const { dispatch } = useContext(MyContext);
   const bcgNoteColor = note.color + '55';
 
-  // useEffect(() => {
-  //   updateNote(note)
-  //     .then(data => {
-  //       // console.log(data);
-  //       dispatch({ type: 'editNote', noteId: note._id, newTodos: todos });
-  //     })
-  //     .catch(error => console.log(error.message));
-  // }, [dispatch, note, todos]);
+  useEffect(() => {
+    updateNoteTodos(note, todos)
+      .then(data => {
+        // console.log(data);
+        dispatch({
+          type: 'editNoteTodos',
+          noteId: data._id,
+          newTodos: data.todos,
+        });
+      })
+      .catch(error => console.log(error.message));
+  }, [dispatch, note, todos]);
 
   const toggleConfirm = () => {
     setShowConfirm(!showConfirm);

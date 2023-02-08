@@ -14,7 +14,7 @@ export const reducer = (mynotes, action) => {
         // color: getRandomHexColor(),
       };
       return [...mynotes, newNote];
-    case 'editNote':
+    case 'editNoteTodos':
       return mynotes.map(noteItem => {
         return noteItem.noteid === action.noteId
           ? { ...noteItem, todos: action.newTodos }
