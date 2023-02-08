@@ -20,7 +20,12 @@ import { MyContext } from 'utils/context';
 import { HexColorPicker } from 'react-colorful';
 import { Modal } from 'components/Modal/Modal';
 import { Confirm } from 'components/Confirm/Confirm';
-import { deleteNote, updateNoteName, updateNoteTodos } from 'utils/operations';
+import {
+  deleteNote,
+  updateNoteColor,
+  updateNoteName,
+  updateNoteTodos,
+} from 'utils/operations';
 
 function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const [todos, setTodos] = useState(note.todos);
@@ -98,11 +103,15 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
     toggleNoteNameModal();
     dispatch({ type: 'editNoteName', noteId: note._id, newName });
 
-    updateNoteName(note, newName);
+    updateNoteName(note._id, newName);
   };
 
   const toggleNoteColorModal = () => {
     setEditColorOpen(!editColorOpen);
+
+    if (editColorOpen) {
+      updateNoteColor(note._id, noteColor);
+    }
   };
 
   const handleNoteColor = newColor => {

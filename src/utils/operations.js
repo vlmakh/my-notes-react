@@ -87,53 +87,29 @@ export const deleteNote = async note => {
   // }
 };
 
-export const updateNoteName = async (note, newName) => {
-  const { _id, todos, color } = note;
-  const newData = { name: newName, todos, color };
-
+export const updateNoteName = async (noteId, newName) => {
   try {
-    const response = await axios.put(`/notes/${_id}`, newData);
-    toast.success(`${newName} was updated`);
+    const response = await axios.put(`/notes/${noteId}/name`, {
+      name: newName,
+    });
+    toast.success(`'${newName}' was updated`);
     return response.data;
   } catch (error) {
     toast.error(error);
   }
 };
 
-export const updateNoteColor = async (note, newColor) => {
-  const { _id, todos, name } = note;
-  const newData = { name, todos, color: newColor };
-
-  const response = await axios.put(`/notes/${_id}`, newData);
-  toast.success(`Note ${name} was updated`);
-  return response.data;
+export const updateNoteColor = async (noteId, newColor) => {
+  try {
+    const response = await axios.put(`/notes/${noteId}/color`, {
+      color: newColor,
+    });
+    toast.success(`Note color was updated`);
+    return response.data;
+  } catch (error) {
+    toast.error(error);
+  }
 };
-
-export const updateNote = async note => {
-  const { _id, name, todos, color } = note;
-  const newData = { name, todos, color };
-
-  // try {
-  const response = await axios.put(`/notes/${_id}`, newData);
-  toast.success(`Note ${name} was updated`);
-  return response.data;
-  // } catch (error) {
-  //   toast.error(error);
-  // }
-};
-
-// export const updateNoteTodos = async (noteId, newTodos) => {
-//   const { _id, name, color } = note;
-//   const newData = { name, todos: newTodos, color };
-
-//   try {
-//     const response = await axios.put(`/notes/${_id}`, newData);
-//     // toast.success(`${name} was updated`);
-//     return response.data;
-//   } catch (error) {
-//     toast.error(error);
-//   }
-// };
 
 export const updateNoteTodos = async (noteId, newTodos) => {
   try {
