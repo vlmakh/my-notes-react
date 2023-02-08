@@ -11,6 +11,7 @@ import {
 import {
   NoteBoxOuter,
   NoteBoxInner,
+  NoteName,
   EditBtn,
   DeleteBtn,
 } from './NoteItem.styled';
@@ -142,7 +143,7 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
           justifyContent="space-between"
           position="relative"
         >
-          <h4>{note.name}</h4>
+          <NoteName>{note.name}</NoteName>
 
           <Box ml="auto" display="flex">
             <EditBtn
@@ -159,7 +160,11 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
             >
               <MdOutlineEdit size="20" />
             </EditBtn>
-            <DeleteBtn type="button" onClick={() => setShowConfirm(true)}>
+            <DeleteBtn
+              type="button"
+              onClick={() => setShowConfirm(true)}
+              aria-label="Delete note"
+            >
               <MdDeleteForever size="20" />
             </DeleteBtn>
           </Box>
