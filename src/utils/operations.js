@@ -11,6 +11,7 @@ const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
+
 // const errorMsg = "Something's wrong. Please update page and try again";
 
 export const signup = async credentials => {
@@ -36,25 +37,20 @@ export const login = async credentials => {
   // }
 };
 
-// export const checkCurrentUser = createAsyncThunk(
-//   'auth/current',
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
+export const checkCurrentUser = async () => {
+  if (token === null) {
+    return;
+  }
 
-//     if (state.auth.token === null) {
-//       return thunkAPI.rejectWithValue();
-//     }
+  token.set(token);
 
-//     token.set(state.auth.token);
-
-//     try {
-//       const response = await axios.get(`/users/current`);
-//       return response.data;
-//     } catch (error) {
-//       toast.error('Please try to login again');
-//     }
-//   }
-// );
+  try {
+    const response = await axios.get(`/users/current`);
+    return response.data;
+  } catch (error) {
+    toast.error('Please try to login again');
+  }
+};
 
 export const logout = async () => {
   try {
