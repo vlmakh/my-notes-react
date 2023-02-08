@@ -91,13 +91,13 @@ export const updateNoteName = async (note, newName) => {
   const { _id, todos, color } = note;
   const newData = { name: newName, todos, color };
 
-  // try {
-  const response = await axios.put(`/notes/${_id}`, newData);
-  toast.success(`${newName} was updated`);
-  return response.data;
-  // } catch (error) {
-  //   toast.error(error);
-  // }
+  try {
+    const response = await axios.put(`/notes/${_id}`, newData);
+    toast.success(`${newName} was updated`);
+    return response.data;
+  } catch (error) {
+    toast.error(error);
+  }
 };
 
 export const updateNoteColor = async (note, newColor) => {
@@ -130,3 +130,5 @@ export const updateNoteTodos = async (note, newTodos) => {
   // toast.success(`${name} was updated`);
   return response.data;
 };
+
+export const updateNoteOrder = async idx => {};

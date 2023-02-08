@@ -30,6 +30,7 @@ function NotesPage({ user, isLoggedIn, setIsLoggedIn, setToken }) {
   // const [isLoading, setIsLoading] = useState(null);
 
   // useEffect(() => {
+  //   console.log('mynotes changed');
   //   localStorage.setItem('mynotes', JSON.stringify(mynotes));
   // }, [mynotes]);
 

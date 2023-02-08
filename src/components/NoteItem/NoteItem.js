@@ -100,13 +100,9 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
 
   const handleEditName = newName => {
     toggleNoteNameModal();
+    dispatch({ type: 'editNoteName', noteId: note._id, newName });
 
-    updateNoteName(note, newName)
-      .then(data => {
-        console.log(data);
-        dispatch({ type: 'editNoteName', noteId: note._id, newName });
-      })
-      .catch(error => console.log(error));
+    updateNoteName(note, newName);
   };
 
   const toggleNoteColorModal = () => {
