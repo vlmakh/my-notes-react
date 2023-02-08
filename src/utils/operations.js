@@ -122,13 +122,29 @@ export const updateNote = async note => {
   // }
 };
 
-export const updateNoteTodos = async (note, newTodos) => {
-  const { _id, name, color } = note;
-  const newData = { name, todos: newTodos, color };
+// export const updateNoteTodos = async (noteId, newTodos) => {
+//   const { _id, name, color } = note;
+//   const newData = { name, todos: newTodos, color };
 
-  const response = await axios.put(`/notes/${_id}`, newData);
-  // toast.success(`${name} was updated`);
-  return response.data;
+//   try {
+//     const response = await axios.put(`/notes/${_id}`, newData);
+//     // toast.success(`${name} was updated`);
+//     return response.data;
+//   } catch (error) {
+//     toast.error(error);
+//   }
+// };
+
+export const updateNoteTodos = async (noteId, newTodos) => {
+  try {
+    const response = await axios.put(`/notes/${noteId}/todos`, {
+      todos: newTodos,
+    });
+    // toast.success(`${noteId} todos were updated`);
+    return response.data;
+  } catch (error) {
+    toast.error(error);
+  }
 };
 
 export const updateNoteOrder = async idx => {};

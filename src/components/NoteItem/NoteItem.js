@@ -32,23 +32,19 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const bcgNoteColor = note.color + '55';
 
   const isFirstRender = useRef(true);
+
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
     }
-
-    updateNoteTodos(note, todos)
-      .then(data => {
-        // console.log(data);
-        dispatch({
-          type: 'editNoteTodos',
-          noteId: data._id,
-          newTodos: data.todos,
-        });
-      })
-      .catch(error => console.log(error.message));
-  }, [dispatch, note, todos]);
+    dispatch({
+      type: 'editNoteTodos',
+      noteId: note._id,
+      newTodos: todos,
+    });
+    updateNoteTodos(note._id, todos);
+  }, [dispatch, note._id, todos]);
 
   const toggleConfirm = () => {
     setShowConfirm(!showConfirm);
@@ -113,7 +109,7 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
     setNoteColor(newColor);
     dispatch({
       type: 'editNoteColor',
-      noteId: note.noteid,
+      noteId: note._id,
       newColor: noteColor,
     });
   };

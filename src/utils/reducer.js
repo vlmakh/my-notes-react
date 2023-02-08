@@ -30,7 +30,7 @@ export const reducer = (mynotes, action) => {
       });
     case 'editNoteColor':
       return mynotes.map(noteItem => {
-        return noteItem.noteid === action.noteId
+        return noteItem._id === action.noteId
           ? { ...noteItem, color: action.newColor }
           : noteItem;
       });
