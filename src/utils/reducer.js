@@ -4,6 +4,9 @@
 export const reducer = (mynotes, action) => {
   switch (action.type) {
     case 'getNotes':
+      if (!action.notes) {
+        return;
+      }
       return [...action.notes];
     case 'addNote':
       const newNote = {

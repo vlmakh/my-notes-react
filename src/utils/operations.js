@@ -37,18 +37,18 @@ export const login = async credentials => {
   }
 };
 
-export const checkCurrentUser = async () => {
-  if (token === null) {
+export const checkCurrentUser = async savedToken => {
+  if (savedToken === null) {
     return;
   }
 
-  token.set(token);
+  token.set(savedToken);
 
   try {
     const response = await axios.get(`/users/current`);
     return response.data;
   } catch (error) {
-    toast.error('Please try to login again');
+    // toast.error('Please try to login again');
   }
 };
 
@@ -66,7 +66,7 @@ export const getNotes = async () => {
     const response = await axios.get(`/notes`);
     return response.data;
   } catch (error) {
-    toast.error(errorMsg);
+    // toast.error("Something's wrong. Please try to login again");
   }
 };
 
