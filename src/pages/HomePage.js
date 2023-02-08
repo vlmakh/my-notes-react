@@ -3,8 +3,6 @@ import { Header } from 'components/Header/Header';
 import { LogoText, My } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
 import { Box } from 'components/Box/Box';
-// import { Signup } from 'components/Signup/Signup';
-// import { Login } from 'components/Login/Login';
 import { LoginBox, MenuLink } from 'components/Login/Login.styled';
 
 function HomePage({ isLoggedIn, setIsLoggedIn }) {

@@ -1,5 +1,5 @@
 import { Box } from 'components/Box/Box';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
@@ -31,7 +31,13 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const { dispatch } = useContext(MyContext);
   const bcgNoteColor = note.color + '55';
 
+  const isFirstRender = useRef(true);
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     updateNoteTodos(note, todos)
       .then(data => {
         // console.log(data);
