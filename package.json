@@ -2,7 +2,7 @@
   "name": "my-notes",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://thunderous-dodol-52f7aa.netlify.app/",
+  "homepage": "https://vlmakh.github.io/my-notes-react/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
