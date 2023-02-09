@@ -14,8 +14,7 @@ export const App = () => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(savedToken ?? null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [isCheckingLogin, setIsCheckingLogin] = useState(false);
-
+  
   useEffect(() => {
     checkCurrentUser(savedToken)
       .then(data => {
@@ -65,7 +64,7 @@ export const App = () => {
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Toaster
-        position="top-right"
+        position="top-center"
         toastOptions={{
           duration: 3000,
         }}

@@ -1,6 +1,7 @@
 import { Box } from 'components/Box/Box';
 import { MdAddCircleOutline } from 'react-icons/md';
-import { Button, Label, CheckMove } from './BtnsBlock.styled';
+import { Button } from './BtnsBlock.styled';
+// import { Label, CheckMove } from './BtnsBlock.styled';
 import { useContext } from 'react';
 import { MyContext } from 'utils/context';
 import { addNote } from 'utils/operations';
@@ -29,7 +30,7 @@ export function BtnsBlock({ dragNotes, toggleDragNotes }) {
         Add Note <MdAddCircleOutline size="24" />
       </Button>
 
-      <Label
+      {/* <Label
         onClick={toggleDragNotes}
         htmlFor="drag"
         checked={dragNotes ? true : false}
@@ -41,7 +42,7 @@ export function BtnsBlock({ dragNotes, toggleDragNotes }) {
           checked={dragNotes ? true : false}
           readOnly
         />
-      </Label>
+      </Label> */}
     </Box>
   );
 }
