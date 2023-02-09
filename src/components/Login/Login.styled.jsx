@@ -32,7 +32,7 @@ export const MenuLink = styled(NavLink)`
   }
 
   :hover {
-    background-color: darkgrey;
+    background-color: grey;
   }
 `;
 
@@ -79,13 +79,13 @@ export const Button = styled.button`
   border-radius: 4px;
   border: none;
   margin: 0 auto;  
-  background-color: grey;
+  background-color: darkgrey;
   transition: background-color 250ms linear;
 
   :hover,
   :focus {
    
-    background-color: darkgrey;
+    background-color: grey;
   }
 
   :focus-visible {
