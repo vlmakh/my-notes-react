@@ -18,7 +18,6 @@ export const App = () => {
   useEffect(() => {
     checkCurrentUser(savedToken)
       .then(data => {
-        // console.log(data);
         if (data) {
           setUser(data.name)
           setIsLoggedIn(true);
@@ -48,6 +47,7 @@ export const App = () => {
           />
           <Route path="/signup" element={<Signup />} />
         </Route>
+
         <Route
           path="notes"
           element={
@@ -63,6 +63,7 @@ export const App = () => {
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+
       <Toaster
         position="top-center"
         toastOptions={{

@@ -20,6 +20,7 @@ export function Signup() {
     signup(values);
     resetForm();
   };
+
   return (
     <Formik
       onSubmit={handleSubmit}

@@ -43,11 +43,13 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
       isFirstRender.current = false;
       return;
     }
+
     dispatch({
       type: 'editNoteTodos',
       noteId: note._id,
       newTodos: todos,
     });
+
     updateNoteTodos(note._id, todos);
   }, [dispatch, note._id, todos]);
 
