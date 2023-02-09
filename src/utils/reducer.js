@@ -15,7 +15,7 @@ export const reducer = (mynotes, action) => {
       return [...mynotes, newNote];
     case 'editNoteTodos':
       return mynotes.map(noteItem => {
-        return noteItem.noteid === action.noteId
+        return noteItem._id === action.noteId
           ? { ...noteItem, todos: action.newTodos }
           : noteItem;
       });
