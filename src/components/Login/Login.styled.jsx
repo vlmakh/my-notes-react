@@ -2,19 +2,43 @@ import styled from '@emotion/styled';
 import { Form, Field, ErrorMessage } from 'formik';
 import { NavLink } from 'react-router-dom';
 
-export const LoginBox = styled('div')`
+export const HomeBox = styled('div')`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
-  text-align: center;
+  height: 300px;
+
+  @media screen and (min-width: 768px) {
+    width: 720px;
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
+export const ImgBox = styled.div`
+  width: 300px;
+
+  @media screen and (max-width: 767.98px) {
+    display: none;
+  }
+`;
+
+export const FormBox = styled.div`
   width: 360px;
   height: 300px;
+  background-color: white;
   border: 1px solid #212121;
   border-radius: 8px;
   background-color: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
   overflow: hidden;
+`;
+
+export const LinkBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
 `;
 
 export const MenuLink = styled(NavLink)`
@@ -78,13 +102,12 @@ export const Button = styled.button`
   font-weight: 600;
   border-radius: 4px;
   border: none;
-  margin: 0 auto;  
+  margin: 0 auto;
   background-color: darkgrey;
   transition: background-color 250ms linear;
 
   :hover,
   :focus {
-   
     background-color: grey;
   }
 
