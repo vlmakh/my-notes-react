@@ -6,6 +6,7 @@ export const Header = styled.div`
   top: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 52px;
   padding: 0 8px;
@@ -21,4 +22,10 @@ export const LogoText = styled.h1`
 
 export const My = styled.span`
   color: lightgrey;
+`
+
+export const UserName = styled.p`
+  font-size: 20px;
+  font-weight: 700;
+  margin-right: 16px;
 `

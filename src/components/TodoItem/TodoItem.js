@@ -48,7 +48,7 @@ function TodoItem({ todo, completeTodo, editTodo, deleteTodo }) {
       </Box>
       <Label>
         <Checkbox type="checkbox" checked={completed ? true : false} readOnly />
-        <CheckBtn onClick={handleComplete}>
+        <CheckBtn onClick={handleComplete} aria-label="Complete task">
           {completed ? (
             <FaCheck size="18" />
           ) : (

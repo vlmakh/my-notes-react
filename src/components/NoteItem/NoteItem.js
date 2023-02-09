@@ -1,5 +1,5 @@
 import { Box } from 'components/Box/Box';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { nanoid } from 'nanoid';
 import { TodoList } from 'components/TodoList/TodoList';
 import { TodoAddNew } from 'components/TodoAddNew/TodoAddNew';
@@ -11,6 +11,7 @@ import {
 import {
   NoteBoxOuter,
   NoteBoxInner,
+  NoteName,
   EditBtn,
   DeleteBtn,
 } from './NoteItem.styled';
@@ -19,6 +20,12 @@ import { MyContext } from 'utils/context';
 import { HexColorPicker } from 'react-colorful';
 import { Modal } from 'components/Modal/Modal';
 import { Confirm } from 'components/Confirm/Confirm';
+import {
+  deleteNote,
+  updateNoteColor,
+  updateNoteName,
+  updateNoteTodos,
+} from 'utils/operations';
 
 function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const [todos, setTodos] = useState(note.todos);
@@ -29,19 +36,33 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const { dispatch } = useContext(MyContext);
   const bcgNoteColor = note.color + '55';
 
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
-    dispatch({ type: 'editNote', noteId: note.noteid, newTodos: todos });
-  }, [dispatch, note.noteid, todos]);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    dispatch({
+      type: 'editNoteTodos',
+      noteId: note._id,
+      newTodos: todos,
+    });
+
+    updateNoteTodos(note._id, todos);
+  }, [dispatch, note._id, todos]);
 
   const toggleConfirm = () => {
     setShowConfirm(!showConfirm);
   };
 
   const handleDeleteNote = note => {
-    dispatch({
-      type: 'deleteNote',
-      noteId: note.noteid,
-    });
+    deleteNote(note)
+      .then(data => {
+        dispatch({ type: 'deleteNote', noteId: data._id });
+      })
+      .catch(error => console.log(error));
   };
 
   const addTodo = data => {
@@ -81,18 +102,24 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
 
   const handleEditName = newName => {
     toggleNoteNameModal();
-    dispatch({ type: 'editNoteName', noteId: note.noteid, newName });
+    dispatch({ type: 'editNoteName', noteId: note._id, newName });
+
+    updateNoteName(note._id, newName);
   };
 
   const toggleNoteColorModal = () => {
     setEditColorOpen(!editColorOpen);
+
+    if (editColorOpen) {
+      updateNoteColor(note._id, noteColor);
+    }
   };
 
   const handleNoteColor = newColor => {
     setNoteColor(newColor);
     dispatch({
       type: 'editNoteColor',
-      noteId: note.noteid,
+      noteId: note._id,
       newColor: noteColor,
     });
   };
@@ -134,7 +161,7 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
           justifyContent="space-between"
           position="relative"
         >
-          <h4>{note.name}</h4>
+          <NoteName>{note.name}</NoteName>
 
           <Box ml="auto" display="flex">
             <EditBtn
@@ -151,7 +178,11 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
             >
               <MdOutlineEdit size="20" />
             </EditBtn>
-            <DeleteBtn type="button" onClick={() => setShowConfirm(true)}>
+            <DeleteBtn
+              type="button"
+              onClick={() => setShowConfirm(true)}
+              aria-label="Delete note"
+            >
               <MdDeleteForever size="20" />
             </DeleteBtn>
           </Box>

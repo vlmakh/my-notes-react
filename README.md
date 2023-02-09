@@ -1,34 +1,29 @@
 # My Notes
 
-Simple app for private notes. AutoSave of current data is implemented using
-localStorage.
+Simple app for private notes
 
-Application is written using React hooks.
+- Frontend: React
+- Backend: Node.js
+- Database: MongoDB
 
-Attached libraries:
-
-- emotions;
-- styled-system;
-- react-icons;
-- nanoid;
-- framer-motion;
-- react-colorful;
-- react-masonry-css.
+# Frontend:
 
 Added the ability to add new tasks, to mark tasks as completed, to delete tasks,
-to edit tasks (aldo keyboard is available: Ecs = cancel, Enter = confirm).
+to edit tasks (also keyboard is available: Ecs = cancel, Enter = confirm)
 
-Added the ability to drag tasks.
+Added the ability to drag tasks
 
-Added the ability to create and delete notes.
+Added the ability to create and delete notes
 
 Added the ability to change note name (keyboard control: Ecs = cancel, Enter =
-confirm).
+confirm)
 
-Added the ability to change color of note.
+Added the ability to change color of note
 
-Added masonry layout of notes.
+Added masonry layout of notes
 
-Added the ability to drag notes. By default tasks in each notes are draggable,
-but notes are stable. If notes dragging is needed you must check it, in that
-case it becomes available to drag notes, but unavailable to drag tasks.
+# Backend:
+
+Added backend with user registration
+
+Database MongoDB is connected for saving data online

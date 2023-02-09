@@ -1,20 +1,29 @@
+import { Navigate, Outlet } from 'react-router-dom';
 import { Header } from 'components/Header/Header';
 import { LogoText, My } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
 import { Box } from 'components/Box/Box';
+import { LoginBox, MenuLink } from 'components/Login/Login.styled';
 
-function HomePage() {
+function HomePage({ isLoggedIn }) {
   return (
     <>
+      {isLoggedIn && <Navigate to="/notes" />}
+
       <Header>
         <LogoText>
           <My>My</My>Notes
         </LogoText>
       </Header>
 
-      <Box pt={5} textAlign="center">
-        <h2>HOME PAGE</h2>
-      </Box>
+      <LoginBox>
+        <Box display="flex" justifyContent="space-around">
+          <MenuLink to="/">Login</MenuLink>
+          <MenuLink to="/signup">Registration</MenuLink>
+        </Box>
+
+        <Outlet />
+      </LoginBox>
 
       <Footer></Footer>
     </>

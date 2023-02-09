@@ -1,26 +1,34 @@
-import { Header } from 'components/Header/Header';
+import { Header, LogoText, My, UserName } from 'components/Header/Header';
 import { MasonryBox } from 'components/Box/Box';
 import { useState, useEffect, useReducer } from 'react';
+import { Navigate } from 'react-router-dom';
 import { NoteItem } from 'components/NoteItem/NoteItem';
 import { BtnsBlock } from 'components/BtnsBlock/BtnsBlock';
+import { Button } from 'components/BtnsBlock/BtnsBlock.styled';
 import { reducer } from 'utils/reducer';
-import { startNotes } from 'utils/startNotes';
 import { MyContext } from 'utils/context';
 import { Footer } from 'components/Footer/Footer';
-import { LogoText, My } from 'components/Header/Header';
+import { getNotes, logout } from 'utils/operations';
+import { Box } from 'components/Box/Box';
 
-function NotesPage() {
-  const savedData = JSON.parse(localStorage.getItem('mynotes'));
-  const [mynotes, dispatch] = useReducer(
-    reducer,
-    savedData ? savedData : startNotes
-  );
-  const [isDraggingNote, setIsDraggingNote] = useState(null);
-  const [dragNotes, setDragNotes] = useState(false);
+export default function NotesPage({
+  user,
+  isLoggedIn,
+  setIsLoggedIn,
+  setToken,
+}) {
+  const [mynotes, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
-    localStorage.setItem('mynotes', JSON.stringify(mynotes));
-  }, [mynotes]);
+    getNotes()
+      .then(data => {
+        dispatch({ type: 'getNotes', notes: data });
+      })
+      .catch(error => console.log(error.message));
+  }, []);
+
+  const [isDraggingNote, setIsDraggingNote] = useState(null);
+  const [dragNotes, setDragNotes] = useState(false);
 
   const breakpointColumnsObj = {
     default: 7,
@@ -36,34 +44,51 @@ function NotesPage() {
     setDragNotes(!dragNotes);
   };
 
+  const handleLogout = () => {
+    logout()
+      .then(data => {
+        setIsLoggedIn(false);
+        setToken(null);
+      })
+      .catch(error => console.log(error.message));
+  };
+
   return (
-    <MyContext.Provider value={{ dispatch }}>
-      <Header>
-        <LogoText>
-          <My>My</My>Notes
-        </LogoText>
-      </Header>
+    <>
+      {!isLoggedIn && <Navigate to="/" />}
+      <MyContext.Provider value={{ dispatch }}>
+        <Header>
+          <LogoText>
+            <My>My</My>Notes
+          </LogoText>
 
-      <MasonryBox breakpointCols={breakpointColumnsObj}>
-        {mynotes.map((noteItem, idx) => {
-          return (
-            <NoteItem
-              key={noteItem.noteid}
-              idx={idx}
-              note={noteItem}
-              isDraggingNote={isDraggingNote}
-              setIsDraggingNote={setIsDraggingNote}
-              dragNotes={dragNotes}
-            />
-          );
-        })}
-      </MasonryBox>
+          <Box display="flex" alignItems="center">
+            {user && <UserName>{user}</UserName>}
+            <Button type="button" onClick={handleLogout}>
+              Logout
+            </Button>
+          </Box>
+        </Header>
 
-      <Footer>
-        <BtnsBlock toggleDragNotes={toggleDragNotes} dragNotes={dragNotes} />
-      </Footer>
-    </MyContext.Provider>
+        <MasonryBox breakpointCols={breakpointColumnsObj}>
+          {mynotes.map((noteItem, idx) => {
+            return (
+              <NoteItem
+                key={noteItem._id}
+                idx={idx}
+                note={noteItem}
+                isDraggingNote={isDraggingNote}
+                setIsDraggingNote={setIsDraggingNote}
+                dragNotes={dragNotes}
+              />
+            );
+          })}
+        </MasonryBox>
+
+        <Footer>
+          <BtnsBlock toggleDragNotes={toggleDragNotes} dragNotes={dragNotes} />
+        </Footer>
+      </MyContext.Provider>
+    </>
   );
 }
-
-export { NotesPage };
