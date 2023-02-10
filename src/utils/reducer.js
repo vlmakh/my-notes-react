@@ -1,6 +1,3 @@
-// import { nanoid } from 'nanoid';
-// import { getRandomHexColor } from 'utils/getRandomHexColor';
-
 export const reducer = (mynotes, action) => {
   switch (action.type) {
     case 'getNotes':

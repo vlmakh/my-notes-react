@@ -18,17 +18,18 @@ export default function NotesPage({
   setToken,
 }) {
   const [mynotes, dispatch] = useReducer(reducer, []);
+  const [isDraggingNote, setIsDraggingNote] = useState(null);
+  const [dragNotes, setDragNotes] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(true);
 
   useEffect(() => {
     getNotes()
       .then(data => {
         dispatch({ type: 'getNotes', notes: data });
+        setIsProcessing(false);
       })
-      .catch(error => console.log(error.message));
+      .catch(error => {});
   }, []);
-
-  const [isDraggingNote, setIsDraggingNote] = useState(null);
-  const [dragNotes, setDragNotes] = useState(false);
 
   const breakpointColumnsObj = {
     default: 7,
@@ -45,12 +46,10 @@ export default function NotesPage({
   };
 
   const handleLogout = () => {
-    logout()
-      .then(data => {
-        setIsLoggedIn(false);
-        setToken(null);
-      })
-      .catch(error => console.log(error.message));
+    logout().then(() => {
+      setIsLoggedIn(false);
+      setToken(null);
+    });
   };
 
   return (
@@ -70,20 +69,28 @@ export default function NotesPage({
           </Box>
         </Header>
 
-        <MasonryBox breakpointCols={breakpointColumnsObj}>
-          {mynotes.map((noteItem, idx) => {
-            return (
-              <NoteItem
-                key={noteItem._id}
-                idx={idx}
-                note={noteItem}
-                isDraggingNote={isDraggingNote}
-                setIsDraggingNote={setIsDraggingNote}
-                dragNotes={dragNotes}
-              />
-            );
-          })}
-        </MasonryBox>
+        {isProcessing && (
+          <Box pt={6} textAlign="center">
+            <h1>Loading your notes ...</h1>
+          </Box>
+        )}
+
+        {!isProcessing && (
+          <MasonryBox breakpointCols={breakpointColumnsObj}>
+            {mynotes.map((noteItem, idx) => {
+              return (
+                <NoteItem
+                  key={noteItem._id}
+                  idx={idx}
+                  note={noteItem}
+                  isDraggingNote={isDraggingNote}
+                  setIsDraggingNote={setIsDraggingNote}
+                  dragNotes={dragNotes}
+                />
+              );
+            })}
+          </MasonryBox>
+        )}
 
         <Footer>
           <BtnsBlock toggleDragNotes={toggleDragNotes} dragNotes={dragNotes} />
