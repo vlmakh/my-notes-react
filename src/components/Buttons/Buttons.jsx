@@ -20,9 +20,9 @@ export const Button = styled.button`
     background-color 250ms linear;
 
   :hover {
-    box-shadow: ${p => p.theme.shadows.box};
-    color: #212121;
-    background-color: white;
+    box-shadow: ${p => (p.disabled ? null: p.theme.shadows.box)};
+    color: ${p => (p.disabled ? "grey": '#212121')};
+    background-color: ${p => (p.disabled ? "lightgrey": '#FFFFFF')};
   }
 `;
 
@@ -45,9 +45,9 @@ export const ButtonLink = styled(NavLink)`
     background-color 250ms linear;
 
   :hover {
-    box-shadow: ${p => p.theme.shadows.box};
-    color: #212121;
-    background-color: white;
+    box-shadow: ${p => (p.disabled ? null: p.theme.shadows.box)};
+    color: ${p => (p.disabled ? "grey": '#212121')};
+    background-color: ${p => (p.disabled ? "lightgrey": '#FFFFFF')};
   }
 `;
 
