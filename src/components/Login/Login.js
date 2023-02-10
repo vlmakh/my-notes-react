@@ -15,7 +15,7 @@ let schema = yup.object().shape({
   password: yup.string().required(),
 });
 
-export function Login({ setUser, token, setToken, setIsLoggedIn }) {
+export default function Login({ setUser, token, setToken, setIsLoggedIn }) {
   const handleSubmit = (values, { resetForm }) => {
     login(values)
       .then(data => {

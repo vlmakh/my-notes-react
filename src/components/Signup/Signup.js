@@ -18,7 +18,7 @@ let schema = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
-export function Signup() {
+export default function Signup() {
   const handleSubmit = (values, { resetForm }) => {
     const { name, email, password } = values;
     const regData = { name, email, password };
