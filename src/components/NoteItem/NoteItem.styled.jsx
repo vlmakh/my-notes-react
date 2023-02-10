@@ -35,7 +35,7 @@ export const EditBtn = styled.button`
   transition: color 250ms linear;
 
   :hover {
-    color: grey;
+    color: ${p => p.theme.colors.textSec};
   }
 `;
 
@@ -52,6 +52,6 @@ export const DeleteBtn = styled.button`
   transition: color 250ms linear;
 
   :hover {
-    color: grey;
+    color: ${p => p.theme.colors.textSec};
   }
 `;

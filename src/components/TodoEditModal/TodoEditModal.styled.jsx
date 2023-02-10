@@ -11,7 +11,7 @@ export const EditTodoForm = styled.form`
   width: 100%;
   height: 100%;
   z-index: 100;
-  background-color: lightgrey;
+  background-color: ${p => p.theme.colors.bcgPrim};
   box-sizing: border-box;
 `;
 
@@ -26,11 +26,11 @@ export const SaveBtn = styled.button`
   margin-left: 20px;
   border: none;
   background-color: transparent;
-  color: grey;
+  color: ${p => p.theme.colors.textSec};
 
   transition: color 250ms linear;
 
   :hover {
-    color: #212121;
+    color: ${p => p.theme.colors.textPrim};
   }
 `;

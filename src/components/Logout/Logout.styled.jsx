@@ -34,7 +34,7 @@ export const MsgBox = styled.div`
 `;
 
 export const Message = styled.h2`
-    color: grey;
+    color: ${p => p.theme.colors.textSec};
 `
 
 

@@ -51,11 +51,11 @@ export const MenuLink = styled(NavLink)`
   transition: background-color 250ms linear;
 
   &.active {
-    background-color: darkgrey;
+    background-color: ${p => p.theme.colors.bcgLink};
   }
 
   :hover {
-    background-color: grey;
+    background-color: ${p => p.theme.colors.bcgSec};
   }
 `;
 
@@ -90,7 +90,7 @@ export const StyledErrorMsg = styled(ErrorMessage)`
   transform: translatey(100%);
   font-size: 10px;
   background-color: white;
-  color: #212121;
+  color: ${p => p.theme.colors.textPrim};
 `;
 
 export const Button = styled.button`

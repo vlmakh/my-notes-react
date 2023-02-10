@@ -10,7 +10,7 @@ export const ReorderItemStyled = styled(Reorder.Item)`
   transition: background-color 250ms linear;
 
   :hover {
-    background-color: lightgrey;
+    background-color: ${p => p.theme.colors.bcgPrim};
   }
 
   :not(:last-child) {
@@ -28,11 +28,11 @@ export const Checkbox = styled.input`
   display: none;
 
   :checked + button {
-    color: grey;
+    color: ${p => p.theme.colors.textSec};
   }
   :checked ~ span {
     text-decoration: line-through grey 2px;
-    color: grey;
+    color: ${p => p.theme.colors.textSec};
   }
 `;
 
@@ -51,7 +51,7 @@ export const TodoText = styled.span`
   margin-left: 8px;
   font-size: ${p => p.theme.fontSizes.xs};
   font-weight: 600;
-  color: #212121;
+  color: ${p => p.theme.colors.textPrim};
   word-wrap: break-word;
 `;
 
@@ -61,12 +61,12 @@ export const EditBtn = styled.button`
   width: 20px;
   height: 30px;
   padding: 0;
-  color: grey;
+  color: ${p => p.theme.colors.textSec};
 
   transition: color 250ms linear;
 
   :hover.active {
-    color: #212121;
+    color: ${p => p.theme.colors.textPrim};
     cursor: pointer;
   }
 `;
@@ -79,7 +79,7 @@ export const DeleteBtn = styled.button`
   width: 20px;
   height: 30px;
   padding: 0;
-  color: grey;
+  color: ${p => p.theme.colors.textSec};
 
   transition: color 250ms linear;
 

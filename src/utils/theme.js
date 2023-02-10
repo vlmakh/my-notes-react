@@ -1,12 +1,11 @@
 export const theme = {
   colors: {
-    bcgMain: '#d3d3d3', //lightgrey
+    bcgPrim: '#d3d3d3', //lightgrey
+    bcgSec: '#808080', //grey
     bcgLink: '#a9a9a9', //darkgrey
-    bcgHeader: '#808080', //grey
     textPrim: '#212121',
-    textSec: '#FFFFFF',
+    textSec: '#808080',
     accent: '#FF0000',
-    accentHover: '#ffc400',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fontSizes: {
@@ -19,6 +18,7 @@ export const theme = {
   borders: {
     none: 'none',
     dark: '1px solid #212121',
+    grey: '1px solid grey',
     light: '1px solid lightgrey',
   },
   radii: {
