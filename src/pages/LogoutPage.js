@@ -7,7 +7,7 @@ import {
   MsgBox,
   Message,
 } from 'components/Logout/Logout.styled';
-import { ButtonLink } from 'components/BtnsBlock/BtnsBlock.styled';
+import { ButtonLink } from 'components/Buttons/Buttons';
 import logo from 'images/logo2.webp';
 
 export default function LogoutPage() {
@@ -31,7 +31,7 @@ export default function LogoutPage() {
         </MsgBox>
       </LogoutBox>
 
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }

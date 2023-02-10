@@ -1,7 +1,6 @@
 import { Box } from 'components/Box/Box';
 import { MdAddCircleOutline } from 'react-icons/md';
-import { Button } from './BtnsBlock.styled';
-// import { Label, CheckMove } from './BtnsBlock.styled';
+import { Button } from 'components/Buttons/Buttons';
 import { useContext } from 'react';
 import { MyContext } from 'utils/context';
 import { addNote } from 'utils/operations';

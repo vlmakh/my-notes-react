@@ -4,7 +4,7 @@ import { useState, useEffect, useReducer } from 'react';
 import { Navigate } from 'react-router-dom';
 import { NoteItem } from 'components/NoteItem/NoteItem';
 import { BtnsBlock } from 'components/BtnsBlock/BtnsBlock';
-import { ButtonLink } from 'components/BtnsBlock/BtnsBlock.styled';
+import { ButtonLink } from 'components/Buttons/Buttons';
 import { reducer } from 'utils/reducer';
 import { MyContext } from 'utils/context';
 import { Footer } from 'components/Footer/Footer';

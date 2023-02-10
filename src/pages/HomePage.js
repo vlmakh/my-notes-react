@@ -37,7 +37,7 @@ function HomePage({ isLoggedIn }) {
         </FormBox>
       </HomeBox>
 
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }

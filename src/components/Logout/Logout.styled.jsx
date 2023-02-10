@@ -31,12 +31,6 @@ export const MsgBox = styled.div`
   gap: 16px;
   align-items: center;
   justify-content: center;
-
-  /* border: 1px solid #212121; */
-  /* border-radius: 8px; */
-  /* background-color: white; */
-  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8); */
-  /* overflow: hidden; */
 `;
 
 export const Message = styled.h2`
