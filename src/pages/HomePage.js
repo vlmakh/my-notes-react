@@ -1,6 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { Header } from 'components/Header/Header';
-import { LogoText, My } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
 import {
   HomeBox,
@@ -16,11 +15,7 @@ function HomePage({ isLoggedIn }) {
     <>
       {isLoggedIn && <Navigate to="/notes" />}
 
-      <Header>
-        <LogoText>
-          <My>My</My>Notes
-        </LogoText>
-      </Header>
+      <Header />
 
       <HomeBox>
         <ImgBox>

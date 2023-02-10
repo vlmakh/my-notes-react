@@ -1,11 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { HomePage } from 'pages/HomePage';
 import { useState, useEffect } from 'react';
 import { Signup } from 'components/Signup/Signup';
 import { Login } from 'components/Login/Login';
 import { Toaster } from 'react-hot-toast';
 import { checkCurrentUser } from 'utils/operations';
+import { Box } from './Box/Box';
 
 const NotesPage = lazy(() => import('pages/NotesPage'));
 const LogoutPage = lazy(() => import('pages/LogoutPage'));
@@ -32,7 +33,9 @@ export const App = () => {
   });
 
   return (
-    <>
+    <Suspense fallback={<Box pt={6} textAlign="center">
+            <h1>Loading ...</h1>
+          </Box>}>
       <Routes>
         <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />}>
           <Route
@@ -80,6 +83,6 @@ export const App = () => {
           duration: 3000,
         }}
       />
-    </>
+    </Suspense>
   );
 };

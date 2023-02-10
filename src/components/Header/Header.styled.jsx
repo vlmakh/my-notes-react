@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Header = styled.div`
+export const HeaderWrap = styled.div`
   position: fixed;
   left: 0;
   top: 0;

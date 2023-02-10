@@ -1,10 +1,9 @@
-import { Header, LogoText, My, UserName } from 'components/Header/Header';
+import { Header } from 'components/Header/Header';
 import { MasonryBox } from 'components/Box/Box';
 import { useState, useEffect, useReducer } from 'react';
 import { Navigate } from 'react-router-dom';
 import { NoteItem } from 'components/NoteItem/NoteItem';
 import { BtnsBlock } from 'components/BtnsBlock/BtnsBlock';
-import { ButtonLink } from 'components/Buttons/Buttons';
 import { reducer } from 'utils/reducer';
 import { MyContext } from 'utils/context';
 import { Footer } from 'components/Footer/Footer';
@@ -56,18 +55,11 @@ export default function NotesPage({
     <>
       {!isLoggedIn && <Navigate to="/" />}
       <MyContext.Provider value={{ dispatch }}>
-        <Header>
-          <LogoText>
-            <My>My</My>Notes
-          </LogoText>
-
-          <Box display="flex" alignItems="center">
-            {user && <UserName>{user}</UserName>}
-            <ButtonLink to="/logout" onClick={handleLogout}>
-              Logout
-            </ButtonLink>
-          </Box>
-        </Header>
+        <Header
+          handleLogout={handleLogout}
+          user={user}
+          isLoggedIn={isLoggedIn}
+        />
 
         {isProcessing && (
           <Box pt={6} textAlign="center">
