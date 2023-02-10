@@ -10,7 +10,7 @@ import {
 } from 'components/Login/Login.styled';
 import logo from 'images/logo2.webp';
 
-function HomePage({ isLoggedIn }) {
+export default function HomePage({ isLoggedIn }) {
   return (
     <>
       {isLoggedIn && <Navigate to="/notes" />}
@@ -36,5 +36,3 @@ function HomePage({ isLoggedIn }) {
     </>
   );
 }
-
-export { HomePage };

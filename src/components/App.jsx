@@ -1,14 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { HomePage } from 'pages/HomePage';
 import { useState, useEffect } from 'react';
-// import { Signup } from 'components/Signup/Signup';
-// import { Login } from 'components/Login/Login';
 import { Toaster } from 'react-hot-toast';
 import { checkCurrentUser } from 'utils/operations';
 import { Box } from './Box/Box';
 import { ThreeDots } from 'react-loader-spinner';
 
+const HomePage = lazy(() => import('pages/HomePage'));
 const Login = lazy(() => import('components/Login/Login'));
 const Signup = lazy(() => import('components/Signup/Signup'));
 const NotesPage = lazy(() => import('pages/NotesPage'));

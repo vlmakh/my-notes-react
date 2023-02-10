@@ -8,6 +8,7 @@ import {
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { signup } from 'utils/operations';
+import { useState } from 'react';
 
 let schema = yup.object().shape({
   name: yup.string().required(),
@@ -19,11 +20,19 @@ let schema = yup.object().shape({
 });
 
 export default function Signup() {
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const handleSubmit = (values, { resetForm }) => {
     const { name, email, password } = values;
     const regData = { name, email, password };
-    signup(regData);
-    resetForm();
+    setIsProcessing(true);
+
+    signup(regData)
+      .then(() => {
+        resetForm();
+        setIsProcessing(false);
+      })
+      .catch(error => {});
   };
 
   return (
@@ -72,7 +81,9 @@ export default function Signup() {
           <StyledErrorMsg component="div" name="passwordConfirm" />
         </Label>
 
-        <Button type="submit">Register</Button>
+        <Button type="submit" disabled={isProcessing}>
+          Register
+        </Button>
       </StyledForm>
     </Formik>
   );
