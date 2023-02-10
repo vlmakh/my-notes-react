@@ -3,9 +3,9 @@ export const theme = {
     bcgMain: '#d3d3d3', //lightgrey
     bcgLink: '#a9a9a9', //darkgrey
     bcgHeader: '#808080', //grey
-    textMain: '#FFFFFF',
-    textColor: '#212121',
-    accent: '#ffda44',
+    textPrim: '#212121',
+    textSec: '#FFFFFF',
+    accent: '#FF0000',
     accentHover: '#ffc400',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],

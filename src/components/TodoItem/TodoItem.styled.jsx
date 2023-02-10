@@ -14,7 +14,7 @@ export const ReorderItemStyled = styled(Reorder.Item)`
   }
 
   :not(:last-child) {
-    border-bottom: 1px solid lightgrey;
+    border-bottom: ${p => p.theme.borders.light};
   }
 `;
 
@@ -49,14 +49,13 @@ export const CheckBtn = styled.button`
 export const TodoText = styled.span`
   max-width: 220px;
   margin-left: 8px;
-  font-size: 14px;
+  font-size: ${p => p.theme.fontSizes.xs};
   font-weight: 600;
   color: #212121;
   word-wrap: break-word;
 `;
 
 export const EditBtn = styled.button`
-  /* margin-left: auto; */
   border: none;
   background-color: transparent;
   width: 20px;

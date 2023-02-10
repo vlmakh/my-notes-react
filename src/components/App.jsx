@@ -23,16 +23,10 @@ export const App = () => {
   useEffect(() => {
     checkCurrentUser(savedToken)
       .then(data => {
-        if (data) {
-          setUser(data.name);
-          setIsLoggedIn(true);
-          return;
-        }
-        setIsLoggedIn(false);
+        setUser(data.name);
+        setIsLoggedIn(true);
       })
-      .catch(error => {
-        console.log(error.message);
-      });
+      .catch(error => {});
   });
 
   return (
