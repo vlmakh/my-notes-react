@@ -1,5 +1,6 @@
 import {
   HeaderWrap,
+  LogoLink,
   LogoText,
   My,
   UserName,
@@ -10,9 +11,11 @@ import { ButtonLink } from 'components/Buttons/Buttons';
 export function Header({ user, handleLogout, isLoggedIn }) {
   return (
     <HeaderWrap>
-      <LogoText>
-        <My>My</My>Notes
-      </LogoText>
+      <LogoLink to="/">
+        <LogoText>
+          <My>My</My>Notes
+        </LogoText>
+      </LogoLink>
 
       {isLoggedIn && (
         <Box display="flex" alignItems="center">

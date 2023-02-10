@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const HeaderWrap = styled.div`
   position: fixed;
@@ -14,6 +15,10 @@ export const HeaderWrap = styled.div`
   color: #ffffff;
   z-index: 1000;
 `;
+
+export const LogoLink = styled(NavLink)`
+  text-decoration: none;
+`
 
 export const LogoText = styled.h1`
   font-size: 32px;
