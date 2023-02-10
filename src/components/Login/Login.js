@@ -24,7 +24,7 @@ export function Login({ setUser, token, setToken, setIsLoggedIn }) {
         setUser(data.user.name);
         setIsLoggedIn(true);
       })
-      .catch(error => console.log(error));
+      .catch(error => {});
   };
 
   useEffect(() => {
