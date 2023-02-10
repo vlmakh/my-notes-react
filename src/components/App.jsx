@@ -7,6 +7,7 @@ import { Login } from 'components/Login/Login';
 import { Toaster } from 'react-hot-toast';
 import { checkCurrentUser } from 'utils/operations';
 import { Box } from './Box/Box';
+import { ThreeDots } from 'react-loader-spinner';
 
 const NotesPage = lazy(() => import('pages/NotesPage'));
 const LogoutPage = lazy(() => import('pages/LogoutPage'));
@@ -16,12 +17,12 @@ export const App = () => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(savedToken ?? null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
   useEffect(() => {
     checkCurrentUser(savedToken)
       .then(data => {
         if (data) {
-          setUser(data.name)
+          setUser(data.name);
           setIsLoggedIn(true);
           return;
         }
@@ -33,9 +34,22 @@ export const App = () => {
   });
 
   return (
-    <Suspense fallback={<Box pt={6} textAlign="center">
-            <h1>Loading ...</h1>
-          </Box>}>
+    <Suspense
+      fallback={
+        <Box pt={6} display="flex" justifyContent="center">
+          <ThreeDots
+            height="80"
+            width="100"
+            radius="9"
+            color="#313131"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClassName=""
+            visible={true}
+          />
+        </Box>
+      }
+    >
       <Routes>
         <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />}>
           <Route
@@ -67,11 +81,7 @@ export const App = () => {
 
         <Route
           path="/logout"
-          element={
-            <LogoutPage
-              isLoggedIn={isLoggedIn}              
-            />
-          }
+          element={<LogoutPage isLoggedIn={isLoggedIn} />}
         />
 
         <Route path="*" element={<Navigate to="/" />} />
