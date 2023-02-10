@@ -4,7 +4,7 @@ import { useState, useEffect, useReducer } from 'react';
 import { Navigate } from 'react-router-dom';
 import { NoteItem } from 'components/NoteItem/NoteItem';
 import { BtnsBlock } from 'components/BtnsBlock/BtnsBlock';
-import { Button } from 'components/BtnsBlock/BtnsBlock.styled';
+import { ButtonLink } from 'components/BtnsBlock/BtnsBlock.styled';
 import { reducer } from 'utils/reducer';
 import { MyContext } from 'utils/context';
 import { Footer } from 'components/Footer/Footer';
@@ -63,9 +63,9 @@ export default function NotesPage({
 
           <Box display="flex" alignItems="center">
             {user && <UserName>{user}</UserName>}
-            <Button type="button" onClick={handleLogout}>
+            <ButtonLink to="/logout" onClick={handleLogout}>
               Logout
-            </Button>
+            </ButtonLink>
           </Box>
         </Header>
 

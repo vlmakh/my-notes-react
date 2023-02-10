@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const Button = styled.button`
   display: flex;
@@ -14,6 +15,31 @@ export const Button = styled.button`
   font-size: 14px;
   font-weight: 600;
   box-shadow: none;
+
+  transition: box-shadow 250ms linear, color 250ms linear,
+    background-color 250ms linear;
+
+  :hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+    color: #212121;
+    background-color: white;
+  }
+`;
+
+export const ButtonLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid grey;
+  border-radius: 16px;
+  background-color: lightgrey;
+  color: grey;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: none;
+  text-decoration: none;
+  cursor: pointer;
 
   transition: box-shadow 250ms linear, color 250ms linear,
     background-color 250ms linear;

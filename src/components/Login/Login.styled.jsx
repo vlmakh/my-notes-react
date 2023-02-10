@@ -30,7 +30,6 @@ export const FormBox = styled.div`
   background-color: white;
   border: 1px solid #212121;
   border-radius: 8px;
-  background-color: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
   overflow: hidden;
 `;

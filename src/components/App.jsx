@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import { checkCurrentUser } from 'utils/operations';
 
 const NotesPage = lazy(() => import('pages/NotesPage'));
+const LogoutPage = lazy(() => import('pages/LogoutPage'));
 
 export const App = () => {
   const savedToken = JSON.parse(localStorage.getItem('token'));
@@ -49,7 +50,7 @@ export const App = () => {
         </Route>
 
         <Route
-          path="notes"
+          path="/notes"
           element={
             <NotesPage
               isLoggedIn={isLoggedIn}
@@ -57,6 +58,15 @@ export const App = () => {
               token={token}
               user={user}
               setToken={setToken}
+            />
+          }
+        />
+
+        <Route
+          path="/logout"
+          element={
+            <LogoutPage
+              isLoggedIn={isLoggedIn}              
             />
           }
         />
