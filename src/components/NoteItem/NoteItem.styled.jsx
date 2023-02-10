@@ -11,9 +11,9 @@ export const NoteBoxInner = styled.div`
   max-width: 360px;
   margin-bottom: 8px;
   border: 1px solid grey;
-  border-radius: 8px;
+  border-radius: ${p => p.theme.radii.normal};
   overflow: hidden;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+  box-shadow: ${p => p.theme.shadows.box};
 
   animation: ${fadeInAnim} 500ms;
 `;
@@ -35,7 +35,7 @@ export const EditBtn = styled.button`
   transition: color 250ms linear;
 
   :hover {
-    color: grey;
+    color: ${p => p.theme.colors.textSec};
   }
 `;
 
@@ -52,6 +52,6 @@ export const DeleteBtn = styled.button`
   transition: color 250ms linear;
 
   :hover {
-    color: grey;
+    color: ${p => p.theme.colors.textSec};
   }
 `;

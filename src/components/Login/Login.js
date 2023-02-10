@@ -27,9 +27,11 @@ export default function Login({ setUser, token, setToken, setIsLoggedIn }) {
         setToken(data.token);
         setUser(data.user.name);
         setIsLoggedIn(true);
-        setIsProcessing(false);
       })
-      .catch(error => {});
+      .catch(error => {})
+      .finally(() => {
+        setIsProcessing(false);
+      });
   };
 
   useEffect(() => {

@@ -20,9 +20,9 @@ export const Button = styled.button`
     background-color 250ms linear;
 
   :hover {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
-    color: #212121;
-    background-color: white;
+    box-shadow: ${p => (p.disabled ? null: p.theme.shadows.box)};
+    color: ${p => (p.disabled ? "grey": '#212121')};
+    background-color: ${p => (p.disabled ? "lightgrey": '#FFFFFF')};
   }
 `;
 
@@ -45,9 +45,9 @@ export const ButtonLink = styled(NavLink)`
     background-color 250ms linear;
 
   :hover {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
-    color: #212121;
-    background-color: white;
+    box-shadow: ${p => (p.disabled ? null: p.theme.shadows.box)};
+    color: ${p => (p.disabled ? "grey": '#212121')};
+    background-color: ${p => (p.disabled ? "lightgrey": '#FFFFFF')};
   }
 `;
 
@@ -69,7 +69,7 @@ export const Label = styled.label`
     background-color 250ms linear;
 
   :hover {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+    box-shadow: ${p => p.theme.shadows.button};
     color: #212121;
     background-color: white;
   }

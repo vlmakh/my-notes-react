@@ -30,9 +30,11 @@ export default function Signup() {
     signup(regData)
       .then(() => {
         resetForm();
-        setIsProcessing(false);
       })
-      .catch(error => {});
+      .catch(error => {})
+      .finally(() => {
+        setIsProcessing(false);
+      });
   };
 
   return (

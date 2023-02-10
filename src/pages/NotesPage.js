@@ -62,13 +62,13 @@ export default function NotesPage({
         />
 
         {isProcessing && (
-          <Box pt={6} textAlign="center">
+          <Box pt={6} textAlign="center" color="white">
             <h1>Loading your notes ...</h1>
           </Box>
         )}
 
         {!isProcessing && !mynotes.length && (
-          <Box pt={6} textAlign="center">
+          <Box pt={6} textAlign="center" color="white">
             <h1>Notes list is empty</h1>
           </Box>
         )}

@@ -8,7 +8,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: lightgrey;
+  background-color: #d3d3d3;
+  color: #212121;
 }
 
 * {
@@ -30,5 +31,4 @@ p,
 ul {
   margin: 0;
   padding: 0;
-  color: white;
 }

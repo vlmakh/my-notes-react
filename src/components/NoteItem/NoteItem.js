@@ -35,6 +35,7 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   const [showConfirm, setShowConfirm] = useState(false);
   const { dispatch } = useContext(MyContext);
   const bcgNoteColor = note.color + '55';
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const isFirstRender = useRef(true);
 
@@ -58,9 +59,12 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
   };
 
   const handleDeleteNote = note => {
+    setIsProcessing(true);
+
     deleteNote(note)
       .then(data => {
         dispatch({ type: 'deleteNote', noteId: data._id });
+        setIsProcessing(false);
       })
       .catch(error => console.log(error));
   };
@@ -153,8 +157,7 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
 
         <Box
           bg={note.color}
-          py={2}
-          px={2}
+          p={2}
           textAlign="center"
           color="white"
           display="flex"
@@ -201,6 +204,7 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
                 onFormSubmit={() => handleDeleteNote(note)}
                 toggleConfirm={toggleConfirm}
                 name={note.name}
+                isProcessing={isProcessing}
               />
             </Modal>
           )}

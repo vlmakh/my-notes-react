@@ -6,7 +6,7 @@ export const AddForm = styled.form`
     justify-content: space-between;
     padding: 8px 16px;
     margin: 0;
-    border-bottom: 1px solid grey;
+    border-bottom: ${p => p.theme.borders.grey};
     background-color: transparent;
 `
 
@@ -22,14 +22,13 @@ export const InputNew = styled.input`
 
 export const AddBtn = styled.button`
   cursor: pointer;
-  /* margin-left: auto; */
   border: none;
   background-color: transparent;
-  color: grey;
+  color: ${p => p.theme.colors.textSec};
 
   transition: color 250ms linear;
 
   :hover {
-    color: #212121;
+    color: ${p => p.theme.colors.textPrim};
   }
 `;

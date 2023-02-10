@@ -1,7 +1,7 @@
 import { Box } from 'components/Box/Box';
 import { Form, Text, Button } from './Confirm.styled';
 
-export function Confirm({ onFormSubmit, toggleConfirm, name }) {
+export function Confirm({ onFormSubmit, toggleConfirm, name, isProcessing }) {
   const handleSubmit = e => {
     e.preventDefault();
     onFormSubmit();
@@ -22,7 +22,7 @@ export function Confirm({ onFormSubmit, toggleConfirm, name }) {
           Cancel
         </Button>
 
-        <Button type="submit" aria-label="Delete note">
+        <Button type="submit" aria-label="Delete note" disabled={isProcessing}>
           DELETE
         </Button>
       </Box>

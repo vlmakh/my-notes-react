@@ -28,9 +28,9 @@ export const FormBox = styled.div`
   width: 360px;
   height: 300px;
   background-color: white;
-  border: 1px solid #212121;
-  border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+  border: ${p => p.theme.borders.dark};
+  border-radius: ${p => p.theme.radii.normal};
+  box-shadow: ${p => p.theme.shadows.box};
   overflow: hidden;
 `;
 
@@ -46,16 +46,16 @@ export const MenuLink = styled(NavLink)`
   font-size: 16px;
   font-weight: 700;
   color: #212121;
-  border-bottom: 1px solid #212121;
+  border-bottom: ${p => p.theme.borders.dark};
   text-decoration: none;
   transition: background-color 250ms linear;
 
   &.active {
-    background-color: darkgrey;
+    background-color: ${p => p.theme.colors.bcgLink};
   }
 
   :hover {
-    background-color: grey;
+    background-color: ${p => p.theme.colors.bcgSec};
   }
 `;
 
@@ -90,7 +90,7 @@ export const StyledErrorMsg = styled(ErrorMessage)`
   transform: translatey(100%);
   font-size: 10px;
   background-color: white;
-  color: #212121;
+  color: ${p => p.theme.colors.textPrim};
 `;
 
 export const Button = styled.button`
@@ -107,7 +107,7 @@ export const Button = styled.button`
 
   :hover,
   :focus {
-    background-color: grey;
+    background-color: ${p => (p.disabled ? 'darkgrey': 'grey')};
   }
 
   :focus-visible {
