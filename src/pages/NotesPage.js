@@ -75,7 +75,13 @@ export default function NotesPage({
           </Box>
         )}
 
-        {!isProcessing && (
+        {!isProcessing && !mynotes.length && (
+          <Box pt={6} textAlign="center">
+            <h1>Notes list is empty</h1>
+          </Box>
+        )}
+
+        {!isProcessing && mynotes.length > 0 && (
           <MasonryBox breakpointCols={breakpointColumnsObj}>
             {mynotes.map((noteItem, idx) => {
               return (
