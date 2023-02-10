@@ -107,7 +107,7 @@ export const Button = styled.button`
 
   :hover,
   :focus {
-    background-color: grey;
+    background-color: ${p => (p.disabled ? 'darkgrey': 'grey')};
   }
 
   :focus-visible {
