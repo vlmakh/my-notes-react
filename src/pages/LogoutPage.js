@@ -9,7 +9,7 @@ import {
 import { ButtonLink } from 'components/Buttons/Buttons';
 import logo from 'images/logo2.webp';
 
-export default function LogoutPage() {
+export default function LogoutPage({ isLoggedIn }) {
   return (
     <>
       <Header />

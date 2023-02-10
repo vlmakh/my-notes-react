@@ -28,7 +28,7 @@ export const FormBox = styled.div`
   width: 360px;
   height: 300px;
   background-color: white;
-  border: 1px solid #212121;
+  border: ${p => p.theme.borders.dark};
   border-radius: ${p => p.theme.radii.normal};
   box-shadow: ${p => p.theme.shadows.box};
   overflow: hidden;

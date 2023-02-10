@@ -78,7 +78,7 @@ export const App = () => {
 
           <Route
             path="/logout"
-            element={<LogoutPage isLoggedIn={isLoggedIn} />}
+            element={<LogoutPage />}
           />
 
           <Route path="*" element={<Navigate to="/" />} />
