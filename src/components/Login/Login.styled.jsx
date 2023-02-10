@@ -29,8 +29,8 @@ export const FormBox = styled.div`
   height: 300px;
   background-color: white;
   border: 1px solid #212121;
-  border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+  border-radius: ${p => p.theme.radii.normal};
+  box-shadow: ${p => p.theme.shadows.box};
   overflow: hidden;
 `;
 
@@ -46,7 +46,7 @@ export const MenuLink = styled(NavLink)`
   font-size: 16px;
   font-weight: 700;
   color: #212121;
-  border-bottom: 1px solid #212121;
+  border-bottom: ${p => p.theme.borders.dark};
   text-decoration: none;
   transition: background-color 250ms linear;
 

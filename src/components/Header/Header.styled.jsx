@@ -23,6 +23,7 @@ export const LogoLink = styled(NavLink)`
 export const LogoText = styled.h1`
   font-size: 32px;
   font-weight: 400;
+  color: white;
 `
 
 export const My = styled.span`

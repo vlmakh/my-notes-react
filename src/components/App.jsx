@@ -5,6 +5,8 @@ import { Toaster } from 'react-hot-toast';
 import { checkCurrentUser } from 'utils/operations';
 import { Box } from './Box/Box';
 import { ThreeDots } from 'react-loader-spinner';
+import { ThemeProvider } from 'theme-ui';
+import { theme } from 'utils/theme';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const Login = lazy(() => import('components/Login/Login'));
@@ -34,65 +36,67 @@ export const App = () => {
   });
 
   return (
-    <Suspense
-      fallback={
-        <Box pt={6} display="flex" justifyContent="center">
-          <ThreeDots
-            height="80"
-            width="100"
-            radius="9"
-            color="#313131"
-            ariaLabel="three-dots-loading"
-            wrapperStyle={{}}
-            wrapperClassName=""
-            visible={true}
-          />
-        </Box>
-      }
-    >
-      <Routes>
-        <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />}>
+    <ThemeProvider theme={theme}>
+      <Suspense
+        fallback={
+          <Box pt={6} display="flex" justifyContent="center">
+            <ThreeDots
+              height="80"
+              width="100"
+              radius="9"
+              color="#313131"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          </Box>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />}>
+            <Route
+              index
+              element={
+                <Login
+                  setUser={setUser}
+                  token={token}
+                  setToken={setToken}
+                  setIsLoggedIn={setIsLoggedIn}
+                />
+              }
+            />
+            <Route path="/signup" element={<Signup />} />
+          </Route>
+
           <Route
-            index
+            path="/notes"
             element={
-              <Login
-                setUser={setUser}
-                token={token}
-                setToken={setToken}
+              <NotesPage
+                isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
+                token={token}
+                user={user}
+                setToken={setToken}
               />
             }
           />
-          <Route path="/signup" element={<Signup />} />
-        </Route>
 
-        <Route
-          path="/notes"
-          element={
-            <NotesPage
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-              token={token}
-              user={user}
-              setToken={setToken}
-            />
-          }
+          <Route
+            path="/logout"
+            element={<LogoutPage isLoggedIn={isLoggedIn} />}
+          />
+
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            duration: 3000,
+          }}
         />
-
-        <Route
-          path="/logout"
-          element={<LogoutPage isLoggedIn={isLoggedIn} />}
-        />
-
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          duration: 3000,
-        }}
-      />
-    </Suspense>
+      </Suspense>
+    </ThemeProvider>
   );
 };
