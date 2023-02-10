@@ -66,7 +66,7 @@ export const getNotes = async () => {
     const response = await axios.get(`/notes`);
     return response.data;
   } catch (error) {
-    // toast.error("Something's wrong. Please try to login again");
+    toast.error("Something's wrong. Please login again");
   }
 };
 

@@ -1,25 +1,28 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy } from 'react';
-import { HomePage } from 'pages/HomePage';
+import { lazy, Suspense } from 'react';
 import { useState, useEffect } from 'react';
-import { Signup } from 'components/Signup/Signup';
-import { Login } from 'components/Login/Login';
 import { Toaster } from 'react-hot-toast';
 import { checkCurrentUser } from 'utils/operations';
+import { Box } from './Box/Box';
+import { ThreeDots } from 'react-loader-spinner';
 
+const HomePage = lazy(() => import('pages/HomePage'));
+const Login = lazy(() => import('components/Login/Login'));
+const Signup = lazy(() => import('components/Signup/Signup'));
 const NotesPage = lazy(() => import('pages/NotesPage'));
+const LogoutPage = lazy(() => import('pages/LogoutPage'));
 
 export const App = () => {
   const savedToken = JSON.parse(localStorage.getItem('token'));
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(savedToken ?? null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
   useEffect(() => {
     checkCurrentUser(savedToken)
       .then(data => {
         if (data) {
-          setUser(data.name)
+          setUser(data.name);
           setIsLoggedIn(true);
           return;
         }
@@ -31,7 +34,22 @@ export const App = () => {
   });
 
   return (
-    <>
+    <Suspense
+      fallback={
+        <Box pt={6} display="flex" justifyContent="center">
+          <ThreeDots
+            height="80"
+            width="100"
+            radius="9"
+            color="#313131"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClassName=""
+            visible={true}
+          />
+        </Box>
+      }
+    >
       <Routes>
         <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />}>
           <Route
@@ -49,7 +67,7 @@ export const App = () => {
         </Route>
 
         <Route
-          path="notes"
+          path="/notes"
           element={
             <NotesPage
               isLoggedIn={isLoggedIn}
@@ -61,6 +79,11 @@ export const App = () => {
           }
         />
 
+        <Route
+          path="/logout"
+          element={<LogoutPage isLoggedIn={isLoggedIn} />}
+        />
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 
@@ -70,6 +93,6 @@ export const App = () => {
           duration: 3000,
         }}
       />
-    </>
+    </Suspense>
   );
 };

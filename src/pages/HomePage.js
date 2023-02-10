@@ -1,6 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { Header } from 'components/Header/Header';
-import { LogoText, My } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
 import {
   HomeBox,
@@ -11,16 +10,12 @@ import {
 } from 'components/Login/Login.styled';
 import logo from 'images/logo2.webp';
 
-function HomePage({ isLoggedIn }) {
+export default function HomePage({ isLoggedIn }) {
   return (
     <>
       {isLoggedIn && <Navigate to="/notes" />}
 
-      <Header>
-        <LogoText>
-          <My>My</My>Notes
-        </LogoText>
-      </Header>
+      <Header />
 
       <HomeBox>
         <ImgBox>
@@ -37,9 +32,7 @@ function HomePage({ isLoggedIn }) {
         </FormBox>
       </HomeBox>
 
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }
-
-export { HomePage };
