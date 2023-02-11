@@ -1,5 +1,6 @@
 import { Box } from 'components/Box/Box';
-import { Form, Text, Button } from './Confirm.styled';
+import { Form, Text } from './Confirm.styled';
+import { Button } from 'components/Buttons/Buttons';
 
 export function Confirm({ onFormSubmit, toggleConfirm, name, isProcessing }) {
   const handleSubmit = e => {
@@ -13,7 +14,7 @@ export function Confirm({ onFormSubmit, toggleConfirm, name, isProcessing }) {
         Delete note <b>{name}</b>?
       </Text>
       <Box
-        mt={3}
+        mt={4}
         display="flex"
         justifyContent="space-between"
         alignItems="center"

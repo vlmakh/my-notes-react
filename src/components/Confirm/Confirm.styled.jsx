@@ -12,16 +12,3 @@ export const Form = styled.form`
 export const Text = styled.p`
   color: #212112;
 `;
-
-export const Button = styled.button`
-  padding: 4px;
-  color: #212112;
-  font-weight: 700;
-  border-radius: 4px;
-
-  transition: box-shadow 250ms linear;
-
-  :hover {
-    box-shadow: ${p => (p.disabled ? null: p.theme.shadows.box)};    
-  }
-`;
