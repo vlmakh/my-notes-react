@@ -17,8 +17,6 @@ export default function NotesPage({
   setToken,
 }) {
   const [mynotes, dispatch] = useReducer(reducer, []);
-  const [isDraggingNote, setIsDraggingNote] = useState(null);
-  const [dragNotes, setDragNotes] = useState(false);
   const [isProcessing, setIsProcessing] = useState(true);
 
   useEffect(() => {
@@ -38,10 +36,6 @@ export default function NotesPage({
     1239: 3,
     931: 2,
     623: 1,
-  };
-
-  const toggleDragNotes = () => {
-    setDragNotes(!dragNotes);
   };
 
   const handleLogout = () => {
@@ -76,22 +70,13 @@ export default function NotesPage({
         {!isProcessing && mynotes.length > 0 && (
           <MasonryBox breakpointCols={breakpointColumnsObj}>
             {mynotes.map((noteItem, idx) => {
-              return (
-                <NoteItem
-                  key={noteItem._id}
-                  idx={idx}
-                  note={noteItem}
-                  isDraggingNote={isDraggingNote}
-                  setIsDraggingNote={setIsDraggingNote}
-                  dragNotes={dragNotes}
-                />
-              );
+              return <NoteItem key={noteItem._id} idx={idx} note={noteItem} />;
             })}
           </MasonryBox>
         )}
 
         <Footer>
-          <BtnsBlock toggleDragNotes={toggleDragNotes} dragNotes={dragNotes} />
+          <BtnsBlock />
         </Footer>
       </MyContext.Provider>
     </>

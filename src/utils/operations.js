@@ -126,5 +126,3 @@ export const updateNoteTodos = async (noteId, newTodos) => {
     toast.error(error);
   }
 };
-
-export const updateNoteOrder = async idx => {};

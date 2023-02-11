@@ -6,7 +6,7 @@ import { MyContext } from 'utils/context';
 import { addNote } from 'utils/operations';
 import { getRandomHexColor } from 'utils/getRandomHexColor';
 
-export function BtnsBlock({ dragNotes, toggleDragNotes }) {
+export function BtnsBlock() {
   const { dispatch } = useContext(MyContext);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -32,20 +32,6 @@ export function BtnsBlock({ dragNotes, toggleDragNotes }) {
       <Button type="button" onClick={handleAdd} disabled={isProcessing}>
         Add Note <MdAddCircleOutline size="24" />
       </Button>
-
-      {/* <Label
-        onClick={toggleDragNotes}
-        htmlFor="drag"
-        checked={dragNotes ? true : false}
-      >
-        Drag Notes
-        <CheckMove
-          name="drag"
-          type="checkbox"
-          checked={dragNotes ? true : false}
-          readOnly
-        />
-      </Label> */}
     </Box>
   );
 }

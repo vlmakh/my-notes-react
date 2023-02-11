@@ -27,7 +27,7 @@ import {
   updateNoteTodos,
 } from 'utils/operations';
 
-function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
+function NoteItem({ note, idx }) {
   const [todos, setTodos] = useState(note.todos);
   const [noteColor, setNoteColor] = useState(note.color);
   const [editNameOpen, setEditNameOpen] = useState(false);
@@ -128,26 +128,8 @@ function NoteItem({ note, idx, isDraggingNote, setIsDraggingNote, dragNotes }) {
     });
   };
 
-  const dragStartHandler = (e, note, idx) => {
-    setIsDraggingNote(note);
-  };
-
-  const dragOverHandler = e => {
-    e.preventDefault();
-  };
-
-  const dropHandler = (e, idx) => {
-    e.preventDefault();
-    dispatch({ type: 'editNoteOrder', idx, isDraggingNote });
-  };
-
   return (
-    <NoteBoxOuter
-      draggable={dragNotes ? true : false}
-      onDragStart={e => dragStartHandler(e, note, idx)}
-      onDragOver={e => dragOverHandler(e)}
-      onDrop={e => dropHandler(e, idx)}
-    >
+    <NoteBoxOuter>
       <NoteBoxInner>
         {editColorOpen && (
           <Box position="absolute" top="0" left="0" zIndex="200">
