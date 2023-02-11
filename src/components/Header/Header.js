@@ -4,9 +4,12 @@ import {
   LogoText,
   My,
   UserName,
+  Mobile,
+  Desktop,
 } from 'components/Header/Header.styled';
 import { Box } from 'components/Box/Box';
 import { ButtonLink } from 'components/Buttons/Buttons';
+import { MdLogout } from 'react-icons/md';
 
 export function Header({ user, handleLogout, isLoggedIn }) {
   return (
@@ -21,7 +24,8 @@ export function Header({ user, handleLogout, isLoggedIn }) {
         <Box display="flex" alignItems="center">
           {user && <UserName>{user}</UserName>}
           <ButtonLink to="/logout" onClick={handleLogout}>
-            Logout
+            <Desktop>Logout</Desktop>
+            <Mobile>{<MdLogout size="24" />}</Mobile>
           </ButtonLink>
         </Box>
       )}

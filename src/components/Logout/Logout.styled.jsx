@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-
 export const LogoutBox = styled('div')`
   position: absolute;
   top: 50%;
@@ -25,7 +24,7 @@ export const ImgBox = styled.div`
 
 export const MsgBox = styled.div`
   width: 360px;
-  height: 300px;  
+  height: 300px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -34,7 +33,5 @@ export const MsgBox = styled.div`
 `;
 
 export const Message = styled.h2`
-    color: ${p => p.theme.colors.textSec};
-`
-
-
+  color: ${p => p.theme.colors.textSec};
+`;
