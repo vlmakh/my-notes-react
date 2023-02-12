@@ -14,20 +14,31 @@ const Signup = lazy(() => import('components/Signup/Signup'));
 const NotesPage = lazy(() => import('pages/NotesPage'));
 const LogoutPage = lazy(() => import('pages/LogoutPage'));
 
+const startData = { token: null };
+const savedData = JSON.parse(localStorage.getItem('mynotes'));
+
 export const App = () => {
-  const savedToken = JSON.parse(localStorage.getItem('token'));
+  const [data, setData] = useState(savedData ?? startData);
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(savedToken ?? null);
+  const [token, setToken] = useState(data.token);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    checkCurrentUser(savedToken)
+    checkCurrentUser(token)
       .then(data => {
         setUser(data.name);
         setIsLoggedIn(true);
       })
       .catch(error => {});
   });
+
+  useEffect(() => {
+    setData({ token: token });
+  }, [token]);
+
+  useEffect(() => {
+    localStorage.setItem('mynotes', JSON.stringify(data));
+  }, [data]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,10 +87,7 @@ export const App = () => {
             }
           />
 
-          <Route
-            path="/logout"
-            element={<LogoutPage />}
-          />
+          <Route path="/logout" element={<LogoutPage />} />
 
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
