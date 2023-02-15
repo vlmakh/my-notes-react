@@ -1,4 +1,3 @@
-import { Header } from 'components/Header/Header';
 import { MasonryBox } from 'components/Box/Box';
 import { useState, useEffect, useReducer } from 'react';
 import { Navigate } from 'react-router-dom';
@@ -7,7 +6,7 @@ import { BtnsBlock } from 'components/BtnsBlock/BtnsBlock';
 import { reducer } from 'utils/reducer';
 import { MyContext } from 'utils/context';
 import { Footer } from 'components/Footer/Footer';
-import { getNotes, logout } from 'utils/operations';
+import { getNotes } from 'utils/operations';
 import { Box } from 'components/Box/Box';
 import { Modal } from 'components/Modal/Modal';
 import { SortMenu } from 'components/SortMenu/SortMenu';
@@ -43,13 +42,6 @@ export default function NotesPage({
     623: 1,
   };
 
-  const handleLogout = () => {
-    logout().then(() => {
-      setIsLoggedIn(false);
-      setToken(null);
-    });
-  };
-
   const toggleSortMenu = () => {
     setShowSortMenu(!showSortMenu);
   };
@@ -58,12 +50,6 @@ export default function NotesPage({
     <>
       {!isLoggedIn && <Navigate to="/" />}
       <MyContext.Provider value={{ dispatch }}>
-        <Header
-          handleLogout={handleLogout}
-          user={user}
-          isLoggedIn={isLoggedIn}
-        />
-
         {isProcessing && (
           <Box pt={6} textAlign="center" color="white">
             <h1>Loading your notes ...</h1>

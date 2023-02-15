@@ -1,12 +1,11 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { useState, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { checkCurrentUser } from 'utils/operations';
-import { Box } from './Box/Box';
-import { ThreeDots } from 'react-loader-spinner';
 import { ThemeProvider } from 'theme-ui';
 import { theme } from 'utils/theme';
+import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const Login = lazy(() => import('components/Login/Login'));
@@ -43,23 +42,18 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Suspense
-        fallback={
-          <Box pt={6} display="flex" justifyContent="center">
-            <ThreeDots
-              height="80"
-              width="100"
-              radius="9"
-              color="#313131"
-              ariaLabel="three-dots-loading"
-              wrapperStyle={{}}
-              wrapperClassName=""
-              visible={true}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <SharedLayout
+              user={user}
+              setIsLoggedIn={setIsLoggedIn}
+              setToken={setToken}
+              isLoggedIn={isLoggedIn}
             />
-          </Box>
-        }
-      >
-        <Routes>
+          }
+        >
           <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />}>
             <Route
               index
@@ -93,15 +87,15 @@ export const App = () => {
           <Route path="/logout" element={<LogoutPage />} />
 
           <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+        </Route>
+      </Routes>
 
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            duration: 3000,
-          }}
-        />
-      </Suspense>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 3000,
+        }}
+      />
     </ThemeProvider>
   );
 };

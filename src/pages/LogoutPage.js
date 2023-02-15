@@ -1,4 +1,3 @@
-import { Header } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
 import {
   LogoutBox,
@@ -12,8 +11,6 @@ import logo from 'images/logo2.webp';
 export default function LogoutPage() {
   return (
     <>
-      <Header />
-
       <LogoutBox>
         <ImgBox>
           <img src={logo} alt="logo" width="300" />
