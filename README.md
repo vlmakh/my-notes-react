@@ -3,7 +3,7 @@
 Simple app for private notes
 
 - Frontend: React
-- Backend: Node.js
+- Backend: Node.js (https://github.com/vlmakh/my-notes-nodejs)
 - Database: MongoDB
 
 # Frontend:

@@ -9,15 +9,20 @@ import { MyContext } from 'utils/context';
 import { Footer } from 'components/Footer/Footer';
 import { getNotes, logout } from 'utils/operations';
 import { Box } from 'components/Box/Box';
+import { Modal } from 'components/Modal/Modal';
+import { SortMenu } from 'components/SortMenu/SortMenu';
 
 export default function NotesPage({
   user,
   isLoggedIn,
   setIsLoggedIn,
   setToken,
+  sort,
+  setSort,
 }) {
   const [mynotes, dispatch] = useReducer(reducer, []);
   const [isProcessing, setIsProcessing] = useState(true);
+  const [showSortMenu, setShowSortMenu] = useState(false);
 
   useEffect(() => {
     getNotes()
@@ -43,6 +48,10 @@ export default function NotesPage({
       setIsLoggedIn(false);
       setToken(null);
     });
+  };
+
+  const toggleSortMenu = () => {
+    setShowSortMenu(!showSortMenu);
   };
 
   return (
@@ -75,8 +84,19 @@ export default function NotesPage({
           </MasonryBox>
         )}
 
+        {showSortMenu && (
+          <Modal onClose={toggleSortMenu}>
+            <SortMenu
+              toggleSortMenu={toggleSortMenu}
+              notes={mynotes}
+              sort={sort}
+              setSort={setSort}
+            />
+          </Modal>
+        )}
+
         <Footer>
-          <BtnsBlock />
+          <BtnsBlock toggleSortMenu={toggleSortMenu} />
         </Footer>
       </MyContext.Provider>
     </>

@@ -8,14 +8,14 @@ import {
 import { Formik } from 'formik';
 import { login } from 'utils/operations';
 import * as yup from 'yup';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required(),
 });
 
-export default function Login({ setUser, token, setToken, setIsLoggedIn }) {
+export default function Login({ setUser, setToken, setIsLoggedIn }) {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const handleSubmit = (values, { resetForm }) => {
@@ -33,10 +33,6 @@ export default function Login({ setUser, token, setToken, setIsLoggedIn }) {
         setIsProcessing(false);
       });
   };
-
-  useEffect(() => {
-    localStorage.setItem('token', JSON.stringify(token));
-  }, [token]);
 
   return (
     <Formik

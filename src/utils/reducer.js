@@ -36,6 +36,35 @@ export const reducer = (mynotes, action) => {
           : noteItem;
       });
 
+    case 'sortByNameUp':
+      if (!action.notes) {
+        return;
+      }
+      return [...action.notes].sort((a, b) => a.name.localeCompare(b.name));
+
+    case 'sortByNameDown':
+      if (!action.notes) {
+        return;
+      }
+      return [...action.notes].sort((a, b) => b.name.localeCompare(a.name));
+
+    case 'sortByCreatedUp':
+      if (!action.notes) {
+        return;
+      }
+
+      return [...action.notes].sort((a, b) =>
+        a.createdAt.localeCompare(b.createdAt)
+      );
+
+    case 'sortByCreatedDown':
+      if (!action.notes) {
+        return;
+      }
+      return [...action.notes].sort((a, b) =>
+        b.createdAt.localeCompare(a.createdAt)
+      );
+
     default:
       return mynotes;
   }
