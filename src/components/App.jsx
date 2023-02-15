@@ -21,7 +21,7 @@ export const App = () => {
   const [data, setData] = useState(savedData ?? startData);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(data.token);
-  const [sort, setSort] = useState(data.sort);
+  const [sort, setSort] = useState('sortByCreatedUp');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
