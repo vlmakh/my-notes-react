@@ -1,5 +1,4 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { Header } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
 import {
   HomeBox,
@@ -14,8 +13,6 @@ export default function HomePage({ isLoggedIn }) {
   return (
     <>
       {isLoggedIn && <Navigate to="/notes" />}
-
-      <Header />
 
       <HomeBox>
         <ImgBox>
