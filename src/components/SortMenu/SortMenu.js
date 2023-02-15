@@ -35,18 +35,6 @@ export function SortMenu({ toggleSortMenu, notes, sort, setSort }) {
     setSort('sortByCreatedDown');
   };
 
-  //   const handleSortByUpdatedUp = () => {
-  //     dispatch({ type: 'sortByUpdatedUp', notes });
-  //     toggleSortMenu();
-  //     setSort('sortByUpdatedUp');
-  //   };
-
-  //   const handleSortByUpdatedDown = () => {
-  //     dispatch({ type: 'sortByUpdatedDown', notes });
-  //     toggleSortMenu();
-  //     setSort('sortByUpdatedDown');
-  //   };
-
   return (
     <SortMenuBox>
       <SortButton
@@ -80,16 +68,6 @@ export function SortMenu({ toggleSortMenu, notes, sort, setSort }) {
         By create time
         <FaSortAmountDown />
       </SortButton>
-
-      {/* <SortButton onClick={handleSortByUpdatedUp}>
-        By update time
-        <FaSortAmountUpAlt />
-      </SortButton>
-
-      <SortButton onClick={handleSortByUpdatedDown}>
-        By update time
-        <FaSortAmountDown />
-      </SortButton> */}
     </SortMenuBox>
   );
 }

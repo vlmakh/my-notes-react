@@ -28,7 +28,7 @@ export const App = () => {
     checkCurrentUser(token)
       .then(data => {
         setUser(data.name);
-        setIsLoggedIn(true);        
+        setIsLoggedIn(true);
       })
       .catch(error => {});
   });

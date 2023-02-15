@@ -65,22 +65,6 @@ export const reducer = (mynotes, action) => {
         b.createdAt.localeCompare(a.createdAt)
       );
 
-    case 'sortByUpdatedUp':
-      if (!action.notes) {
-        return;
-      }
-      return [...action.notes].sort((a, b) =>
-        a.updatedAt.localeCompare(b.updatedAt)
-      );
-
-    case 'sortByUpdatedDown':
-      if (!action.notes) {
-        return;
-      }
-      return [...action.notes].sort((a, b) =>
-        b.updatedAt.localeCompare(a.updatedAt)
-      );
-
     default:
       return mynotes;
   }

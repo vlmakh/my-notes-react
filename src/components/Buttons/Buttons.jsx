@@ -50,31 +50,3 @@ export const ButtonLink = styled(NavLink)`
     background-color: ${p => (p.disabled ? "lightgrey": '#FFFFFF')};
   }
 `;
-
-export const Label = styled.label`
-  padding: 0 4px;
-  display: flex;
-  align-items: center;
-  margin-left: 8px;
-  gap: 8px;
-  height: 32px;
-  cursor: pointer;
-  color: ${p => (p.checked ? '#212121' : 'grey')};
-  font-size: 14px;
-  font-weight: 600;
-  border: 1px solid grey;
-  border-radius: 16px;
-  background-color: ${p => (p.checked ? 'white' : 'lightgrey')};
-  transition: box-shadow 250ms linear, color 250ms linear,
-    background-color 250ms linear;
-
-  :hover {
-    box-shadow: ${p => p.theme.shadows.button};
-    color: #212121;
-    background-color: white;
-  }
-`;
-
-export const CheckMove = styled.input`
-  cursor: pointer;
-`;
