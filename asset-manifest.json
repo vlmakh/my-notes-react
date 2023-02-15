@@ -1,32 +1,32 @@
 {
   "files": {
     "main.css": "/my-notes-react/static/css/main.ae25246d.css",
-    "main.js": "/my-notes-react/static/js/main.fc730c9e.js",
-    "static/js/206.ed69947f.chunk.js": "/my-notes-react/static/js/206.ed69947f.chunk.js",
-    "static/js/321.8aa250bc.chunk.js": "/my-notes-react/static/js/321.8aa250bc.chunk.js",
+    "main.js": "/my-notes-react/static/js/main.0f718ae1.js",
+    "static/js/206.0f740a3b.chunk.js": "/my-notes-react/static/js/206.0f740a3b.chunk.js",
+    "static/js/321.88f69e48.chunk.js": "/my-notes-react/static/js/321.88f69e48.chunk.js",
     "static/js/929.608faf3b.chunk.js": "/my-notes-react/static/js/929.608faf3b.chunk.js",
-    "static/js/778.5093b061.chunk.js": "/my-notes-react/static/js/778.5093b061.chunk.js",
-    "static/js/862.202f000b.chunk.js": "/my-notes-react/static/js/862.202f000b.chunk.js",
+    "static/js/770.cef25dcb.chunk.js": "/my-notes-react/static/js/770.cef25dcb.chunk.js",
+    "static/js/862.3c24940b.chunk.js": "/my-notes-react/static/js/862.3c24940b.chunk.js",
     "static/js/856.7ea41abc.chunk.js": "/my-notes-react/static/js/856.7ea41abc.chunk.js",
     "static/js/705.511b594b.chunk.js": "/my-notes-react/static/js/705.511b594b.chunk.js",
     "static/js/797.823faf21.chunk.js": "/my-notes-react/static/js/797.823faf21.chunk.js",
-    "static/js/267.e63582fe.chunk.js": "/my-notes-react/static/js/267.e63582fe.chunk.js",
+    "static/js/267.5fb88e7a.chunk.js": "/my-notes-react/static/js/267.5fb88e7a.chunk.js",
     "static/media/logo2.webp": "/my-notes-react/static/media/logo2.f5ebef3c6969afe34688.webp",
     "index.html": "/my-notes-react/index.html",
     "main.ae25246d.css.map": "/my-notes-react/static/css/main.ae25246d.css.map",
-    "main.fc730c9e.js.map": "/my-notes-react/static/js/main.fc730c9e.js.map",
-    "206.ed69947f.chunk.js.map": "/my-notes-react/static/js/206.ed69947f.chunk.js.map",
-    "321.8aa250bc.chunk.js.map": "/my-notes-react/static/js/321.8aa250bc.chunk.js.map",
+    "main.0f718ae1.js.map": "/my-notes-react/static/js/main.0f718ae1.js.map",
+    "206.0f740a3b.chunk.js.map": "/my-notes-react/static/js/206.0f740a3b.chunk.js.map",
+    "321.88f69e48.chunk.js.map": "/my-notes-react/static/js/321.88f69e48.chunk.js.map",
     "929.608faf3b.chunk.js.map": "/my-notes-react/static/js/929.608faf3b.chunk.js.map",
-    "778.5093b061.chunk.js.map": "/my-notes-react/static/js/778.5093b061.chunk.js.map",
-    "862.202f000b.chunk.js.map": "/my-notes-react/static/js/862.202f000b.chunk.js.map",
+    "770.cef25dcb.chunk.js.map": "/my-notes-react/static/js/770.cef25dcb.chunk.js.map",
+    "862.3c24940b.chunk.js.map": "/my-notes-react/static/js/862.3c24940b.chunk.js.map",
     "856.7ea41abc.chunk.js.map": "/my-notes-react/static/js/856.7ea41abc.chunk.js.map",
     "705.511b594b.chunk.js.map": "/my-notes-react/static/js/705.511b594b.chunk.js.map",
     "797.823faf21.chunk.js.map": "/my-notes-react/static/js/797.823faf21.chunk.js.map",
-    "267.e63582fe.chunk.js.map": "/my-notes-react/static/js/267.e63582fe.chunk.js.map"
+    "267.5fb88e7a.chunk.js.map": "/my-notes-react/static/js/267.5fb88e7a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ae25246d.css",
-    "static/js/main.fc730c9e.js"
+    "static/js/main.0f718ae1.js"
   ]
 }
