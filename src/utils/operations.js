@@ -1,7 +1,8 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://my-notes-nodejs.up.railway.app/api';
+// axios.defaults.baseURL = 'https://my-notes-nodejs.up.railway.app/api';
+axios.defaults.baseURL = 'http://localhost:3001/api/';
 
 const token = {
   set(token) {
@@ -18,12 +19,18 @@ export const signup = async credentials => {
   try {
     const response = await axios.post(`/users/signup`, credentials);
 
-    toast.success(`${response.data.email} was registered. You can login now`);
+    toast.success(`Please check ${response.data.email} to finish registration`);
 
     return response.data;
   } catch (error) {
     toast.error('Probably such email was alredy registered');
   }
+};
+
+export const verify = async id => {
+  const response = await axios.get(`/users/verify/${id}`);
+
+  return response;
 };
 
 export const login = async credentials => {
@@ -34,7 +41,7 @@ export const login = async credentials => {
 
     return response.data;
   } catch (error) {
-    toast.error('There is mistake in login or password, please try again');
+    toast.error(error.response.data.message);
   }
 };
 

@@ -34,4 +34,5 @@ export const MsgBox = styled.div`
 
 export const Message = styled.h2`
   color: ${p => p.theme.colors.textSec};
+  text-align: center;
 `;
