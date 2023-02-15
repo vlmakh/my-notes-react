@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
-  password: yup.string().required(),
+  password: yup.string().min(6).required(),
 });
 
 export default function Login({ setUser, setToken, setIsLoggedIn }) {

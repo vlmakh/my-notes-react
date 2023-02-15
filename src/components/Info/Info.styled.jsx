@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const LogoutBox = styled('div')`
+export const InfoBox = styled('div')`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -34,4 +34,5 @@ export const MsgBox = styled.div`
 
 export const Message = styled.h2`
   color: ${p => p.theme.colors.textSec};
+  text-align: center;
 `;
