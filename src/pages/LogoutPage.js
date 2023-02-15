@@ -1,17 +1,12 @@
 import { Footer } from 'components/Footer/Footer';
-import {
-  LogoutBox,
-  ImgBox,
-  MsgBox,
-  Message,
-} from 'components/Logout/Logout.styled';
+import { InfoBox, ImgBox, MsgBox, Message } from 'components/Info/Info.styled';
 import { ButtonLink } from 'components/Buttons/Buttons';
 import logo from 'images/logo2.webp';
 
 export default function LogoutPage() {
   return (
     <>
-      <LogoutBox>
+      <InfoBox>
         <ImgBox>
           <img src={logo} alt="logo" width="300" />
         </ImgBox>
@@ -21,7 +16,7 @@ export default function LogoutPage() {
 
           <ButtonLink to="/">Login again</ButtonLink>
         </MsgBox>
-      </LogoutBox>
+      </InfoBox>
 
       <Footer />
     </>

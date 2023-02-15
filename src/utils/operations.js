@@ -1,8 +1,8 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-// axios.defaults.baseURL = 'https://my-notes-nodejs.up.railway.app/api';
-axios.defaults.baseURL = 'http://localhost:3001/api/';
+axios.defaults.baseURL = 'https://my-notes-nodejs.up.railway.app/api';
+// axios.defaults.baseURL = 'http://localhost:3001/api/';
 
 const token = {
   set(token) {
