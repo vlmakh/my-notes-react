@@ -1,7 +1,7 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://my-notes-nodejs.onrender.com/';
+axios.defaults.baseURL = process.env.REACT_APP_MAIN_URL;
 
 const token = {
   set(token) {
