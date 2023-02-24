@@ -1,8 +1,7 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://my-notes-nodejs.up.railway.app/api';
-// axios.defaults.baseURL = 'http://localhost:3001/api/';
+axios.defaults.baseURL = 'https://my-notes-nodejs.onrender.com/';
 
 const token = {
   set(token) {
@@ -17,7 +16,7 @@ const errorMsg = "Something's wrong. Please refresh page and try again";
 
 export const signup = async credentials => {
   try {
-    const response = await axios.post(`/users/signup`, credentials);
+    const response = await axios.post(`api/users/signup`, credentials);
 
     toast.success(`Please check ${response.data.email} to finish registration`);
 
@@ -28,14 +27,14 @@ export const signup = async credentials => {
 };
 
 export const verify = async id => {
-  const response = await axios.get(`/users/verify/${id}`);
+  const response = await axios.get(`api/users/verify/${id}`);
 
   return response;
 };
 
 export const login = async credentials => {
   try {
-    const response = await axios.post(`/users/login`, credentials);
+    const response = await axios.post(`api/users/login`, credentials);
 
     token.set(response.data.token);
 
@@ -53,14 +52,14 @@ export const checkCurrentUser = async savedToken => {
   token.set(savedToken);
 
   try {
-    const response = await axios.get(`/users/current`);
+    const response = await axios.get(`api/users/current`);
     return response.data;
   } catch (error) {}
 };
 
 export const logout = async () => {
   try {
-    await axios.get(`/users/logout`);
+    await axios.get(`api/users/logout`);
 
     token.unset();
   } catch (error) {
@@ -70,7 +69,7 @@ export const logout = async () => {
 
 export const getNotes = async () => {
   try {
-    const response = await axios.get(`/notes`);
+    const response = await axios.get(`api/notes`);
 
     return response.data;
   } catch (error) {
@@ -80,7 +79,7 @@ export const getNotes = async () => {
 
 export const addNote = async newNote => {
   try {
-    const response = await axios.post(`/notes`, newNote);
+    const response = await axios.post(`api/notes`, newNote);
 
     toast.success(`${newNote.name} was added`);
 
@@ -93,7 +92,7 @@ export const addNote = async newNote => {
 export const deleteNote = async note => {
   const { _id, name } = note;
   try {
-    const response = await axios.delete(`/notes/${_id}`);
+    const response = await axios.delete(`api/notes/${_id}`);
 
     toast.success(`${name} was deleted`);
 
@@ -105,7 +104,7 @@ export const deleteNote = async note => {
 
 export const updateNoteName = async (noteId, newName) => {
   try {
-    const response = await axios.put(`/notes/${noteId}/name`, {
+    const response = await axios.put(`api/notes/${noteId}/name`, {
       name: newName,
     });
 
@@ -119,7 +118,7 @@ export const updateNoteName = async (noteId, newName) => {
 
 export const updateNoteColor = async (noteId, newColor) => {
   try {
-    const response = await axios.put(`/notes/${noteId}/color`, {
+    const response = await axios.put(`api/notes/${noteId}/color`, {
       color: newColor,
     });
 
@@ -133,7 +132,7 @@ export const updateNoteColor = async (noteId, newColor) => {
 
 export const updateNoteTodos = async (noteId, newTodos) => {
   try {
-    const response = await axios.put(`/notes/${noteId}/todos`, {
+    const response = await axios.put(`api/notes/${noteId}/todos`, {
       todos: newTodos,
     });
 
