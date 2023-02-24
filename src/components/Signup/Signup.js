@@ -84,7 +84,7 @@ export default function Signup() {
         </Label>
 
         <Button type="submit" disabled={isProcessing}>
-          Register
+          {isProcessing ? 'Please wait...' : 'Register'}
         </Button>
       </StyledForm>
     </Formik>

@@ -62,7 +62,7 @@ export default function Login({ setUser, setToken, setIsLoggedIn }) {
         </Label>
 
         <Button type="submit" disabled={isProcessing}>
-          Login
+          {isProcessing ? 'Please wait...' : 'Login'}
         </Button>
       </StyledForm>
     </Formik>
