@@ -96,7 +96,8 @@ export const App = () => {
       <Toaster
         position="top-center"
         toastOptions={{
-          duration: 3000,
+          duration: 2000,
+          
         }}
       />
     </ThemeProvider>

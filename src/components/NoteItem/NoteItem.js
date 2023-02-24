@@ -27,7 +27,7 @@ import {
   updateNoteTodos,
 } from 'utils/operations';
 
-function NoteItem({ note, idx }) {
+function NoteItem({ note }) {
   const [todos, setTodos] = useState(note.todos);
   const [noteColor, setNoteColor] = useState(note.color);
   const [editNameOpen, setEditNameOpen] = useState(false);

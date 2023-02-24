@@ -1,5 +1,7 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { Button } from 'components/Buttons/Buttons';
+import { Box } from 'components/Box/Box';
 
 axios.defaults.baseURL = process.env.REACT_APP_MAIN_URL;
 
@@ -18,7 +20,19 @@ export const signup = async credentials => {
   try {
     const response = await axios.post(`api/users/signup`, credentials);
 
-    toast.success(`Please check ${response.data.email} to finish registration`);
+    toast.success(
+      t => (
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <span>
+            Please check <b>{response.data.email}</b> to finish registration
+          </span>
+          <Button onClick={() => toast.dismiss(t.id)}>Close</Button>
+        </Box>
+      ),
+      {
+        duration: 8000,
+      }
+    );
 
     return response.data;
   } catch (error) {
@@ -81,7 +95,11 @@ export const addNote = async newNote => {
   try {
     const response = await axios.post(`api/notes`, newNote);
 
-    toast.success(`${newNote.name} was added`);
+    toast.success(() => (
+      <span>
+        <b>{newNote.name}</b> was added
+      </span>
+    ));
 
     return response.data;
   } catch (error) {
@@ -94,7 +112,11 @@ export const deleteNote = async note => {
   try {
     const response = await axios.delete(`api/notes/${_id}`);
 
-    toast.success(`${name} was deleted`);
+    toast.success(() => (
+      <span>
+        <b>{name}</b> was deleted
+      </span>
+    ));
 
     return response.data;
   } catch (error) {
@@ -108,7 +130,11 @@ export const updateNoteName = async (noteId, newName) => {
       name: newName,
     });
 
-    toast.success(`'${newName}' was updated`);
+    toast.success(() => (
+      <span>
+        <b>{newName}</b> was updated
+      </span>
+    ));
 
     return response.data;
   } catch (error) {
