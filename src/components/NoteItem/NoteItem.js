@@ -115,7 +115,7 @@ function NoteItem({ note }) {
     setEditColorOpen(!editColorOpen);
 
     if (editColorOpen) {
-      updateNoteColor(note._id, noteColor);
+      updateNoteColor(note._id, noteColor, note.name);
     }
   };
 

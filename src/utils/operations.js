@@ -142,13 +142,17 @@ export const updateNoteName = async (noteId, newName) => {
   }
 };
 
-export const updateNoteColor = async (noteId, newColor) => {
+export const updateNoteColor = async (noteId, newColor, noteName) => {
   try {
     const response = await axios.put(`api/notes/${noteId}/color`, {
       color: newColor,
     });
 
-    toast.success(`Note color was updated`);
+    toast.success(() => (
+      <span>
+        <b>{noteName}</b> color was updated
+      </span>
+    ));
 
     return response.data;
   } catch (error) {
