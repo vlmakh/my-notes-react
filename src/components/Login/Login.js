@@ -4,6 +4,7 @@ import {
   Label,
   StyledErrorMsg,
   Button,
+  TextLink,
 } from './Login.styled';
 import { Formik } from 'formik';
 import { login } from 'utils/operations';
@@ -64,6 +65,8 @@ export default function Login({ setUser, setToken, setIsLoggedIn }) {
         <Button type="submit" disabled={isProcessing}>
           {isProcessing ? 'Please wait...' : 'Login'}
         </Button>
+
+        <TextLink to="/verify">Verify email</TextLink>
       </StyledForm>
     </Formik>
   );

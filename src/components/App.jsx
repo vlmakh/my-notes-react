@@ -13,6 +13,7 @@ const Signup = lazy(() => import('components/Signup/Signup'));
 const NotesPage = lazy(() => import('pages/NotesPage'));
 const LogoutPage = lazy(() => import('pages/LogoutPage'));
 const VerifyConfirmPage = lazy(() => import('pages/VerifyConfirmPage'));
+const VerifyRepeatPage = lazy(() => import('pages/VerifyRepeatPage'));
 
 const startData = { token: null, sort: 'sortByCreatedUp' };
 const savedData = JSON.parse(localStorage.getItem('mynotes'));
@@ -88,6 +89,8 @@ export const App = () => {
           <Route path="/logout" element={<LogoutPage />} />
           
           <Route path="/verify/:token" element={<VerifyConfirmPage />} />
+
+          <Route path="/verify" element={<VerifyRepeatPage />} />
 
           <Route path="*" element={<Navigate to="/" />} />
         </Route>

@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function VerifyConfirmPage() {
-  const [msg, setMsg] = useState('');
+  const [msg, setMsg] = useState('Please wait...');
   const params = useParams();
+  const [isProcessing, setIsProcessing] = useState(true);
 
   useEffect(() => {
     verify(params.token)
@@ -17,7 +18,8 @@ export default function VerifyConfirmPage() {
       })
       .catch(error => {
         setMsg(error.response.data.message);
-      });
+      })
+      .finally(() => setIsProcessing(false));
   }, [params.token]);
 
   return (
@@ -30,7 +32,9 @@ export default function VerifyConfirmPage() {
         <MsgBox>
           <Message>{msg}</Message>
 
-          <ButtonLink to="/">Login</ButtonLink>
+          <ButtonLink to="/" disabled={isProcessing}>
+            Login
+          </ButtonLink>
         </MsgBox>
       </InfoBox>
 
