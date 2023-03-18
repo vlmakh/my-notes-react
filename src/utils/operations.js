@@ -46,6 +46,30 @@ export const verify = async id => {
   return response;
 };
 
+export const verifyRepeat = async credentials => {
+  try {
+    const response = await axios.post(`api/users/verify/`, credentials);
+
+    toast.success(
+      t => (
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <span>
+            Please check <b>{credentials.email}</b> to finish registration
+          </span>
+          <Button onClick={() => toast.dismiss(t.id)}>Close</Button>
+        </Box>
+      ),
+      {
+        duration: 8000,
+      }
+    );
+
+    return response;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
 export const login = async credentials => {
   try {
     const response = await axios.post(`api/users/login`, credentials);

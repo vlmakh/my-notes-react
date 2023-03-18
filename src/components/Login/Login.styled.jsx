@@ -61,11 +61,29 @@ export const MenuLink = styled(NavLink)`
 
 export const StyledForm = styled(Form)`
   padding: 16px 24px;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  flex-grow: 2;
 
   height: 248px;
+`;
+
+export const TextLink = styled(NavLink)`
+  text-align: right;
+  width: 100%;
+  color: ${p => p.theme.colors.bcgSec};
+  text-decoration: none;
+  transition: color 250ms linear;
+
+  &.active {
+    color: ${p => p.theme.colors.textPrim};
+  }
+
+  :hover {
+    color: ${p => p.theme.colors.textPrim};
+  }
 `;
 
 export const StyledField = styled(Field)`
