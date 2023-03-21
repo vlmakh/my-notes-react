@@ -30,10 +30,13 @@ export const My = styled.span`
   color: lightgrey;
 `;
 
-export const UserName = styled.p`
+export const UserName = styled(NavLink)`
   font-size: 20px;
   font-weight: 700;
   margin-right: 16px;
+  text-decoration: none;
+  color: white;
+  text-align: right;
 `;
 
 export const Mobile = styled.span`
@@ -45,6 +48,10 @@ export const Mobile = styled.span`
 `;
 
 export const Desktop = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
   @media screen and (max-width: 479.98px) {
     display: none;
   }

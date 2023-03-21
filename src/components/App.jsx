@@ -14,6 +14,7 @@ const NotesPage = lazy(() => import('pages/NotesPage'));
 const LogoutPage = lazy(() => import('pages/LogoutPage'));
 const VerifyConfirmPage = lazy(() => import('pages/VerifyConfirmPage'));
 const VerifyRepeatPage = lazy(() => import('pages/VerifyRepeatPage'));
+const UserPage = lazy(() => import('pages/UserPage'));
 
 
 const startData = { token: null, sort: 'sortByCreatedUp' };
@@ -23,6 +24,7 @@ export const App = () => {
 
   const [data, setData] = useState(savedData ?? startData);
   const [user, setUser] = useState(null);
+  const [email, setEmail] = useState(null);
   const [token, setToken] = useState(data.token);
   const [sort, setSort] = useState(data.sort);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,6 +33,7 @@ export const App = () => {
     checkCurrentUser(token)
       .then(data => {
         setUser(data.name);
+        setEmail(data.email);
         setIsLoggedIn(true);
       })
       .catch(error => {});
@@ -90,6 +93,8 @@ export const App = () => {
           <Route path="/verify/:token" element={<VerifyConfirmPage />} />
 
           <Route path="/verify" element={<VerifyRepeatPage />} />
+
+          <Route path="/user" element={<UserPage isLoggedIn={isLoggedIn} setUser={setUser} email={email} />} />
 
           <Route path="*" element={<Navigate to="/" />} />
         </Route>

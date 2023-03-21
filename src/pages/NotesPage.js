@@ -48,6 +48,7 @@ export default function NotesPage({ isLoggedIn, sort, setSort }) {
   return (
     <>
       {!isLoggedIn && <Navigate to="/" />}
+
       <MyContext.Provider value={{ dispatch }}>
         {isProcessing && (
           <Box pt={6} textAlign="center" color="white">

@@ -105,6 +105,37 @@ export const logout = async () => {
   }
 };
 
+export const updateUserName = async ({ name, email }) => {
+  try {
+    const response = await axios.post(`api/users/updateName`, { email, name });
+
+    toast.success(() => (
+      <span>
+        Name <b>{name}</b> was updated
+      </span>
+    ));
+
+    return response.data;
+  } catch (error) {
+    toast.error(errorMsg);
+  }
+};
+
+export const updateUserPass = async ({ email, password }) => {
+  try {
+    const response = await axios.post(`api/users/updatePass`, {
+      email,
+      password,
+    });
+
+    toast.success('Password was updated successfully');
+
+    return response.data;
+  } catch (error) {
+    toast.error(errorMsg);
+  }
+};
+
 export const getNotes = async () => {
   try {
     const response = await axios.get(`api/notes`);

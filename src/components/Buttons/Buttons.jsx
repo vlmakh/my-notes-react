@@ -27,7 +27,7 @@ export const Button = styled.button`
 `;
 
 export const ButtonLink = styled(NavLink)`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   height: 32px;
   padding: 0 8px;

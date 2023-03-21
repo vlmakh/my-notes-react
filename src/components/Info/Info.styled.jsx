@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const InfoBox = styled('div')`
+export const InfoBox = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
