@@ -3,8 +3,7 @@ import toast from 'react-hot-toast';
 import { Button } from 'components/Buttons/Buttons';
 import { Box } from 'components/Box/Box';
 
-// axios.defaults.baseURL = process.env.REACT_APP_MAIN_URL;
-axios.defaults.baseURL = 'http://localhost:3001/';
+axios.defaults.baseURL = process.env.REACT_APP_MAIN_URL;
 
 const token = {
   set(token) {
