@@ -4,6 +4,7 @@ import {
   UpdateForm,
   StyledField,
   Label,
+  StyledErrorMsg,
 } from 'components/User/User.styled';
 import { Button, ButtonLink } from 'components/Buttons/Buttons';
 import { Navigate } from 'react-router-dom';
@@ -11,7 +12,6 @@ import { Formik } from 'formik';
 import { updateUserName, updateUserPass } from 'utils/operations';
 import * as yup from 'yup';
 import { useState } from 'react';
-// import { Box } from 'components/Box/Box';
 
 let schemaName = yup.object().shape({
   name: yup.string().min(4).required(),
@@ -71,6 +71,7 @@ export default function UserPage({ isLoggedIn, setUser, email }) {
                 type="text"
                 placeholder="New name"
               ></StyledField>
+              <StyledErrorMsg component="div" name="name" />
 
               <Button type="submit" disabled={isNameUpdating}>
                 {isNameUpdating ? 'Please wait...' : 'Update name'}
@@ -83,6 +84,7 @@ export default function UserPage({ isLoggedIn, setUser, email }) {
           onSubmit={handleUpdatePass}
           initialValues={{
             password: '',
+            passwordConfirm: '',
           }}
           validationSchema={schemaPass}
         >
@@ -94,6 +96,7 @@ export default function UserPage({ isLoggedIn, setUser, email }) {
                 placeholder="New password"
                 autoComplete="off"
               ></StyledField>
+              <StyledErrorMsg component="div" name="password" />
             </Label>
 
             <Label htmlFor="passwordConfirm">
@@ -103,6 +106,7 @@ export default function UserPage({ isLoggedIn, setUser, email }) {
                 placeholder="Repeat new password"
                 autoComplete="off"
               ></StyledField>
+              <StyledErrorMsg component="div" name="passwordConfirm" />
 
               <Button type="submit" disabled={isPassUpdating}>
                 {isPassUpdating ? 'Please wait...' : 'Update password'}

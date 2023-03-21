@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Form, Field } from 'formik';
+import { Form, Field, ErrorMessage } from 'formik';
 
 export const UserBox = styled.div`
   margin: 60px auto 0;
@@ -35,4 +35,14 @@ export const Label = styled.label`
   :nth-of-type(2) {
     margin-top: 8px;
   }
+`;
+
+export const StyledErrorMsg = styled(ErrorMessage)`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translatey(100%);
+  font-size: 10px;
+  /* background-color: white; */
+  color: ${p => p.theme.colors.textPrim};
 `;

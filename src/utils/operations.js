@@ -108,7 +108,6 @@ export const logout = async () => {
 
 export const updateUserName = async ({ name, email }) => {
   try {
-    console.log('email:', email, 'name: ', name);
     const response = await axios.post(`api/users/updateName`, { email, name });
 
     toast.success(() => (
