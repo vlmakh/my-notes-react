@@ -61,12 +61,9 @@ export const MenuLink = styled(NavLink)`
 
 export const StyledForm = styled(Form)`
   padding: 16px 24px;
-  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  flex-grow: 2;
-
   height: 248px;
 `;
 

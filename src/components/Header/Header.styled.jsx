@@ -30,10 +30,12 @@ export const My = styled.span`
   color: lightgrey;
 `;
 
-export const UserName = styled.p`
+export const UserName = styled(NavLink)`
   font-size: 20px;
   font-weight: 700;
   margin-right: 16px;
+  text-decoration: none;
+  color: white;
 `;
 
 export const Mobile = styled.span`

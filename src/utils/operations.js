@@ -3,7 +3,8 @@ import toast from 'react-hot-toast';
 import { Button } from 'components/Buttons/Buttons';
 import { Box } from 'components/Box/Box';
 
-axios.defaults.baseURL = process.env.REACT_APP_MAIN_URL;
+// axios.defaults.baseURL = process.env.REACT_APP_MAIN_URL;
+axios.defaults.baseURL = 'http://localhost:3001/';
 
 const token = {
   set(token) {
@@ -102,6 +103,41 @@ export const logout = async () => {
     token.unset();
   } catch (error) {
     toast.error(error.message);
+  }
+};
+
+export const updateUserName = async ({ name, email }) => {
+  try {
+    console.log('email:', email, 'name: ', name);
+    const response = await axios.post(`api/users/updateName`, { email, name });
+
+    toast.success(() => (
+      <span>
+        <b>{name}</b> was updated
+      </span>
+    ));
+
+    return response.data;
+  } catch (error) {
+    toast.error(errorMsg);
+  }
+};
+
+export const updateUserPass = async (noteId, newName) => {
+  try {
+    const response = await axios.post(`api/users/updatePass`, {
+      name: newName,
+    });
+
+    toast.success(() => (
+      <span>
+        <b>{newName}</b> was updated
+      </span>
+    ));
+
+    return response.data;
+  } catch (error) {
+    toast.error(errorMsg);
   }
 };
 
