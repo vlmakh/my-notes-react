@@ -112,7 +112,7 @@ export const updateUserName = async ({ name, email }) => {
 
     toast.success(() => (
       <span>
-        <b>{name}</b> was updated
+        Name <b>{name}</b> was updated
       </span>
     ));
 

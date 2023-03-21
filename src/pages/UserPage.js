@@ -12,6 +12,7 @@ import { Formik } from 'formik';
 import { updateUserName, updateUserPass } from 'utils/operations';
 import * as yup from 'yup';
 import { useState } from 'react';
+import { MdOutlineArrowBack } from 'react-icons/md';
 
 let schemaName = yup.object().shape({
   name: yup.string().min(4).required(),
@@ -118,7 +119,10 @@ export default function UserPage({ isLoggedIn, setUser, email }) {
           </UpdateForm>
         </Formik>
 
-        <ButtonLink to="/notes">Back to notes</ButtonLink>
+        <ButtonLink to="/notes">
+          <MdOutlineArrowBack size="24" />
+          Back to notes
+        </ButtonLink>
       </UserBox>
 
       <Footer />

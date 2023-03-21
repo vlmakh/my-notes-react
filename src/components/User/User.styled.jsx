@@ -3,7 +3,7 @@ import { Form, Field, ErrorMessage } from 'formik';
 
 export const UserBox = styled.div`
   margin: 60px auto 0;
-  width: 330px;
+  width: 320px;
 `;
 
 export const UpdateForm = styled(Form)`

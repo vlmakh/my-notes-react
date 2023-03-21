@@ -47,6 +47,10 @@ export const Mobile = styled.span`
 `;
 
 export const Desktop = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
   @media screen and (max-width: 479.98px) {
     display: none;
   }
