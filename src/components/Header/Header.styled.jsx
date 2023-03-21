@@ -36,6 +36,7 @@ export const UserName = styled(NavLink)`
   margin-right: 16px;
   text-decoration: none;
   color: white;
+  text-align: right;
 `;
 
 export const Mobile = styled.span`
