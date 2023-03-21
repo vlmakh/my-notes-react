@@ -11,26 +11,25 @@ import { Box } from 'components/Box/Box';
 import { Modal } from 'components/Modal/Modal';
 import { SortMenu } from 'components/SortMenu/SortMenu';
 
-export default function NotesPage({
-  user,
-  isLoggedIn,
-  setIsLoggedIn,
-  setToken,
-  sort,
-  setSort,
-}) {
+export default function NotesPage({ isLoggedIn, sort, setSort }) {
   const [mynotes, dispatch] = useReducer(reducer, []);
   const [isProcessing, setIsProcessing] = useState(true);
   const [showSortMenu, setShowSortMenu] = useState(false);
 
   useEffect(() => {
     getNotes()
-      .then(data => {
-        dispatch({ type: 'getNotes', notes: data });
-        setIsProcessing(false);
+      .then(notes => {
+        dispatch({ type: 'getNotes', notes });
+        return notes;
       })
-      .catch(error => {});
-  }, []);
+      .then(notes => {
+        dispatch({ type: sort, notes });
+      })
+      .catch(error => {})
+      .finally(() => {
+        setIsProcessing(false);
+      });
+  }, [sort]);
 
   const breakpointColumnsObj = {
     default: 7,
@@ -74,7 +73,6 @@ export default function NotesPage({
           <Modal onClose={toggleSortMenu}>
             <SortMenu
               toggleSortMenu={toggleSortMenu}
-              notes={mynotes}
               sort={sort}
               setSort={setSort}
             />

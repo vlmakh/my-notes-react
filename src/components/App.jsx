@@ -15,14 +15,16 @@ const LogoutPage = lazy(() => import('pages/LogoutPage'));
 const VerifyConfirmPage = lazy(() => import('pages/VerifyConfirmPage'));
 const VerifyRepeatPage = lazy(() => import('pages/VerifyRepeatPage'));
 
+
 const startData = { token: null, sort: 'sortByCreatedUp' };
 const savedData = JSON.parse(localStorage.getItem('mynotes'));
 
 export const App = () => {
+
   const [data, setData] = useState(savedData ?? startData);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(data.token);
-  const [sort, setSort] = useState('sortByCreatedUp');
+  const [sort, setSort] = useState(data.sort);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -76,10 +78,7 @@ export const App = () => {
             element={
               <NotesPage
                 isLoggedIn={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
                 token={token}
-                user={user}
-                setToken={setToken}
                 sort={sort}
                 setSort={setSort}
               />
