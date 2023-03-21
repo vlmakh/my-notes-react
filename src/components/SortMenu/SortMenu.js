@@ -5,44 +5,34 @@ import {
   FaSortAmountUpAlt,
   FaSortAmountDown,
 } from 'react-icons/fa';
-import { useContext } from 'react';
-import { MyContext } from 'utils/context';
 
-export function SortMenu({ toggleSortMenu, notes, sort, setSort }) {
-  const { dispatch } = useContext(MyContext);
-
+export function SortMenu({ toggleSortMenu, sort, setSort }) {
   const handleSortByNameUp = () => {
-    dispatch({ type: 'sortByNameUp', notes });
     toggleSortMenu();
     setSort('sortByNameUp');
   };
 
   const handleSortByNameDown = () => {
-    dispatch({ type: 'sortByNameDown', notes });
     toggleSortMenu();
     setSort('sortByNameDown');
   };
 
   const handleSortByCreatedUp = () => {
-    dispatch({ type: 'sortByCreatedUp', notes });
     toggleSortMenu();
     setSort('sortByCreatedUp');
   };
 
   const handleSortByCreatedDown = () => {
-    dispatch({ type: 'sortByCreatedDown', notes });
     toggleSortMenu();
     setSort('sortByCreatedDown');
   };
 
   const handleSortByUpdatedUp = () => {
-    dispatch({ type: 'sortByUpdatedUp', notes });
     toggleSortMenu();
     setSort('sortByUpdatedUp');
   };
 
   const handleSortByUpdatedDown = () => {
-    dispatch({ type: 'sortByUpdatedDown', notes });
     toggleSortMenu();
     setSort('sortByUpdatedDown');
   };

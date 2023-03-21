@@ -71,7 +71,6 @@ export default function NotesPage({ isLoggedIn, sort, setSort }) {
           <Modal onClose={toggleSortMenu}>
             <SortMenu
               toggleSortMenu={toggleSortMenu}
-              notes={mynotes}
               sort={sort}
               setSort={setSort}
             />
