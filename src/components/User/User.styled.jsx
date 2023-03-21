@@ -20,10 +20,6 @@ export const UpdateForm = styled(Form)`
 
 export const StyledField = styled(Field)`
   padding: 4px 8px;
-
-  :focus-visible {
-    outline: none;
-  }
 `;
 
 export const Label = styled.label`
@@ -31,9 +27,10 @@ export const Label = styled.label`
   display: flex;
   justify-content: space-between;
   font-weight: 600;
+  height: 32px;
 
   :nth-of-type(2) {
-    margin-top: 8px;
+    margin-top: 16px;
   }
 `;
 
@@ -43,6 +40,5 @@ export const StyledErrorMsg = styled(ErrorMessage)`
   left: 0;
   transform: translatey(100%);
   font-size: 10px;
-  /* background-color: white; */
   color: ${p => p.theme.colors.textPrim};
 `;

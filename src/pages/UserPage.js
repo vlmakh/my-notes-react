@@ -19,6 +19,9 @@ let schemaName = yup.object().shape({
 
 let schemaPass = yup.object().shape({
   password: yup.string().min(6).required(),
+  passwordConfirm: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
 export default function UserPage({ isLoggedIn, setUser, email }) {
@@ -42,8 +45,8 @@ export default function UserPage({ isLoggedIn, setUser, email }) {
   const handleUpdatePass = (values, { resetForm }) => {
     setIsPassUpdating(true);
 
-    updateUserPass(values)
-      .then(data => {
+    updateUserPass({ ...values, email })
+      .then(() => {
         resetForm();
       })
       .catch(error => {})
@@ -109,7 +112,7 @@ export default function UserPage({ isLoggedIn, setUser, email }) {
               <StyledErrorMsg component="div" name="passwordConfirm" />
 
               <Button type="submit" disabled={isPassUpdating}>
-                {isPassUpdating ? 'Please wait...' : 'Update password'}
+                {isPassUpdating ? 'Please wait...' : 'Update pass'}
               </Button>
             </Label>
           </UpdateForm>

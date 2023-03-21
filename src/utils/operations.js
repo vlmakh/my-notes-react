@@ -122,17 +122,14 @@ export const updateUserName = async ({ name, email }) => {
   }
 };
 
-export const updateUserPass = async (noteId, newName) => {
+export const updateUserPass = async ({ email, password }) => {
   try {
     const response = await axios.post(`api/users/updatePass`, {
-      name: newName,
+      email,
+      password,
     });
 
-    toast.success(() => (
-      <span>
-        <b>{newName}</b> was updated
-      </span>
-    ));
+    toast.success('Password was updated successfully');
 
     return response.data;
   } catch (error) {
