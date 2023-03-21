@@ -20,13 +20,15 @@ export default function NotesPage({ isLoggedIn, sort, setSort }) {
     getNotes()
       .then(notes => {
         dispatch({ type: 'getNotes', notes });
-        setIsProcessing(false);
         return notes;
       })
       .then(notes => {
         dispatch({ type: sort, notes });
       })
-      .catch(error => {});
+      .catch(error => {})
+      .finally(() => {
+        setIsProcessing(false);
+      });
   }, [sort]);
 
   const breakpointColumnsObj = {
