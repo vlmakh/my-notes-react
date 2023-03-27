@@ -6,6 +6,8 @@ import { checkCurrentUser } from 'utils/operations';
 import { ThemeProvider } from 'theme-ui';
 import { theme } from 'utils/theme';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
+import { Modal } from 'components/Modal/Modal';
+import { Warn } from './Warn/Warn';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const Login = lazy(() => import('components/Login/Login'));
@@ -17,7 +19,7 @@ const VerifyRepeatPage = lazy(() => import('pages/VerifyRepeatPage'));
 const UserPage = lazy(() => import('pages/UserPage'));
 
 
-const startData = { token: null, sort: 'sortByCreatedUp' };
+const startData = { token: null, sort: 'sortByCreatedUp', warn: false };
 const savedData = JSON.parse(localStorage.getItem('mynotes'));
 
 export const App = () => {
@@ -28,6 +30,11 @@ export const App = () => {
   const [token, setToken] = useState(data.token);
   const [sort, setSort] = useState(data.sort);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [warn, setWarn] = useState(data.warn);
+  
+  const agreeWarn = () => {
+    setWarn(true);
+  };
 
   useEffect(() => {
     checkCurrentUser(token)
@@ -40,8 +47,8 @@ export const App = () => {
   });
 
   useEffect(() => {
-    setData({ token, sort });
-  }, [sort, token]);
+    setData({ token, sort, warn });
+  }, [sort, token, warn]);
 
   useEffect(() => {
     localStorage.setItem('mynotes', JSON.stringify(data));
@@ -99,6 +106,12 @@ export const App = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
+
+      {!warn && (
+          <Modal >
+            <Warn agreeWarn={agreeWarn} />
+          </Modal>
+        )}
 
       <Toaster
         position="top-center"
